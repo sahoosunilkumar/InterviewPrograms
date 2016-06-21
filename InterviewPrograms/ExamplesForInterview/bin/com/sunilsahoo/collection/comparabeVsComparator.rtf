@@ -1,0 +1,493 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fnil\fcharset0 TrebuchetMS;\f2\fnil\fcharset0 Consolas-Bold;
+\f3\fnil\fcharset0 Consolas;\f4\fnil\fcharset0 Consolas-BoldItalic;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red182\green182\blue182;
+\red0\green0\blue0;\red26\green26\blue26;\red16\green60\blue192;\red106\green0\blue67;\red38\green38\blue38;
+\red81\green81\blue81;\red50\green110\blue76;\red0\green0\blue178;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl880\partightenfactor0
+
+\f0\i\b\fs64 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 What are difference between java.lang.Comparable and java.util.Comparator in java
+\f1\i0\b0\fs26 \cf4 \strokec4 \
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth2280\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4420\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+
+\fs24 \cf5 \cb1 \strokec5 \cell 
+\pard\intbl\itap1\pardeftab720\sl440\partightenfactor0
+
+\f0\fs38 \cf5 \cb3 Property
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl500\partightenfactor0
+
+\f0\i\b\fs42 \cf2 \cb3 \strokec2 java.lang.Comparable 
+\f1\i0\b0\fs24 \cf5 \cb1 \strokec5 \cell 
+\pard\intbl\itap1\pardeftab720\sl500\partightenfactor0
+
+\f0\i\b\fs42 \cf2 \cb3 \strokec2 java.util.Comparator
+\f1\i0\b0\fs24 \cf5 \cb1 \strokec5 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth2280\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4420\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 1
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Comparing instances of class
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf6 \cb3 \strokec6 Comparable is used to compare instances of same class in java.
+\f1\fs24 \cf5 \cb1 \strokec5 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf6 \cb3 \strokec6 Comparator can be used to compare instances of same or different classes in java.
+\f1\fs24 \cf5 \cb1 \strokec5 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth2280\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4420\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\b\fs30 \cf6 \cb3 \strokec6 2
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\b\fs30 \cf6 \cb3 \strokec6 sorting order
+\b0  
+\f1\fs24 \cf5 \cb1 \strokec5 \cell 
+\pard\intbl\itap1\pardeftab720\sl520\partightenfactor0
+
+\f0\fs30 \cf6 \cb3 \strokec6 Comparable can be implemented by class which need to define a 
+\b natural ordering for its objects.
+\b0  
+\f1\fs24 \cf5 \cb1 \strokec5 \
+
+\f0\b\fs30 \cf6 \cb3 \strokec6 Example 
+\b0 - String, Integer, Long , {\field{\*\fldinst{HYPERLINK "http://www.javamadesoeasy.com/2015/07/creating-date-in-java-using-calendar.html"}}{\fldrslt \cf7 \ul \ulc7 \strokec7 Date}} and all other wrapper classes implements Comparable.
+\f1\fs24 \cf5 \cb1 \strokec5 \cell 
+\pard\intbl\itap1\pardeftab720\sl520\partightenfactor0
+
+\f0\fs30 \cf6 \cb3 \strokec6 Comparator is implemented when one wants a 
+\b different sorting order
+\b0  and define custom way of comparing two instances.
+\f1\fs24 \cf5 \cb1 \strokec5 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth2280\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4420\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 3
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Changes to class
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 For using Comparable, original Class must implement it.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\
+\
+\
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\b\fs30 \cf5 \cb3 Example of Comparable in java-
+\f1\b0\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl300\partightenfactor0
+
+\f2\b\fs26 \cf8 \cb3 \strokec8 class
+\f3\b0 \cf5 \strokec5  Employee 
+\f2\b\fs32 \cf8 \strokec8 implements\cf5 \strokec5  Comparable<Employee>
+\f1\b0\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\
+\
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 For using Comparable, Employee Class must implement it, no other class can implement it.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 As used in 
+\b \cf2 \strokec2 Program 1
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Class itself can implement Comparator
+\f1\fs24 \cb1 \
+
+\f0\fs30 \cb3 or 
+\f1\fs24 \cb1 \
+
+\f0\fs30 \cb3 any other class can implement Comparator. Hence avoiding modification to original class.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\b\fs30 \cf5 \cb3 Example of Comparator in java-
+\f1\b0\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl300\partightenfactor0
+
+\f2\b\fs26 \cf8 \cb3 \strokec8 class\cf5 \strokec5  ComparatorName \cf8 \strokec8 implements\cf5 \strokec5  Comparator<Employee>
+\f1\b0\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl300\partightenfactor0
+
+\f2\b\fs26 \cf8 \cb3 \strokec8 class\cf5 \strokec5  ComparatorId \cf8 \strokec8 implements\cf5 \strokec5  Comparator<Employee>
+\f1\b0\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 In above example modifications were made to 
+\f2\b\fs26 ComparatorName 
+\f0\b0\fs30 and 
+\f2\b\fs26 ComparatorId. 
+\f0\b0\fs30 Hence avoiding modification to Employee class.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 As used in 
+\b \cf2 \strokec2 Program 4
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth2280\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4420\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 4
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Sorting on basis on one or many criteria in java
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf9 \cb3 \strokec9 Provides sorting only on 
+\b one 
+\b0 criteria, 
+\b because 
+\b0 Comparable can be implemented by original class only in java.
+\f1\fs24 \cf5 \cb1 \strokec5 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf9 \cb3 \strokec9 We can use Comparator to sort class on 
+\b many 
+\b0 criterias 
+\b because 
+\b0 class itself or any other class can implement Comparator in java.
+\f1\fs24 \cf5 \cb1 \strokec5 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth2280\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4420\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 5
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Method
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 After implementing Comparable class must override 
+\b\fs38 \cf9 \strokec9 compareTo 
+\b0 method
+\f1\fs24 \cf5 \cb1 \strokec5 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl240\partightenfactor0
+
+\f2\b\fs22 \cf10 \cb3 \strokec10 @Override
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \
+\pard\intbl\itap1\pardeftab720\sl240\partightenfactor0
+
+\f2\b\fs22 \cf8 \cb3 \strokec8 public\cf5 \strokec5  \cf8 \strokec8 int\cf5 \strokec5  compareTo(Employee obj) \{
+\f1\b0\fs24 \cb1 \
+
+\f2\b\fs22 \cb3  \cf11 \strokec11 //sort Employee on basis of name(ascending order)
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \
+
+\f2\b\fs22 \cb3  \'a0\cf8 \strokec8 return\cf5 \strokec5  \cf8 \strokec8 this\cf5 \strokec5 .\cf12 \strokec12 name\cf5 \strokec5 .compareTo(obj.\cf12 \strokec12 name\cf5 \strokec5 );
+\f1\b0\fs24 \cb1 \
+
+\f2\b\fs22 \cb3 \}
+\f1\b0\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Method compares 
+\b this 
+\b0 with 
+\b obj 
+\b0 object and returns a integer.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\tx220\tx720\pardeftab720\li720\fi-720\sl340\partightenfactor0
+\ls1\ilvl0
+\f0\fs30 \cf5 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 positive \'96 
+\b this 
+\b0 is 
+\b greater 
+\b0 than 
+\b obj 
+\b0 \cb1 \uc0\u8232 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 zero \'96 
+\b this 
+\b0 is 
+\b equal 
+\b0 to 
+\b obj 
+\b0 \cb1 \uc0\u8232 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 negative \'96 
+\b this 
+\b0 is 
+\b less 
+\b0 than 
+\b obj 
+\b0 \cb1 \uc0\u8232 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+
+\f1\fs24 \cf5 \
+\
+\
+\
+\
+\
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 As used in 
+\b \cf2 \strokec2 Program 1
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 After implementing Comparable class must override 
+\b\fs38 \cf9 \strokec9 compare 
+\b0 method
+\f1\fs24 \cf5 \cb1 \strokec5 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl240\partightenfactor0
+
+\f2\b\fs22 \cf10 \cb3 \strokec10 @Override
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \
+\pard\intbl\itap1\pardeftab720\sl240\partightenfactor0
+
+\f2\b\fs22 \cf8 \cb3 \strokec8 public\cf5 \strokec5  \cf8 \strokec8 int\cf5 \strokec5  compare(Employee obj1, Employee obj2) \{
+\f1\b0\fs24 \cb1 \
+
+\f2\b\fs22 \cb3  \cf11 \strokec11 //sort Employee on basis of name(ascending order)
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \
+
+\f2\b\fs22 \cb3  \'a0\'a0\'a0\cf8 \strokec8 return\cf5 \strokec5  obj1.\cf12 \strokec12 name\cf5 \strokec5 .compareTo(obj2.\cf12 \strokec12 name\cf5 \strokec5 );
+\f1\b0\fs24 \cb1 \
+
+\f2\b\fs22 \cb3 \}
+\f1\b0\fs24 \cb1 \
+
+\f2\b\fs22 \cb3  \'a0\'a0
+\f1\b0\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Method compares 
+\b obj1 
+\b0 with 
+\b obj2 
+\b0 object and returns a integer.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\tx220\tx720\pardeftab720\li720\fi-720\sl340\partightenfactor0
+\ls2\ilvl0
+\f0\fs30 \cf5 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 positive \'96 
+\b obj1 
+\b0 is 
+\b greater 
+\b0 than 
+\b obj2 
+\b0 \cb1 \uc0\u8232 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 zero \'96 
+\b obj1 
+\b0 is 
+\b equal 
+\b0 to 
+\b obj2 
+\b0 \cb1 \uc0\u8232 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 negative \'96 
+\b obj1 
+\b0 is 
+\b less 
+\b0 than 
+\b obj2 
+\b0 \cb1 \uc0\u8232 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+
+\f1\fs24 \cf5 \
+\
+\
+\
+\
+\
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 As used in 
+\b \cf2 \strokec2 Program 3
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth2280\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4420\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 6
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Package
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl440\partightenfactor0
+
+\f0\b\fs38 \cf9 \cb3 \strokec9 java.lang
+\b0  
+\f1\fs24 \cf5 \cb1 \strokec5 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\b\fs30 \cf5 \cb3 java.lang
+\b0  package is automatically imported by every program in java.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf6 \cb3 \strokec6 Hence, \cf5 \strokec5 we need to write explicit statement for importing java.lang.Comparable.
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl440\partightenfactor0
+
+\f0\b\fs38 \cf9 \cb3 \strokec9 java.util
+\f1\b0\fs24 \cf5 \cb1 \strokec5 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 We need to write explicit import statement -
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl300\partightenfactor0
+
+\f2\b\fs26 \cf8 \cb3 \strokec8 import
+\f3\b0 \cf5 \strokec5  java.util.Comparator
+\f1\fs24 \cb1 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth2280\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth4380\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth4420\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 7
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Using 
+\b Collections.sort
+\f1\b0\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Let's say we wanna sort list of Employee,
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl440\partightenfactor0
+
+\f0\b\fs38 \cf9 \cb3 \strokec9 Collections.sort(
+\b0\fs30 \cf5 \strokec5 list
+\b\fs38 \cf9 \strokec9 ) 
+\b0\fs30 \cf5 \strokec5 uses Comparable interface for sorting class.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 As used in Program 1
+\f1\fs24 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 Let's say we wanna sort list of Employee,
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl380\partightenfactor0
+
+\f2\b\fs32 \cf5 \cb3 Collections.
+\f4\i sort
+\f2\i0 (list,\cf8 \strokec8 new\cf5 \strokec5  ComparatorName());
+\f1\b0\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 uses Comparator interface for sorting class.
+\f1\fs24 \cb1 \
+\pard\intbl\itap1\pardeftab720\sl280\partightenfactor0
+\cf5 \
+\pard\intbl\itap1\pardeftab720\sl340\partightenfactor0
+
+\f0\fs30 \cf5 \cb3 As used in Program 5
+\f1\fs24 \cb1 \cell \lastrow\row
+\pard\pardeftab720\sl358\partightenfactor0
+
+\fs26 \cf4 \strokec4 \
+\
+}
