@@ -13,8 +13,6 @@ Violations of LSP cause undefined behaviour. Undefined behaviour means that it w
 eg Set should not extend from ArrayList 
 Square should not extend from Rectangle
  */
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * 
@@ -22,16 +20,15 @@ import java.util.Set;
  *
  */
 public class LiskovSubstitutionPrincipleExample {
-	
 
 }
 
-//=====VIOLATES LSB as bird is not actually Airplane====
+// =====VIOLATES LSB as bird is not actually Airplane====
 class Airplane1 {
-	public void fly(){
-		//TODO start run
-		//TODO start takeoff
-		//TODO start fly inclined manner
+	public void fly() {
+		// TODO start run
+		// TODO start takeoff
+		// TODO start fly inclined manner
 	}
 }
 
@@ -43,18 +40,18 @@ class Bird1 extends Airplane1 {
 	}
 }
 
-//=====VIOLATES LSB END====
+// =====VIOLATES LSB END====
 
-
-//=====Pass LSB====
-interface IFlayer{
+// =====Pass LSB====
+interface IFlayer {
 	void fly();
 }
-class Airplane implements IFlayer{
-	public void fly(){
-		//TODO start run
-		//TODO start takeoff
-		//TODO start fly inclined manner
+
+class Airplane implements IFlayer {
+	public void fly() {
+		// TODO start run
+		// TODO start takeoff
+		// TODO start fly inclined manner
 	}
 }
 
@@ -71,4 +68,4 @@ class Eagle extends Bird {
 		// TODO fly directly
 	}
 }
-//=====Pass LSB END====
+// =====Pass LSB END====
