@@ -1,0 +1,72 @@
+The following exercises challenge you to learn more about the Executors Framework, synchronizers, and concurrent collections:
+
+1. Consider the following application that uses an executor to execute a runnable task that outputs a thread's name and a 
+   loop index:
+
+   import java.util.concurrent.Executors;
+   import java.util.concurrent.ExecutorService;
+
+   public class NamedThreadExecutorDemo
+   {
+      public static void main(String[] args)
+      {
+         Runnable r = new Runnable()
+                      {
+                         @Override
+                         public void run()
+                         {
+                            String name = Thread.currentThread().getName();
+                            for (int i = 0; i < 10; i++)
+                               System.out.printf("%s: %d%n", name, i);
+                         }
+                      };
+         ExecutorService executor = Executors.newSingleThreadExecutor();
+         executor.execute(r);
+         executor.shutdown();
+      }
+   }
+
+   If you run this application, you'll see output similar to the following:
+
+   pool-1-thread-1: 0
+   pool-1-thread-1: 1
+   pool-1-thread-1: 2
+   pool-1-thread-1: 3
+   pool-1-thread-1: 4
+   pool-1-thread-1: 5
+   pool-1-thread-1: 6
+   pool-1-thread-1: 7
+   pool-1-thread-1: 8
+   pool-1-thread-1: 9
+
+   The name of the thread is specified as pool-1-thread-1. Because this name is chosen by newSingleThreadExecutor(), you 
+   cannot supply your own name. However, Executors offers a solution. Implement this solution in a new version of 
+   NamedThreadExecutorDemo that outputs Foo instead of pool-1-thread-1. Hint: You only need to introduce a single class and 
+   modify one line of code.
+
+2. Semaphore's acquire() method blocks until a permit is available or the thread is interrupted. Suppose your application 
+   requires that you obtain a permit or be notified that one isn't available without blocking. How do you accomplish this 
+   task?
+
+3. True or False: ConcurrentHashMap provides support for locking its entire hash table in a way that prevents all access.
+
+4. When working with HashMap, it's common to follow the pattern demonstrated below to add a value that doesn't exist:
+
+   synchronized (this) 
+   {
+      Employee emp = employees.get(name); // employees is a HashMap
+      if (emp == null) 
+      {
+         emp = new Employee(name);
+         employees.put(name, emp);
+      }
+      // ...
+   }
+
+   If you switched the type of employees from HashMap to ConcurrentHashMap and removed synchronized, you would encounter a
+   race condition: If a new Employee was put into the employees map by another thread after the call to get() returned null, 
+   put() would overwrite the value. You could solve this problem by keeping the code synchronized. However, that defeats the 
+   purpose for ConcurrentHashMap because it makes your code single-threaded. How would you solve this problem?
+
+You'll find the answers to these exercises in the answers directory's answers.txt file and associated subdirectories. Give 
+each exercise your best shot before checking the answer.

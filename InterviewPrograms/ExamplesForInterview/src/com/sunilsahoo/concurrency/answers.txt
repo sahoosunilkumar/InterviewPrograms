@@ -1,0 +1,74 @@
+Here are my answers to the exercises:
+
+1. The following listing answers this question:
+
+   import java.util.concurrent.Executors;
+   import java.util.concurrent.ExecutorService;
+   import java.util.concurrent.ThreadFactory;
+
+   public class NamedThreadExecutorDemo
+   {
+      public static void main(String[] args)
+      {
+         Runnable r = new Runnable()
+                      {
+                         @Override
+                         public void run()
+                         {
+                            String name = Thread.currentThread().getName();
+                            for (int i = 0; i < 10; i++)
+                               System.out.printf("%s: %d%n", name, i);
+                         }
+                      };
+         ExecutorService executor;
+         executor = Executors.newSingleThreadExecutor(new NamedThread("Foo"));
+         executor.execute(r);
+         executor.shutdown();
+      }
+   }
+
+   class NamedThread implements ThreadFactory
+   {
+      private String name;
+
+      NamedThread(String name)
+      {
+         this.name = name;
+      }
+
+      @Override
+      public Thread newThread(Runnable r)
+      {
+         return new Thread(r, name);
+      }
+   }
+
+   The Executors class declares an ExecutorService newSingleThreadExecutor(ThreadFactory threadFactory) class method for
+   creating an Executor that uses a single worker thread operating off an unbounded queue, and uses the provided 
+   ThreadFactory to create a new thread when needed.
+
+   ThreadFactory is an interface in the java.util.concurrent package that provides the following method for creating a 
+   thread:
+
+   Thread newThread(Runnable r)
+
+   The solution is to create a class that implements ThreadFactory and overrides this method. The class provides a 
+   constructor that saves a String variable denoting the thread's name, and the overridden newThread(Runnable) method 
+   passes the name to the Thread(Runnable, String) constructor. Instantiate this class and pass the instance to
+   newSingleThreadExecutor(ThreadFactory).
+
+2. To obtain a permit or be notified that one isn't available without blocking, invoke Semaphore's boolean tryAcquire()
+   method.
+
+3. The answer is false: ConcurrentHashMap doesn't provide support for locking its entire hash table in a way that prevents 
+   all access.
+
+4. To solve this problem with ConcurrentHashMap, use this class's V putIfAbsent(K key, V value) method. putIfAbsent(K, v) is
+   equivalent to the following code:
+
+   if (!map.containsKey(key))
+      return map.put(key, value);
+   else
+      return map.get(key);
+
+   except that the action is performed atomically.
