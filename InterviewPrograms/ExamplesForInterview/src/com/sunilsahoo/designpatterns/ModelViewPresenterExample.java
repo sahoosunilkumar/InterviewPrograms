@@ -14,6 +14,26 @@ situations
 
 * when you want to improve the "Separation of Concerns" principle in presentation logic
 * when a user interface development and testing is necessary.
+* 
+* It has been noticed that Android is not able to follow the MVC architecture completely,
+* as Activity/Fragment can act as both Controller and view, which makes all the code 
+* cluttered at one place. Activity/Fragment can be used to draw multiple views for 
+* single screen in app, thus all different data calls and views are populated at the same place.
+* Therefore to solve this problem, we can use different design pattern or can implement MVC carefully 
+* by taking care of conventions and following proper programming guidelines.
+* 
+* 
+* View:- It renders information to users and contains UI Component .Xml file, Activity, 
+* fragments, Dialog comes under View Layer.It do not have any other logic implemented.
+Model:- Model here too plays role of domain or business layer and is data source of 
+pattern. It describe the main logic of application and decides from where 
+the data should be fetched.
+Presenter:- This layer performs the functionality of Controller and act as middle layer 
+between view and model layer. But unlike controller, it is not much dependent on View. 
+View contact presenter for the data to be presented, then Presenter takes data from 
+model and returns to view in presentable format. Presenter is a simple java class 
+that do not contain any UI components, it just manipulates data from model and displays 
+it on view.
  * 
  */
 import java.io.BufferedReader;
