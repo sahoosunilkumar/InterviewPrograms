@@ -13,11 +13,11 @@ public class ThreadPoolUsingExecutor {
 			Runnable worker = new MyRunnable(100L + i);
 			executor.execute(worker);
 		}
-		// This will make the executor accept no new threads 
-		// and finish all existing threads in the queue 
+		// This will make the executor accept no new threads
+		// and finish all existing threads in the queue
 		executor.shutdown();
-		// Wait until all threads are finish 
-//		executor.awaitTermination(); 
+		// Wait until all threads are finish
+		// executor.awaitTermination();
 		System.out.println("Finished all threads");
 	}
 }
@@ -35,6 +35,7 @@ class MyRunnable implements Runnable {
 		for (long i = 1; i < countUntil; i++) {
 			sum += i;
 		}
-		System.out.println("Thread Name :"+Thread.currentThread()+" sum :"+sum);
+		System.out.println(
+				"Thread Name :" + Thread.currentThread() + " sum :" + sum);
 	}
 }

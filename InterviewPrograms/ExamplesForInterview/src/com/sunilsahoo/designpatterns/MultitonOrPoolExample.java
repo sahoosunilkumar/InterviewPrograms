@@ -67,7 +67,8 @@ class Worker implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println(String.format("%s processing %s", Thread.currentThread().getName(), task.toString()));
+		System.out.println(String.format("%s processing %s",
+				Thread.currentThread().getName(), task.toString()));
 		try {
 			Thread.sleep(task.getTimeMs());
 		} catch (InterruptedException e) {
@@ -112,7 +113,8 @@ class CoffeeMakingTask extends Task {
 
 	@Override
 	public String toString() {
-		return String.format("%s %s", this.getClass().getSimpleName(), super.toString());
+		return String.format("%s %s", this.getClass().getSimpleName(),
+				super.toString());
 	}
 }
 
@@ -126,6 +128,7 @@ class PotatoPeelingTask extends Task {
 
 	@Override
 	public String toString() {
-		return String.format("%s %s", this.getClass().getSimpleName(), super.toString());
+		return String.format("%s %s", this.getClass().getSimpleName(),
+				super.toString());
 	}
 }

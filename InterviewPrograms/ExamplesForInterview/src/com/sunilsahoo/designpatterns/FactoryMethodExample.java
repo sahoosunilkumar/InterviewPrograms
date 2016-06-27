@@ -13,10 +13,12 @@ public class FactoryMethodExample {
 		HashMap<String, Object> properties = new HashMap<>();
 		properties.put("login", "sunil");
 
-		IAnalyticsInterface1 interface1 = AnalyticsFactory.getAnalytics("omniture");
+		IAnalyticsInterface1 interface1 = AnalyticsFactory
+				.getAnalytics("omniture");
 		interface1.trackEvent(properties);
 
-		IAnalyticsInterface1 interface2 = AnalyticsFactory.getAnalytics("leanplum");
+		IAnalyticsInterface1 interface2 = AnalyticsFactory
+				.getAnalytics("leanplum");
 		interface2.trackEvent(properties);
 	}
 
@@ -80,7 +82,8 @@ class LeanplumAnalyticsImpl1 implements IAnalyticsInterface1 {
 	@Override
 	public void trackEvent(Map<String, Object> properties) {
 		// TODO Auto-generated method stub
-		System.out.println("LeanplumAnalyticsImpl trackEvent implimented " + properties);
+		System.out.println(
+				"LeanplumAnalyticsImpl trackEvent implimented " + properties);
 
 	}
 

@@ -59,7 +59,8 @@ class AnalyticsManager {
 	 *
 	 * @param iAnalyticsInterface
 	 */
-	public static void addAnalyticsEngine(IAnalyticsInterface iAnalyticsInterface) {
+	public static void addAnalyticsEngine(
+			IAnalyticsInterface iAnalyticsInterface) {
 		interfaces.put(iAnalyticsInterface, true);
 	}
 
@@ -68,7 +69,8 @@ class AnalyticsManager {
 	 *
 	 * @param iAnalyticsInterface
 	 */
-	public static void removeAnalyticsEngine(IAnalyticsInterface iAnalyticsInterface) {
+	public static void removeAnalyticsEngine(
+			IAnalyticsInterface iAnalyticsInterface) {
 		interfaces.remove(iAnalyticsInterface);
 	}
 
@@ -77,7 +79,8 @@ class AnalyticsManager {
 	 *
 	 * @param iAnalyticsInterface
 	 */
-	public static void disableAnalyticsEngine(IAnalyticsInterface iAnalyticsInterface) {
+	public static void disableAnalyticsEngine(
+			IAnalyticsInterface iAnalyticsInterface) {
 		interfaces.put(iAnalyticsInterface, false);
 	}
 
@@ -87,7 +90,8 @@ class AnalyticsManager {
 	 * @param properties
 	 */
 	public static void track(Map<String, Object> properties) {
-		Set<Entry<IAnalyticsInterface, Boolean>> entrySet = interfaces.entrySet();
+		Set<Entry<IAnalyticsInterface, Boolean>> entrySet = interfaces
+				.entrySet();
 		for (Entry<IAnalyticsInterface, Boolean> entry : entrySet) {
 			if (entry.getValue()) {
 				entry.getKey().trackEvent(properties);
@@ -126,7 +130,8 @@ class LeanplumAnalyticsImpl implements IAnalyticsInterface {
 	@Override
 	public void trackEvent(Map<String, Object> properties) {
 		// TODO Auto-generated method stub
-		System.out.println("LeanplumAnalyticsImpl trackEvent implimented " + properties);
+		System.out.println(
+				"LeanplumAnalyticsImpl trackEvent implimented " + properties);
 
 	}
 

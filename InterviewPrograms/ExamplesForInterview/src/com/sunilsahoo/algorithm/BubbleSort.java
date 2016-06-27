@@ -15,12 +15,14 @@ public class BubbleSort {
 				}
 
 			}
-			System.out.println("after "+i +" iteration : "+Utility.join(",", intArray));
+			System.out.println("after " + i + " iteration : "
+					+ Utility.join(",", intArray));
 		}
 	}
-	public static void main(String[] args){
-		int[] intArray = {5,8,2,9,20,1};
-		System.out.println("array :"+Utility.join(",", intArray));
+
+	public static void main(String[] args) {
+		int[] intArray = { 5, 8, 2, 9, 20, 1 };
+		System.out.println("array :" + Utility.join(",", intArray));
 		new BubbleSort().bubblesort(intArray);
 	}
 }

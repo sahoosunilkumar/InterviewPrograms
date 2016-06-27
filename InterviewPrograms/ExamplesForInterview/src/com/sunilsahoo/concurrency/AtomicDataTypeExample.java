@@ -52,7 +52,7 @@ public class AtomicDataTypeExample {
 			list.add(submit);
 		}
 		// This will make the executor accept no new threads // and finish all
-		// existing threads in the queue 
+		// existing threads in the queue
 		executor.shutdown();
 		// Wait until all threads are finish
 		while (!executor.isTerminated()) {
@@ -94,4 +94,3 @@ class Counter {
 		return oldValue + 1;
 	}
 }
-

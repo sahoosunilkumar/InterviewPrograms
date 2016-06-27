@@ -11,13 +11,17 @@ public class PhaserDemo {
 		tasks.add(new Runnable() {
 			@Override
 			public void run() {
-				System.out.printf("%s running at %d%n", Thread.currentThread().getName(), System.currentTimeMillis());
+				System.out.printf("%s running at %d%n",
+						Thread.currentThread().getName(),
+						System.currentTimeMillis());
 			}
 		});
 		tasks.add(new Runnable() {
 			@Override
 			public void run() {
-				System.out.printf("%s running at %d%n", Thread.currentThread().getName(), System.currentTimeMillis());
+				System.out.printf("%s running at %d%n",
+						Thread.currentThread().getName(),
+						System.currentTimeMillis());
 			}
 		});
 		runTasks(tasks);

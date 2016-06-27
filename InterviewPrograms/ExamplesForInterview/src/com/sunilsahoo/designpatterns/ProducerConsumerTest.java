@@ -38,7 +38,8 @@ public class ProducerConsumerTest {
 		}
 
 		for (int i = 0; i < 3; i++) {
-			final Consumer consumer = pcTest.new Consumer("Consumer_" + i, queue);
+			final Consumer consumer = pcTest.new Consumer("Consumer_" + i,
+					queue);
 			executorService.submit(() -> {
 				while (true) {
 					consumer.consume();
@@ -140,8 +141,9 @@ public class ProducerConsumerTest {
 		public void consume() throws InterruptedException {
 
 			Item item = queue.take();
-			System.out.println(String.format("Consumer [%s] consume item [%s] produced by [%s]", name, item.getId(),
-					item.getProducer()));
+			System.out.println(String.format(
+					"Consumer [%s] consume item [%s] produced by [%s]", name,
+					item.getId(), item.getProducer()));
 
 		}
 	}

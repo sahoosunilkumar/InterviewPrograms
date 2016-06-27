@@ -11,7 +11,8 @@ public class CyclicBarrierDemo {
 			@Override
 			public void run() {
 				String name = Thread.currentThread().getName();
-				System.out.printf("Thread %s " + "executing barrier action.%n", name);
+				System.out.printf("Thread %s " + "executing barrier action.%n",
+						name);
 			}
 		};
 		final CyclicBarrier barrier = new CyclicBarrier(3, action);
@@ -32,8 +33,10 @@ public class CyclicBarrierDemo {
 				System.out.printf("%s has joined game%n", name);
 			}
 		};
-		ExecutorService[] executors = new ExecutorService[] { Executors.newSingleThreadExecutor(),
-				Executors.newSingleThreadExecutor(), Executors.newSingleThreadExecutor() };
+		ExecutorService[] executors = new ExecutorService[] {
+				Executors.newSingleThreadExecutor(),
+				Executors.newSingleThreadExecutor(),
+				Executors.newSingleThreadExecutor() };
 		for (ExecutorService executor : executors) {
 			executor.execute(task);
 			executor.shutdown();

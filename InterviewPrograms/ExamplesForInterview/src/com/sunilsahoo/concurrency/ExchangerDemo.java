@@ -21,9 +21,11 @@ public class ExchangerDemo {
 					while (true) {
 						addToBuffer(currentBuffer);
 						if (currentBuffer.isFull()) {
-							System.out.println("filling loop thread wants to exchange");
+							System.out.println(
+									"filling loop thread wants to exchange");
 							currentBuffer = exchanger.exchange(currentBuffer);
-							System.out.println("filling loop thread observes an exchange");
+							System.out.println(
+									"filling loop thread observes an exchange");
 						}
 					}
 				} catch (InterruptedException ie) {
@@ -46,9 +48,11 @@ public class ExchangerDemo {
 					while (true) {
 						takeFromBuffer(currentBuffer);
 						if (currentBuffer.isEmpty()) {
-							System.out.println("emptying loop thread wants to exchange");
+							System.out.println(
+									"emptying loop thread wants to exchange");
 							currentBuffer = exchanger.exchange(currentBuffer);
-							System.out.println("emptying loop thread observes an exchange");
+							System.out.println(
+									"emptying loop thread observes an exchange");
 						}
 					}
 				} catch (InterruptedException ie) {

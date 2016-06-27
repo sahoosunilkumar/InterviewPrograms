@@ -19,7 +19,8 @@ package com.sunilsahoo.designpatterns;
 public class ModelViewContollerExample {
 	public static void main(String[] args) {
 		// create model, view and controller
-		GiantModel giant = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
+		GiantModel giant = new GiantModel(Health.HEALTHY, Fatigue.ALERT,
+				Nourishment.SATURATED);
 		GiantView view = new GiantView();
 		GiantController controller = new GiantController(giant, view);
 		// initial display
@@ -158,7 +159,8 @@ class GiantModel {
 
 	@Override
 	public String toString() {
-		return String.format("The giant looks %s, %s and %s.", health, fatigue, nourishment);
+		return String.format("The giant looks %s, %s and %s.", health, fatigue,
+				nourishment);
 	}
 }
 

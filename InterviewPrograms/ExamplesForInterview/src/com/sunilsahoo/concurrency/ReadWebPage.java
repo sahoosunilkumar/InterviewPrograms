@@ -29,7 +29,8 @@ public class ReadWebPage {
 		Callable<List<String>> callable;
 		callable = new Callable<List<String>>() {
 			@Override
-			public List<String> call() throws IOException, MalformedURLException {
+			public List<String> call()
+					throws IOException, MalformedURLException {
 				List<String> lines = new ArrayList<>();
 				URL url = new URL(args[0]);
 				HttpURLConnection con;
@@ -50,7 +51,8 @@ public class ReadWebPage {
 			for (String line : lines)
 				System.out.println(line);
 		} catch (ExecutionException ee) {
-			System.err.println("Callable through exception: " + ee.getMessage());
+			System.err
+					.println("Callable through exception: " + ee.getMessage());
 		} catch (InterruptedException | TimeoutException eite) {
 			System.err.println("URL not responding");
 		}

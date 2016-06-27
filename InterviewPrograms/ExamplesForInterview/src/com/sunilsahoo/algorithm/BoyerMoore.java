@@ -1,4 +1,5 @@
 package com.sunilsahoo.algorithm;
+
 /*
 
 The algorithm is carried out in two steps:
@@ -30,7 +31,8 @@ public class BoyerMoore {
 			}
 		}
 
-		System.out.format("%s\n", "counter : "+counter+" candidate : "+candidate);
+		System.out.format("%s\n",
+				"counter : " + counter + " candidate : " + candidate);
 		counter = 0;
 		for (int i : num) {
 			if (i == candidate)
@@ -44,7 +46,8 @@ public class BoyerMoore {
 
 	public static void main(String[] args) {
 		BoyerMoore s = new BoyerMoore();
-		System.out.format("%d\n", s.majorityElement(new int[] { 2, 2, 2, 3, 3, 2, 3 }));
+		System.out.format("%d\n",
+				s.majorityElement(new int[] { 2, 2, 2, 3, 3, 2, 3 }));
 		System.out.format("%d\n", s.majorityElement(new int[] { 2, 2, 3 }));
 	}
 }

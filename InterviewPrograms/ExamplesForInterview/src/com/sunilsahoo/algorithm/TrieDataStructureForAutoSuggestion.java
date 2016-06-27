@@ -1,4 +1,5 @@
 package com.sunilsahoo.algorithm;
+
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ A trie, or prefix tree, is an ordered tree data structure that is used to store 
 public class TrieDataStructureForAutoSuggestion {
 
 	public static int counter = 0;
+
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		/* Creating object of AATree */
@@ -27,13 +29,14 @@ public class TrieDataStructureForAutoSuggestion {
 			int choice = scan.nextInt();
 			switch (choice) {
 			case 1:
-				System.out.println("Enter comma separated string element to insert");
+				System.out.println(
+						"Enter comma separated string element to insert");
 				String rawStr = scan.next();
 				String[] strArr = rawStr.split(",");
-				for(String str : strArr){
+				for (String str : strArr) {
 					t.insert(str);
 				}
-				
+
 				break;
 			case 2:
 				System.out.println("Enter string element to delete");
@@ -46,7 +49,8 @@ public class TrieDataStructureForAutoSuggestion {
 			case 3:
 				counter = 0;
 				System.out.println("Enter string element to search");
-				System.out.println(counter+" Search result : " + t.search(scan.next())+" counter :"+counter);
+				System.out.println(counter + " Search result : "
+						+ t.search(scan.next()) + " counter :" + counter);
 				break;
 			default:
 				System.out.println("Wrong Entry \n ");
@@ -76,12 +80,12 @@ class TrieNode {
 
 	public TrieNode subNode(char c) {
 		if (childList != null)
-			for (TrieNode eachChild : childList){
+			for (TrieNode eachChild : childList) {
 				TrieDataStructureForAutoSuggestion.counter++;
 				if (eachChild.content == c)
 					return eachChild;
 			}
-				
+
 		return null;
 	}
 }
@@ -117,7 +121,7 @@ class Trie {
 		TrieNode current = root;
 		for (char ch : word.toCharArray()) {
 			current = current.subNode(ch);
-			if(current == null){
+			if (current == null) {
 				return false;
 			}
 		}

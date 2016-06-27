@@ -14,7 +14,8 @@ public class SemaphoreDemo {
 				try {
 					while (true) {
 						String item;
-						System.out.printf("%s acquiring %s%n", name, item = pool.getItem());
+						System.out.printf("%s acquiring %s%n", name,
+								item = pool.getItem());
 						Thread.sleep(200 + (int) (Math.random() * 100));
 						System.out.printf("%s putting back %s%n", name, item);
 						pool.putItem(item);
@@ -24,7 +25,8 @@ public class SemaphoreDemo {
 				}
 			}
 		};
-		ExecutorService[] executors = new ExecutorService[Pool.MAX_AVAILABLE + 1];
+		ExecutorService[] executors = new ExecutorService[Pool.MAX_AVAILABLE
+				+ 1];
 		for (int i = 0; i < executors.length; i++) {
 			executors[i] = Executors.newSingleThreadExecutor();
 			executors[i].execute(r);

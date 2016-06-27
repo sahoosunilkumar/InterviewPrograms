@@ -26,10 +26,12 @@ import java.util.concurrent.ExecutionException;
 
 public class CompletableFutureExample {
 	public static void main(String[] args) {
-		CompletableFuture<String> data = createCompletableFuture().thenApply((Integer count) -> {
-			int transformedValue = count * 10;
-			return transformedValue;
-		}).thenApply(transformed -> "Finally creates a string: " + transformed);
+		CompletableFuture<String> data = createCompletableFuture()
+				.thenApply((Integer count) -> {
+					int transformedValue = count * 10;
+					return transformedValue;
+				}).thenApply(transformed -> "Finally creates a string: "
+						+ transformed);
 		try {
 			System.out.println(data.get());
 		} catch (InterruptedException | ExecutionException e) {
@@ -37,14 +39,15 @@ public class CompletableFutureExample {
 	}
 
 	private static CompletableFuture<Integer> createCompletableFuture() {
-		CompletableFuture<Integer> futureCount = CompletableFuture.supplyAsync(() -> {
-			try {
-				// simulate long running task
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-			}
-			return 20;
-		});
+		CompletableFuture<Integer> futureCount = CompletableFuture
+				.supplyAsync(() -> {
+					try {
+						// simulate long running task
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+					}
+					return 20;
+				});
 		return futureCount;
 	}
 }

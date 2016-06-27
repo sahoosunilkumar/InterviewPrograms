@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-
 /**
  * 
  * Java 7 introduce a new parallel mechanism for compute intensive tasks, the

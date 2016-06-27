@@ -80,7 +80,8 @@ class FileLoader {
 	 */
 	public String loadData() {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File(this.fileName)));
+			BufferedReader br = new BufferedReader(
+					new FileReader(new File(this.fileName)));
 			StringBuilder sb = new StringBuilder();
 			String line;
 
@@ -135,7 +136,8 @@ class FileLoader {
  * This class is the GUI implementation of the View component in the
  * Model-View-Presenter pattern.
  */
-class FileSelectorJFrame extends JFrame implements FileSelectorView, ActionListener {
+class FileSelectorJFrame extends JFrame
+		implements FileSelectorView, ActionListener {
 
 	/**
 	 * Default serial version ID.
@@ -231,8 +233,10 @@ class FileSelectorJFrame extends JFrame implements FileSelectorView, ActionListe
 		 */
 		this.area = new JTextArea(100, 100);
 		JScrollPane pane = new JScrollPane(area);
-		pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		pane.setHorizontalScrollBarPolicy(
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		pane.setVerticalScrollBarPolicy(
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		this.panel.add(pane);
 		this.area.setEditable(false);
 		pane.setBounds(150, 100, 250, 80);

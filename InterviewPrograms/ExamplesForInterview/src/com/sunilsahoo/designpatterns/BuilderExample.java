@@ -26,6 +26,7 @@ import com.sunilsahoo.designpatterns.Party.PartyBuilder;
  * other objects.
  * 
  * Example StringBuilder, AlertBuilder, NotificationBuilder
+ * 
  * @author sunilkumarsahoo
  *
  */
@@ -33,10 +34,12 @@ public class BuilderExample {
 	public static void main(String args[]) {
 		Party party1 = new PartyBuilder("Meeting", "CCD").build();
 		System.out.println(" party1 details = " + party1);
-		party1 = new PartyBuilder("Team Lunch", "Spice Garden").withmaincourse("potato chips")
-				.withmaincourse("mutton biryani").build();
+		party1 = new PartyBuilder("Team Lunch", "Spice Garden")
+				.withmaincourse("potato chips").withmaincourse("mutton biryani")
+				.build();
 		System.out.println(" party2 details = " + party1);
-		party1 = new PartyBuilder("Team Outing", "Wayanad").withmaincourse("Sandwich").withmaincourse("chicken biryani")
+		party1 = new PartyBuilder("Team Outing", "Wayanad")
+				.withmaincourse("Sandwich").withmaincourse("chicken biryani")
 				.withdesert("ice cream").withdanceType("HipHop").build();
 		System.out.println(" party3 details = " + party1);
 	}
@@ -129,7 +132,8 @@ final class Party {
 		 */
 		public PartyBuilder(String name, String place) {
 			if (place == null || name == null) {
-				throw new IllegalArgumentException("place and name can not be null");
+				throw new IllegalArgumentException(
+						"place and name can not be null");
 			}
 			this.place = place;
 			this.name = name;

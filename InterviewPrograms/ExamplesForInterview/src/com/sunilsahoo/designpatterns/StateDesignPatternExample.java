@@ -134,7 +134,8 @@ class RingingState implements State {
 
 	@Override
 	public void onEnterState() {
-		System.out.println(String.format("%s entering to Ringing State.", Call));
+		System.out
+				.println(String.format("%s entering to Ringing State.", Call));
 	}
 
 }
