@@ -4,8 +4,20 @@ public class QuickSortTest {
 
 	public static void main(String[] args) {
 		Quicksort sorter = new Quicksort();
-		int[] test = { 5, 5, 6, 6, 4, 4, 5, 5, 4, 4, 6, 6, 5, 5 };
+		int[] test = { 38, 81, 22, 48, 13, 69, 30 };
 		sorter.sort(test);
+	}
+	
+	public static String toString(int[] arr){
+		StringBuffer sb = new StringBuffer();
+		for(int i =0; i <arr.length; i++){
+			if(i ==0){
+				sb.append(arr[i]);
+			}else{
+				sb.append(",").append(arr[i]);
+			}
+		}
+		return sb.toString();
 	}
 }
 /*
@@ -25,13 +37,35 @@ public class QuickSortTest {
  * elements with smaller values and separately the sub-list of elements with
  * greater values.
  * 
+ * 
+ * there are three basic steps:
+1. Partition the array or subarray into left (smaller keys) and right (larger keys) groups.
+2. Call ourselves to sort the left group.
+3. Call ourselves again to sort the right group.
+
+After a partition, all the items in the left subarray are smaller than all 
+those on the right. If we then sort the left subarray and sort the right subarray,
+the entire array will be sorted. How do we sort these subarrays? 
+By calling ourself recursively.
+If the array has two or more cells, the algorithm calls the partitionIt() method, 
+described in the preceding section, to partition it. 
+This method returns the index number of the partition: 
+the left element in the right (larger keys) subarray. 
+The partition marks the boundary between the subarrays. 
+
+What pivot value should the partitionIt() method use? Here are some relevant ideas:
+• The pivot value should be the key value of an actual data item; 
+this item is called the pivot.
+• You can pick a data item to be the pivot more or less at random. 
+For simplicity, let’s say we always pick the item on the right end of the subarray being parti- tioned.
+• After the partition, if the pivot is inserted at the boundary between the left and right subarrays, it will be in its final sorted position
+ * 
  * The complexity of quick sort in the average case is Θ(n log(n)) and in the
  * worst case is Θ(n2)
  */
 
 class Quicksort {
 	private int[] numbers;
-	private int number;
 
 	public void sort(int[] values) {
 		// check for empty or null array
@@ -39,49 +73,56 @@ class Quicksort {
 			return;
 		}
 		this.numbers = values;
-		number = values.length;
-		quicksort(0, number - 1);
+
+		System.out.println("before sorting");
+		System.out.println(QuickSortTest.toString(numbers));
+		quicksort(0, values.length - 1);
+		System.out.println("after sorting");
+		System.out.println(QuickSortTest.toString(numbers));
 	}
 
-	private void quicksort(int low, int high) {
-		int i = low, j = high;
-		// Get the pivot element from the middle of the list
-		int pivot = numbers[low + (high - low) / 2];
-
-		// Divide into two lists
-		while (i <= j) {
-			// If the current value from the left list is smaller then the pivot
-			// element then get the next element from the left list
-			while (numbers[i] < pivot) {
-				i++;
-			}
-			// If the current value from the right list is larger then the pivot
-			// element then get the next element from the right list
-			while (numbers[j] > pivot) {
-				j--;
-			}
-
-			// If we have found a values in the left list which is larger then
-			// the pivot element and if we have found a value in the right list
-			// which is smaller then the pivot element then we exchange the
-			// values.
-			// As we are done we can increase i and j
-			if (i <= j) {
-				exchange(i, j);
-				i++;
-				j--;
-			}
+	public void quicksort(int left, int right) {
+		if (right - left <= 0)
+			return;
+		else {
+			// if size <= 1,
+			// already sorted // size is 2 or larger
+			long pivot = numbers[right]; // rightmost item // partition range
+			int partition = partitionIt(left, right, pivot);
+			quicksort(left, partition - 1); // sort left side
+			quicksort(partition + 1, right); // sort right side
 		}
-		// Recursion
-		if (low < j)
-			quicksort(low, j);
-		if (i < high)
-			quicksort(i, high);
-	}
+	} // end recQuickSort()
 
 	private void exchange(int i, int j) {
 		int temp = numbers[i];
 		numbers[i] = numbers[j];
 		numbers[j] = temp;
+		System.out.println(" After swap : "+QuickSortTest.toString(numbers));
 	}
+
+	public int partitionIt(int left, int right, long pivot) {
+		int leftPtr = left - 1; // right of first elem
+		int rightPtr = right + 1; // left of pivot
+		System.out.println(" leftptr : "+leftPtr+" rightptr : "+rightPtr+" pivot : "+pivot+" number : "+QuickSortTest.toString(numbers));
+		while (true) {
+			while (leftPtr < right && numbers[++leftPtr] < pivot) // find bigger
+																	// item
+				; // (nop)
+			while (rightPtr > left && numbers[--rightPtr] >= pivot) // find
+																	// smaller
+																	// item
+				; // (nop)
+			if (leftPtr >= rightPtr)
+				break;
+			else
+				exchange(leftPtr, rightPtr); // if pointers cross, partition done // not crossed, so swap elements
+		} // end while(true)
+		exchange(leftPtr, right);
+		return leftPtr;
+		
+		// return partition
+	} // end partitionIt()
+		// //--------------------------------------------------------------
+
 }

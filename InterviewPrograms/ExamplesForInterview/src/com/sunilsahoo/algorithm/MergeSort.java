@@ -1,0 +1,154 @@
+package com.sunilsahoo.algorithm;
+/*
+ * MergeSort time Complexity is O(nlgn) which is a fundamental knowledge. 
+ * Merge Sort space complexity will always be O(n) including with arrays. 
+ * If you draw the space tree out, it will seem as though the 
+ * space complexity is O(nlgn). 
+ * However, as the code is a Depth First code, 
+ * you will always only be expanding along one branch of the tree, 
+ * therefore, the total space usage required will always be bounded by O(3n) = O(n).
+
+For example, if you draw the space tree out, it seems like it is O(nlgn)
+
+                             16                                 | 16
+                            /  \                              
+                           /    \
+                          /      \
+                         /        \
+                        8          8                            | 16
+                       / \        / \
+                      /   \      /   \
+                     4     4    4     4                         | 16
+                    / \   / \  / \   / \
+                   2   2 2   2.....................             | 16
+                  / \  /\ ........................
+                 1  1  1 1 1 1 1 1 1 1 1 1 1 1 1 1              | 16
+where height of tree is O(logn) => Space complexity is O(nlogn + n) = O(nlogn). However, this is not the case in the actual code as it does not execute in parallel. For example, in the case where N = 16, this is how the code for mergesort executes. N = 16.
+
+                           16
+                          /
+                         8
+                        /
+                       4
+                     /
+                    2
+                   / \
+                  1   1
+notice how number of space used is 32 = 2n = 2*16 < 3n
+
+Then it merge upwards
+
+                           16
+                          /
+                         8
+                        /
+                       4
+                     /  \
+                    2    2
+                        / \                
+                       1   1
+which is still 32. Then it merge upwards
+
+                           16
+                          /
+                         8
+                        / \
+                       4   4
+                          /
+                         2
+                        / \ 
+                       1   1
+36 < 16 * 3 = 48
+
+then it merge upwards
+
+                           16
+                          / \
+                         8  8
+                           / \
+                          4   4
+                             / \
+                            2   2
+                                /\
+                               1  1
+16 + 16 + 14 = 46 < 3*n = 48
+
+in a larger case, n = 64
+
+                     64
+                    /  \
+                   32  32
+                       / \
+                      16  16
+                          / \
+                         8  8
+                           / \
+                          4   4
+                             / \
+                            2   2
+                                /\
+                               1  1
+which is 64*3 <= 3*n = 3*64
+ */
+public class MergeSort {
+	private int[] array;
+    private int[] tempMergArr;
+    private int length;
+ 
+    public static void main(String a[]){
+         
+        int[] inputArr = {45,23,11,89,77,98,4,28,65,43};
+        MergeSort mms = new MergeSort();
+        mms.sort(inputArr);
+        for(int i:inputArr){
+            System.out.print(i);
+            System.out.print(" ");
+        }
+    }
+     
+    public void sort(int inputArr[]) {
+        this.array = inputArr;
+        this.length = inputArr.length;
+        this.tempMergArr = new int[length];
+        doMergeSort(0, length - 1);
+    }
+ 
+    private void doMergeSort(int lowerIndex, int higherIndex) {
+         
+        if (lowerIndex < higherIndex) {
+            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+            // Below step sorts the left side of the array
+            doMergeSort(lowerIndex, middle);
+            // Below step sorts the right side of the array
+            doMergeSort(middle + 1, higherIndex);
+            // Now merge both sides
+            mergeParts(lowerIndex, middle, higherIndex);
+        }
+    }
+ 
+    private void mergeParts(int lowerIndex, int middle, int higherIndex) {
+ 
+        for (int i = lowerIndex; i <= higherIndex; i++) {
+            tempMergArr[i] = array[i];
+        }
+        int i = lowerIndex;
+        int j = middle + 1;
+        int k = lowerIndex;
+        while (i <= middle && j <= higherIndex) {
+            if (tempMergArr[i] <= tempMergArr[j]) {
+                array[k] = tempMergArr[i];
+                i++;
+            } else {
+                array[k] = tempMergArr[j];
+                j++;
+            }
+            k++;
+        }
+        while (i <= middle) {
+            array[k] = tempMergArr[i];
+            k++;
+            i++;
+        }
+ 
+    }
+}
