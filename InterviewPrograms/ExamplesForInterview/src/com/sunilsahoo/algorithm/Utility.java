@@ -16,4 +16,16 @@ public class Utility {
 		}
 		return productIdsWithQuantities.toString();
 	}
+	
+	public static String toString(int[] arr){
+		StringBuffer sb = new StringBuffer();
+		for(int i =0; i <arr.length; i++){
+			if(i ==0){
+				sb.append(arr[i]);
+			}else{
+				sb.append(",").append(arr[i]);
+			}
+		}
+		return sb.toString();
+	}
 }
