@@ -83,6 +83,8 @@ Postorder traversal is used to delete the tree. Please see the question for dele
 Example: Postorder traversal for the above given figure is 4 5 2 3 1.
 
 DFS takes O(bh)O(bh) time and O(h)O(h) space
+
+The recursive computation of disk space is emblematic of a postorder traversal, as we cannot effectively compute the total space used by a directory until after we know the space that is used by its children directories.
  */
 public class BinaryTree {
 	// Root of Binary Tree

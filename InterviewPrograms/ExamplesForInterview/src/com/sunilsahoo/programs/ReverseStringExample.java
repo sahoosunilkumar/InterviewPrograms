@@ -12,6 +12,8 @@ public class ReverseStringExample {
 
 		System.out.println("Original String: " + originalString);
 		System.out.println("Reversed String: " + reverseString(originalString));
+		originalString = "a,b$cde!fg?i";
+		System.out.println("Reversed String: "+ reverseStringWithPunctuation(originalString));
 	}
 
 	/*
@@ -26,5 +28,41 @@ public class ReverseStringExample {
 			ar[j] = temp;
 		}
 		return new String(ar);
+	}
+	
+	public static String reverseStringWithPunctuation(String originalString) {
+		char ar[] = originalString.toCharArray();
+		char temp;
+		int j = ar.length - 1;
+		int i = 0;
+		boolean isStartAlphanumeric = false;
+		boolean isEndAlphanumeric = false;
+		while (j>i) {
+			isStartAlphanumeric = isAlphanumeric(ar[i]);
+			isEndAlphanumeric = isAlphanumeric(ar[j]);
+			if(isStartAlphanumeric && isEndAlphanumeric){
+				temp = ar[i];
+				ar[i] = ar[j];
+				ar[j] = temp;
+				i++;
+				j--;
+			}else {
+				if(!isStartAlphanumeric){
+				i++;
+				}
+				if(!isEndAlphanumeric){
+					j--;
+				}
+			}
+			
+		}
+		return new String(ar);
+	}
+	
+	private static boolean isAlphanumeric(char c){
+		if (c < 0x30 || (c >= 0x3a && c <= 0x40) || (c > 0x5a && c <= 0x60) || c > 0x7a)
+            return false;
+		else
+			return true;
 	}
 }
