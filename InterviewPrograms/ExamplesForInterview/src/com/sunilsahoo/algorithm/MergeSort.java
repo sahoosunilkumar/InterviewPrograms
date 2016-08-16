@@ -97,13 +97,10 @@ public class MergeSort {
  
     public static void main(String a[]){
          
-        int[] inputArr = {45,23,11,89,77,98,4,28,65,43};
+        int[] inputArr = {45,23,11,10,98,30};
         MergeSort mms = new MergeSort();
         mms.sort(inputArr);
-        for(int i:inputArr){
-            System.out.print(i);
-            System.out.print(" ");
-        }
+        System.out.println(Utility.toString(inputArr));
     }
      
     public void sort(int inputArr[]) {
@@ -114,7 +111,7 @@ public class MergeSort {
     }
  
     private void doMergeSort(int lowerIndex, int higherIndex) {
-         
+         System.out.println("do merge : low = "+lowerIndex+" high = "+higherIndex);
         if (lowerIndex < higherIndex) {
             int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
             // Below step sorts the left side of the array
@@ -127,7 +124,7 @@ public class MergeSort {
     }
  
     private void mergeParts(int lowerIndex, int middle, int higherIndex) {
- 
+    	
         for (int i = lowerIndex; i <= higherIndex; i++) {
             tempMergArr[i] = array[i];
         }
@@ -149,6 +146,7 @@ public class MergeSort {
             k++;
             i++;
         }
- 
+        System.out.println("low : "+lowerIndex+" high : "+higherIndex+" middle : "+middle+" result : "+Utility.toString(tempMergArr));
+        
     }
 }

@@ -22,6 +22,8 @@ public static void main(String[] args){
 	getDuplicate(array);
 	swap(12, 50);
 	encryption(1000, 1059);
+	String s = "Sunil";
+	System.out.println(reverseWithXOR(s));
 }
 
 	/*
@@ -156,6 +158,18 @@ public static void main(String[] args){
 		}
 		return sb.toString();
 	}
+	
+	static final String reverseWithXOR(String string) {
+        char[] array = string.toCharArray();
+        int length = array.length;
+        int half = (int) Math.floor(array.length / 2);
+        for (int i = 0; i < half; i++) {
+            array[i] ^= array[length - i - 1];
+            array[length - i - 1] ^= array[i];
+            array[i] ^= array[length - i - 1];
+        }
+        return String.valueOf(array);
+    }
 }
 
 

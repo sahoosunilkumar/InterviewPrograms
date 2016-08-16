@@ -22,11 +22,11 @@ package com.sunilsahoo.programs;
  */
 public class ShiftOperatorExample {
 	public static void main(String[] args) {
-		System.out.println("-------get signed bit to know even or odd----");
-		int x = -407867895;
+		System.out.println(Integer.MIN_VALUE+"-------get signed bit to know even or odd----"+Integer.MAX_VALUE);
+		int x = -157;
 		System.out.println("x in binary format : " + Integer.toBinaryString(x));
 		System.out.println(x >> 31);
-		int y = 479758878;
+		int y = 157;
 		System.out.println("y in binary format : " + Integer.toBinaryString(y));
 
 		System.out.println(y >> 31);
@@ -54,11 +54,11 @@ public class ShiftOperatorExample {
 
 		int n;
 
-		n = 10;
+		n = -10;
 		System.out.println("Value of n: " + n);
 		// multiply by 2
 		n = n << 1;
-		System.out.println("Value of n after n = n * 2: " + n);
+		System.out.println("Value of n after n = n * 2: " + n+" ... ");
 
 		// multiply by 4
 		n = n << 2;
@@ -66,7 +66,7 @@ public class ShiftOperatorExample {
 
 		// divide by 2
 		n = n >> 1;
-		System.out.println("Value of n after n = n / 2: " + n);
+		System.out.println("Value of n after n = n / 2: ");
 
 		// divide by 4
 		n = n >> 2;

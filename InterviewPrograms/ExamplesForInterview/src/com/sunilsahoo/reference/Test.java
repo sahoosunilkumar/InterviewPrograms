@@ -1,52 +1,98 @@
 package com.sunilsahoo.reference;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.WeakHashMap;
 
 public class Test {
 	public static void main(String args[]) {
-		HashMap<Employee, EmployeeVal> aMap = new HashMap<Employee, EmployeeVal>();
+		HashMap<String, String> aMap = new HashMap<String, String>();
 
-		Employee emp = new Employee("Vinoth");
-		EmployeeVal val = new EmployeeVal("Programmer");
+		String name = new String("sunil");
+		String empId = new String("bi217");
 
-		aMap.put(emp, val);
+		aMap.put(name, empId);
 
-		emp = null;
+		name = null;
+		empId = null;
 
 		System.gc();
 		System.out.println("Strong reference Size of Map : " + aMap.size()
-				+ " map : " + aMap);
+		+ " map : " + aMap);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("After 1 seconds Strong reference Size of Map : " + aMap.size()
+		+ " map : " + aMap);
 
 		// WEAK reference
-		WeakHashMap<Employee, EmployeeVal> aWeakMap = new WeakHashMap<Employee, EmployeeVal>();
+		WeakHashMap<String, String> aWeakMap = new WeakHashMap<String, String>();
+		System.out.println("size of map : "+aWeakMap.size());
 
-		emp = new Employee("Vinoth");
-		val = new EmployeeVal("Programmer");
+		name = new String("susil");
+		empId = new String("bi218");
 
-		aWeakMap.put(emp, val);
+		aWeakMap.put(name, empId);
 
-		emp = null;
+		name = null;
 
 		System.gc();
 		System.out.println("Weak reference Size of Map : " + aWeakMap.size()
 				+ " map : " + aWeakMap);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("After 1 seconds Weak reference Size of Map : " + aWeakMap.size()
+		+ " map : " + aWeakMap);
+		
+		
+		
+		
+		
+		
+		
+		LinkedHashMap<String, String> aLinkedMap = new LinkedHashMap<String, String>();
+
+		name = new String("lipi");
+		empId = new String("bi219");
+
+		aMap.put(name, empId);
+
+		name = null;
+
+		System.gc();
+		System.out.println("Strong reference Size of linked Map : " + aLinkedMap.size()
+		+ " map : " + aLinkedMap);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("After 1 seconds Strong reference Size of linked Map : " + aLinkedMap.size()
+		+ " map : " + aLinkedMap);
 
 	}
 }
 
-class Employee {
-	private String name;
-
-	Employee(String name) {
-		this.name = name;
-	}
-}
-
-class EmployeeVal {
-	private String jobType;
-
-	EmployeeVal(String jobType) {
-		this.jobType = jobType;
-	}
-}
+//class Employee {
+//	private String name;
+//
+//	Employee(String name) {
+//		this.name = name;
+//	}
+//}
+//
+//class EmployeeVal {
+//	private String jobType;
+//
+//	EmployeeVal(String jobType) {
+//		this.jobType = jobType;
+//	}
+//}

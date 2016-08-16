@@ -62,9 +62,12 @@ public class BinaryTreeBFS {
        tree.root.right= tree.new Node(3);
        tree.root.left.left= tree.new Node(4);
        tree.root.left.right= tree.new Node(5);
+       tree.root.right.left= tree.new Node(6);
+       tree.root.right.right= tree.new Node(7);
         
        System.out.println("Level order traversal of binary tree is ");
-       tree.printLevelOrder();
+//       tree.printLevelOrder();
+       tree.printGivenLevel(tree.root, 3);
     }
 	
 	class Node

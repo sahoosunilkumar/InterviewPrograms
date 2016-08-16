@@ -28,15 +28,15 @@ public class DependeancyInversionPrincipleExample {
 
 }
 
-interface Reader {
+interface IReader {
 	char getchar();
 }
 
-interface Writer {
+interface IWriter {
 	void putchar(char c);
 }
 
-class Keyboard implements Reader {
+class Keyboard implements IReader {
 
 	@Override
 	public char getchar() {
@@ -46,7 +46,7 @@ class Keyboard implements Reader {
 
 }
 
-class Printer implements Writer {
+class Printer implements IWriter {
 
 	@Override
 	public void putchar(char c) {
@@ -58,7 +58,7 @@ class Printer implements Writer {
 
 //
 class CharCopier {
-	void copy(Reader reader, Writer writer) {
+	void copy(IReader reader, IWriter writer) {
 		char c;
 		while ((c = reader.getchar()) != -1) {
 			writer.putchar(c);

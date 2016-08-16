@@ -1,16 +1,37 @@
 package com.sunilsahoo.collection;
 
 /*
- * Unfortunately, there are drawbacks to the use of a traditional linked list for this purpose. It is unnecessarily inefficient to repeatedly throw away a node from one end of the list, only to create a new node for the same element when reinserting it, not to mention the various updates that are performed to decrement and increment the list’s size and to unlink and relink nodes.
-In the remainder of this section, we demonstrate how a slight modification to our singly linked list implementation can be used to provide a more efficient data structure for representing a cyclic order.
-
-We use this model to design and implement a new CircularlyLinkedList class, which supports all of the public behaviors of our SinglyLinkedList class and one additional update method:
-rotate(): Moves the first element to the end of the list.
-With this new operation, round-robin scheduling can be efficiently implemented by
-repeatedly performing the following steps on a circularly linked list C: 1. Give a time slice to process C.first()
-2. C.rotate()
-
-In implementing a new class, we make one additional optimization—we no longer explicitly maintain the head reference. So long as we maintain a reference to the tail, we can locate the head as tail.getNext(). Maintaining only the tail reference not only saves a bit on memory usage, it makes the code simpler and more efficient, as it removes the need to perform additional operations to keep a head reference current. In fact, our new implementation is arguably superior to our original singly linked list implementation, even if we are not interested in the new rotate method.
+ * Unfortunately, there are drawbacks to the use of a traditional 
+ * linked list for this purpose. 
+ * It is unnecessarily inefficient to repeatedly throw away 
+ * a node from one end of the list, only to create a new node for the same element
+ * when reinserting it, not to mention the various updates that are performed to 
+ * decrement and increment the list’s size and to unlink and relink nodes.
+ * 
+ * In the remainder of this section, we demonstrate how a slight modification 
+ * to our singly linked list implementation can be used to provide a more 
+ * efficient data structure for representing a cyclic order.
+ * 
+ * We use this model to design and implement a new CircularlyLinkedList class, 
+ * which supports all of the public behaviors of our SinglyLinkedList class 
+ * and one additional update method:
+ * 
+ * rotate(): Moves the first element to the end of the list.
+ * 
+ * With this new operation, round-robin scheduling can be efficiently implemented by
+ * repeatedly performing the following steps on a circularly linked list 
+ * C: 1. Give a time slice to process C.first() 2. C.rotate()
+ * 
+ * In implementing a new class, we make one additional optimization—we no 
+ * longer explicitly maintain the head reference. 
+ * So long as we maintain a reference to the tail, 
+ * we can locate the head as tail.getNext(). 
+ * Maintaining only the tail reference not only saves a bit on memory usage, 
+ * it makes the code simpler and more efficient, as it removes the need 
+ * to perform additional operations to keep a head reference current. 
+ * In fact, our new implementation is arguably superior to our original 
+ * singly linked list implementation, even if we are not interested 
+ * in the new rotate method.
  */
 public class CustomCircularLinkedListExample {
 

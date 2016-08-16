@@ -82,6 +82,7 @@ class Quicksort {
 	}
 
 	public void quicksort(int left, int right) {
+		System.out.println("left : "+left +" right : "+right);
 		if (right - left <= 0)
 			return;
 		else {
@@ -115,9 +116,12 @@ class Quicksort {
 				; // (nop)
 			if (leftPtr >= rightPtr)
 				break;
-			else
+			else{
+				System.out.println("leftPtr : "+leftPtr+" rightPtr : "+rightPtr+" pivot : "+pivot);
 				exchange(leftPtr, rightPtr); // if pointers cross, partition done // not crossed, so swap elements
+			}
 		} // end while(true)
+		System.out.println(" other exchange");
 		exchange(leftPtr, right);
 		return leftPtr;
 		
