@@ -567,6 +567,37 @@ public class BinaryTree {
 		findMinDepthOfNode(node.right, depth+1, minDepth);
 
 	}
+	
+	/**
+	 * Given a binary tree, write a program to print all nodes of that tree which do not have sibling nodes. For example in the following tree, nodes 6, 8, 5, 7 are such nodes because for all of these nodes parent node has only one child.
+	 * @param node
+	 */
+	private void printNodesWOSibblings(Node node) {
+		System.out.println("printNodesWOSibblings");
+		if (node == null)
+			return;
+
+		List<Node> queue = new LinkedList<Node>();
+		queue.add(node);
+		while (!queue.isEmpty()) {
+			node = queue.remove(0);
+			if (node.left != null) {
+				queue.add(node.left);
+				if(node.right == null){
+					System.out.print(node.left.key + " ");
+				}
+				
+			}
+			if (node.right != null) {
+				queue.add(node.right);
+				if(node.left == null){
+					System.out.print(node.right.key + " ");
+				}
+			}
+		}
+
+	}
+
 
 	// Driver method
 	public static void main(String[] args) {
@@ -619,6 +650,20 @@ public class BinaryTree {
 
 		tree.printVerticalOrderOfTree(tree.root);
 		tree.findMinDepthOfNode(tree.root, 0, 0);
+		
+		
+		
+		tree = new BinaryTree();
+		tree.root = new Node(0);
+		tree.root.left = new Node(1);
+		tree.root.right = new Node(2);
+		tree.root.left.left = new Node(3);
+		tree.root.left.right = new Node(4);
+		tree.root.left.left.right = new Node(6);
+		tree.root.left.left.right.right = new Node(8);
+		tree.root.right.left = new Node(5);
+		tree.root.right.left.right = new Node(7);
+		tree.printNodesWOSibblings(tree.root);
 	}
 
 }

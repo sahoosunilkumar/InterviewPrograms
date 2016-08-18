@@ -91,7 +91,7 @@ in a larger case, n = 64
 which is 64*3 <= 3*n = 3*64
  */
 public class MergeSort {
-	private int[] array;
+//	private int[] array;
     private int[] tempMergArr;
     private int length;
  
@@ -103,27 +103,27 @@ public class MergeSort {
         System.out.println(Utility.toString(inputArr));
     }
      
-    public void sort(int inputArr[]) {
-        this.array = inputArr;
-        this.length = inputArr.length;
+    public void sort(int array[]) {
+//        this.array = inputArr;
+        this.length = array.length;
         this.tempMergArr = new int[length];
-        doMergeSort(0, length - 1);
+        doMergeSort(0, length - 1, array);
     }
  
-    private void doMergeSort(int lowerIndex, int higherIndex) {
+    private void doMergeSort(int lowerIndex, int higherIndex, int[] array) {
          System.out.println("do merge : low = "+lowerIndex+" high = "+higherIndex);
         if (lowerIndex < higherIndex) {
             int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
             // Below step sorts the left side of the array
-            doMergeSort(lowerIndex, middle);
+            doMergeSort(lowerIndex, middle, array);
             // Below step sorts the right side of the array
-            doMergeSort(middle + 1, higherIndex);
+            doMergeSort(middle + 1, higherIndex, array);
             // Now merge both sides
-            mergeParts(lowerIndex, middle, higherIndex);
+            mergeParts(lowerIndex, middle, higherIndex, array);
         }
     }
  
-    private void mergeParts(int lowerIndex, int middle, int higherIndex) {
+    private void mergeParts(int lowerIndex, int middle, int higherIndex, int[] array) {
     	
         for (int i = lowerIndex; i <= higherIndex; i++) {
             tempMergArr[i] = array[i];

@@ -7,18 +7,6 @@ public class QuickSortTest {
 		int[] test = { 38, 81, 22, 48, 13, 69, 30 };
 		sorter.sort(test);
 	}
-	
-	public static String toString(int[] arr){
-		StringBuffer sb = new StringBuffer();
-		for(int i =0; i <arr.length; i++){
-			if(i ==0){
-				sb.append(arr[i]);
-			}else{
-				sb.append(",").append(arr[i]);
-			}
-		}
-		return sb.toString();
-	}
 }
 /*
  * Quicksort or partition-exchange sort, is a fast sorting algorithm, which is
@@ -75,10 +63,10 @@ class Quicksort {
 		this.numbers = values;
 
 		System.out.println("before sorting");
-		System.out.println(QuickSortTest.toString(numbers));
+		System.out.println(Utility.toString(numbers));
 		quicksort(0, values.length - 1);
 		System.out.println("after sorting");
-		System.out.println(QuickSortTest.toString(numbers));
+		System.out.println(Utility.toString(numbers));
 	}
 
 	public void quicksort(int left, int right) {
@@ -99,13 +87,13 @@ class Quicksort {
 		int temp = numbers[i];
 		numbers[i] = numbers[j];
 		numbers[j] = temp;
-		System.out.println(" After swap : "+QuickSortTest.toString(numbers));
+		System.out.println(" After swap : "+Utility.toString(numbers));
 	}
 
 	public int partitionIt(int left, int right, long pivot) {
 		int leftPtr = left - 1; // right of first elem
 		int rightPtr = right + 1; // left of pivot
-		System.out.println(" leftptr : "+leftPtr+" rightptr : "+rightPtr+" pivot : "+pivot+" number : "+QuickSortTest.toString(numbers));
+		System.out.println(" leftptr : "+leftPtr+" rightptr : "+rightPtr+" pivot : "+pivot+" number : "+Utility.toString(numbers));
 		while (true) {
 			while (leftPtr < right && numbers[++leftPtr] < pivot) // find bigger
 																	// item
@@ -121,7 +109,7 @@ class Quicksort {
 				exchange(leftPtr, rightPtr); // if pointers cross, partition done // not crossed, so swap elements
 			}
 		} // end while(true)
-		System.out.println(" other exchange");
+		System.out.println(leftPtr+" other exchange "+right);
 		exchange(leftPtr, right);
 		return leftPtr;
 		
