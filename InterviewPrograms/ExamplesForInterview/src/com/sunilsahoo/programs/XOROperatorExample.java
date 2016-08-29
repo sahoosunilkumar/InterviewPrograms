@@ -24,6 +24,10 @@ public static void main(String[] args){
 	encryption(1000, 1059);
 	String s = "Sunil";
 	System.out.println(reverseWithXOR(s));
+	int a[] = {1,2,3,4,6,7};
+	System.out.println("Missing number :"+getMissingNo(a, 5));
+	int inputArr[] = {1,5,12,4,1,5,12};
+	System.out.println("findNumberOccurringOddNumberOfTimes :"+findNumberOccurringOddNumberOfTimes(inputArr));
 }
 
 	/*
@@ -129,6 +133,25 @@ public static void main(String[] args){
 		
 	}
 	
+	/**
+	 * XOR all the array elements, let the result of XOR be X1. 2) XOR all
+	 * numbers from 1 to n, let XOR be X2. 1/2 3) XOR of X1 and X2 gives the
+	 * missing number.
+	 * 
+	 * @param a
+	 * @param n
+	 * @return
+	 */
+	private static int getMissingNo(int a[], int n) {
+		int i;
+		int x1 = a[0];
+		int x2 = 1;
+		for (i = 1; i < n; i++)
+			x1 = x1 ^ a[i];
+		for (i = 2; i <= n + 1; i++)
+			x2 = x2 ^ i;
+		return (x1 ^ x2);
+	}
 	
 	private static void swap(int x, int y){
 		System.out.println("Before swaping x : "+x+" y : "+y);
@@ -170,6 +193,20 @@ public static void main(String[] args){
         }
         return String.valueOf(array);
     }
+	
+	/*
+	 * Find the Number Occurring Odd Number of Times Given an array of positive
+	 * integers. All numbers occur even number of times except one number which
+	 * occurs odd number of times. Find the number in O(n) time & constant
+	 * space. Example: I/P = [1, 2, 3, 2, 3, 1, 3] O/P = 3
+	 */
+	private static int findNumberOccurringOddNumberOfTimes(int[] inputArr){
+		int xor = 0;
+		for(int input :inputArr){
+			xor ^=input;
+		}
+		return xor;
+	}
 }
 
 

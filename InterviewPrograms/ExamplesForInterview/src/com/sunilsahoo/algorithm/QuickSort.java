@@ -1,13 +1,12 @@
 package com.sunilsahoo.algorithm;
 
-public class QuickSortTest {
+public class QuickSort {
 
 	public static void main(String[] args) {
-		Quicksort sorter = new Quicksort();
 		int[] test = { 38, 81, 22, 48, 13, 69, 30 };
-		sorter.sort(test);
+		QuickSort.sort(test);
 	}
-}
+
 /*
  * Quicksort or partition-exchange sort, is a fast sorting algorithm, which is
  * using divide and conquer algorithm. Quicksort first divides a large list into
@@ -52,45 +51,41 @@ For simplicity, let’s say we always pick the item on the right end of the suba
  * worst case is Θ(n2)
  */
 
-class Quicksort {
-	private int[] numbers;
-
-	public void sort(int[] values) {
+	public static void sort(int[] numbers) {
 		// check for empty or null array
-		if (values == null || values.length == 0) {
+		if (numbers == null || numbers.length == 0) {
 			return;
 		}
-		this.numbers = values;
 
 		System.out.println("before sorting");
 		System.out.println(Utility.toString(numbers));
-		quicksort(0, values.length - 1);
+		quicksort(0, numbers.length - 1, numbers);
 		System.out.println("after sorting");
 		System.out.println(Utility.toString(numbers));
 	}
 
-	public void quicksort(int left, int right) {
+	public static void quicksort(int left, int right, int[] numbers) {
 		System.out.println("left : "+left +" right : "+right);
-		if (right - left <= 0)
+		if (left >= right)
 			return;
 		else {
 			// if size <= 1,
 			// already sorted // size is 2 or larger
 			long pivot = numbers[right]; // rightmost item // partition range
-			int partition = partitionIt(left, right, pivot);
-			quicksort(left, partition - 1); // sort left side
-			quicksort(partition + 1, right); // sort right side
+			int partition = partitionIt(left, right, pivot, numbers);
+			quicksort(left, partition - 1, numbers); // sort left side
+			quicksort(partition + 1, right, numbers); // sort right side
 		}
 	} // end recQuickSort()
 
-	private void exchange(int i, int j) {
+	private static void exchange(int i, int j, int[] numbers) {
 		int temp = numbers[i];
 		numbers[i] = numbers[j];
 		numbers[j] = temp;
 		System.out.println(" After swap : "+Utility.toString(numbers));
 	}
 
-	public int partitionIt(int left, int right, long pivot) {
+	private static int partitionIt(int left, int right, long pivot, int[] numbers) {
 		int leftPtr = left - 1; // right of first elem
 		int rightPtr = right + 1; // left of pivot
 		System.out.println(" leftptr : "+leftPtr+" rightptr : "+rightPtr+" pivot : "+pivot+" number : "+Utility.toString(numbers));
@@ -106,11 +101,11 @@ class Quicksort {
 				break;
 			else{
 				System.out.println("leftPtr : "+leftPtr+" rightPtr : "+rightPtr+" pivot : "+pivot);
-				exchange(leftPtr, rightPtr); // if pointers cross, partition done // not crossed, so swap elements
+				exchange(leftPtr, rightPtr, numbers); // if pointers cross, partition done // not crossed, so swap elements
 			}
 		} // end while(true)
 		System.out.println(leftPtr+" other exchange "+right);
-		exchange(leftPtr, right);
+		exchange(leftPtr, right, numbers);
 		return leftPtr;
 		
 		// return partition
