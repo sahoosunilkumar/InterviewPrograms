@@ -14,19 +14,23 @@ public class ArrayProgram {
 		System.out.println("Is Match Found : " + found);
 		found = arrayProgram.findNumber1(A, matchNumber);
 		System.out.println("Is Match Found Using approach 1 : " + found);
-		leftRotate(A, 2);
+		arrayProgram.leftRotate(A, 2);
 		A = new int[] { 16, 17, 4, 3, 5, 2 };
-		findLeaders(A);
-		System.out.println(findMaxSum(A));
+		arrayProgram.findLeaders(A);
+		System.out.println(arrayProgram.findMaxSum(A));
 
 		int arrival[] = { 900, 940, 950, 1100, 1500, 1800 };
 		int deparature[] = { 910, 1200, 1120, 1130, 1900, 2000 };
 		arrayProgram.numberOfPlatformRequired(arrival, deparature);
 
 		int[] stockPriceArr = { 100, 80, 120, 130, 70, 60, 95, 100 };
-		System.out.println(findMaxProfitStock(stockPriceArr));
+		System.out.println(arrayProgram.findMaxProfitStock(stockPriceArr));
 		int[] stockPriceArr1 = { 100, 80, 120, 130, 70, 60, 100, 125 };
-		System.out.println(findMaxProfit(stockPriceArr1));
+		System.out.println(arrayProgram.findMaxProfit(stockPriceArr1));
+		
+		A = new int[] { 2,4,5,5,5,8,9 };
+		A = arrayProgram.removeDuplicatesFromSortedArray(A);
+		System.out.println("After removing duplicates : "+Utility.toString(A));
 	}
 
 	/**
@@ -136,7 +140,7 @@ public class ArrayProgram {
 	 * 4, 3, 5, 2}, leaders are 17, 5 and 2. Let the input array be arr[] and
 	 * size of the array be size. Time Complexity: O(n)
 	 */
-	private static void findLeaders(int[] arr) {
+	private void findLeaders(int[] arr) {
 		int maxNumber = 0;
 		System.out.print("findLeaders : ");
 		for (int i = arr.length - 1; i >= 0; i--) {
@@ -171,7 +175,7 @@ public class ArrayProgram {
 	 * element. So, answer is max(incl, excl) = 80
 	 * 
 	 */
-	private static int findMaxSum(int arr[]) {
+	private int findMaxSum(int arr[]) {
 		int incl = arr[0];
 		int excl = 0;
 		int excl_new;
@@ -188,7 +192,7 @@ public class ArrayProgram {
 	 * Write a function rotate(ar[], d, n) that rotates arr[] of size n by d
 	 * elements Time Complexity: O(n)
 	 */
-	private static void leftRotate(int arr[], int d) {
+	private void leftRotate(int arr[], int d) {
 		int i, j;
 		if (d == 0 || d == arr.length)
 			return;
@@ -211,7 +215,7 @@ public class ArrayProgram {
 		System.out.println("After Left rotate : " + Utility.toString(arr));
 	}
 
-	private static void swap(int arr[], int fi, int si, int d) {
+	private void swap(int arr[], int fi, int si, int d) {
 		int i, temp;
 		for (i = 0; i < d; i++) {
 			temp = arr[fi + i];
@@ -244,7 +248,7 @@ public class ArrayProgram {
 	 * Order of the Algorithm Time Complexity is O(n) Space Complexity is O(1)
 	 * 
 	 */
-	private static LinkedHashMap<String, Integer> findMaxProfitStock(
+	private LinkedHashMap<String, Integer> findMaxProfitStock(
 			int[] stockPriceArr) {
 		LinkedHashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
 		int maxProfit = 0;
@@ -272,7 +276,7 @@ public class ArrayProgram {
 	 * 
 	 * @return
 	 */
-	private static int findMaxProfit(int[] stockPriceArr) {
+	private int findMaxProfit(int[] stockPriceArr) {
 		int maxProfit = 0;
 		for (int i = 1; i < stockPriceArr.length; i++) {
 			if ((stockPriceArr[i] - stockPriceArr[i - 1]) > 0) {
@@ -280,5 +284,23 @@ public class ArrayProgram {
 			}
 		}
 		return maxProfit;
+	}
+	
+	private int[] removeDuplicatesFromSortedArray(int[] A) {
+		int len = A.length;
+		int i = 0;
+		if (len <= 1)
+			return A;
+		for (int j = 1; j < len; j++) {
+			if (A[j] != A[i])
+				A[++i] = A[j];
+		}
+		i++;
+		while(i<len){
+			
+			A[i] = -1;
+			i++;
+		}
+		return A;
 	}
 }

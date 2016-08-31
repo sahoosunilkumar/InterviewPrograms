@@ -120,7 +120,7 @@ public class StringProgram {
 	 * 
 	 * @return reversed words array
 	 */
-	public char[] reverseWords(char[] arr) {
+	private char[] reverseWords(char[] arr) {
 		// reverse the string
 		reverse(arr, 0, arr.length / 2, arr.length);
 
@@ -160,7 +160,7 @@ public class StringProgram {
 	 * 
 	 * @return reversed string array
 	 */
-	public char[] reverse(char[] arr, int firstIndex, int midIndex,
+	private char[] reverse(char[] arr, int firstIndex, int midIndex,
 			int lastIndex) {
 		System.out.println("firstIndex : " + firstIndex + " midIndex : "
 				+ midIndex + " lastIndex : " + lastIndex);
@@ -171,6 +171,38 @@ public class StringProgram {
 			arr[lastIndex - 1] = tmp;
 		}
 		return arr;
+	}
+	
+	private boolean wildcardMatch(String str, String pattern){
+		int strIndex = 0;
+		int patternIndex = 0;
+		int startPattern = -1;
+		int startText = -1;
+		while(strIndex<str.length()){
+			if((str.charAt(strIndex) == pattern.charAt(patternIndex))|| pattern.charAt(patternIndex) == '?'){
+				strIndex++;
+				patternIndex++;
+			}else if (patternIndex < pattern.length() && pattern.charAt(patternIndex) == '*') {
+                while(patternIndex < pattern.length() && pattern.charAt(patternIndex) == '*') 
+                	patternIndex++;
+                if(patternIndex == pattern.length())
+                    return true;
+                startPattern = patternIndex;
+                startText = strIndex;
+            }else if ((patternIndex >= pattern.length() || str.charAt(strIndex) != pattern.charAt(patternIndex)) && startPattern > -1) {
+                startText++;
+                patternIndex = startPattern;
+                strIndex = startText;
+            } else {
+                return false;
+            }
+        }
+        while (patternIndex < pattern.length()) {
+            if (pattern.charAt(patternIndex) != '*')
+                return false;
+            patternIndex++;
+        }
+        return true;
 	}
 
 }
