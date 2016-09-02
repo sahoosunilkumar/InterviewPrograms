@@ -71,7 +71,6 @@ public class ShiftOperatorExample {
 		// divide by 4
 		n = n >> 2;
 		System.out.println("Value of n after n = n / 4: " + n);
-		System.out.println();
 
 	}
 }

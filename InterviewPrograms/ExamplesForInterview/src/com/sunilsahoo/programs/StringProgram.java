@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sunilsahoo.algorithm.Utility;
+
 public class StringProgram {
 	public static void main(String[] args) {
 		StringProgram programObj = new StringProgram();
@@ -26,6 +28,22 @@ public class StringProgram {
 		// reverse words of a string
 		arr = "welcome to coding algorithms".toCharArray();
 		System.out.println(new String(programObj.reverseWords(arr)));
+		String originalString = "a,b$cde!fgci";
+		System.out.println("Reversed String: "
+				+ programObj.reverseStringWithPunctuation(originalString));
+		originalString = "byta";
+		System.out.println(originalString + " has unique chars :"
+				+ programObj.checkUnique(originalString));
+		System.out.println("After removing duplicates : "
+				+ programObj.removeDuplicate("adbgfraaghdl"));
+		char[] charArr = { 'a', 'b', 'd', 'g', 'f', 'r', 'a', 'a', 'g', 'h',
+				'd', 'l' };
+		System.out.println("After removing duplicates"
+				+ Utility.toString(programObj.removeDuplicate(charArr)));
+		System.out.println("Check Anagram : "
+				+ programObj.checkTwoStringsAnagram("ciodma", "iceman"));
+		System.out.println("After compression : "+programObj.compress("SSSunil"));
+
 	}
 
 	/* Check balanced parentheses in a string Time Complexity is O(n) */
@@ -172,37 +190,210 @@ public class StringProgram {
 		}
 		return arr;
 	}
-	
-	private boolean wildcardMatch(String str, String pattern){
+
+	private boolean wildcardMatch(String str, String pattern) {
 		int strIndex = 0;
 		int patternIndex = 0;
 		int startPattern = -1;
 		int startText = -1;
-		while(strIndex<str.length()){
-			if((str.charAt(strIndex) == pattern.charAt(patternIndex))|| pattern.charAt(patternIndex) == '?'){
+		while (strIndex < str.length()) {
+			if ((str.charAt(strIndex) == pattern.charAt(patternIndex))
+					|| pattern.charAt(patternIndex) == '?') {
 				strIndex++;
 				patternIndex++;
-			}else if (patternIndex < pattern.length() && pattern.charAt(patternIndex) == '*') {
-                while(patternIndex < pattern.length() && pattern.charAt(patternIndex) == '*') 
-                	patternIndex++;
-                if(patternIndex == pattern.length())
-                    return true;
-                startPattern = patternIndex;
-                startText = strIndex;
-            }else if ((patternIndex >= pattern.length() || str.charAt(strIndex) != pattern.charAt(patternIndex)) && startPattern > -1) {
-                startText++;
-                patternIndex = startPattern;
-                strIndex = startText;
-            } else {
-                return false;
-            }
-        }
-        while (patternIndex < pattern.length()) {
-            if (pattern.charAt(patternIndex) != '*')
-                return false;
-            patternIndex++;
-        }
-        return true;
+			} else if (patternIndex < pattern.length()
+					&& pattern.charAt(patternIndex) == '*') {
+				while (patternIndex < pattern.length()
+						&& pattern.charAt(patternIndex) == '*')
+					patternIndex++;
+				if (patternIndex == pattern.length())
+					return true;
+				startPattern = patternIndex;
+				startText = strIndex;
+			} else if ((patternIndex >= pattern.length()
+					|| str.charAt(strIndex) != pattern.charAt(patternIndex))
+					&& startPattern > -1) {
+				startText++;
+				patternIndex = startPattern;
+				strIndex = startText;
+			} else {
+				return false;
+			}
+		}
+		while (patternIndex < pattern.length()) {
+			if (pattern.charAt(patternIndex) != '*')
+				return false;
+			patternIndex++;
+		}
+		return true;
+	}
+
+	/*
+	 * Now, lets see how complexity is O(n/2). We are executing only half the
+	 * number of characters we have in our string.
+	 * 
+	 * Best case: O(n/2)- (1/2), when we have odd number of characters in
+	 * string. Average case: O(n/2) , generally when we have even number of
+	 * characters in string. Worst case: O(n/2).
+	 */
+	public String reverseStringWithPunctuation(String originalString) {
+		char ar[] = originalString.toCharArray();
+		char temp;
+		int j = ar.length - 1;
+		int i = 0;
+		boolean isStartAlphanumeric = false;
+		boolean isEndAlphanumeric = false;
+		while (j > i) {
+			isStartAlphanumeric = isAlphanumeric(ar[i]);
+			isEndAlphanumeric = isAlphanumeric(ar[j]);
+			if (isStartAlphanumeric && isEndAlphanumeric) {
+				temp = ar[i];
+				ar[i] = ar[j];
+				ar[j] = temp;
+				i++;
+				j--;
+			} else {
+				if (!isStartAlphanumeric) {
+					i++;
+				}
+				if (!isEndAlphanumeric) {
+					j--;
+				}
+			}
+
+		}
+		return new String(ar);
+	}
+
+	private boolean isAlphanumeric(char c) {
+		if (c < 0x30 || (c >= 0x3a && c <= 0x40) || (c > 0x5a && c <= 0x60)
+				|| c > 0x7a)
+			return false;
+		else
+			return true;
+	}
+
+	/**
+	 * Time complexity O(n) space complexity O(1)
+	 * 
+	 * @param str
+	 * @return
+	 */
+	private boolean checkUnique(String str) {
+		int checker = 0;
+		int value = 0;
+		for (int i = 0; i < str.length(); i++) {
+			value = str.charAt(i) - 'a';
+			if ((checker & (1 << value)) > 0) {
+				return false;
+			}
+			checker |= 1 << value;
+		}
+		return true;
+	}
+
+	private String removeDuplicate(String str) {
+		int checker = 0;
+		int value = 0;
+		int index = 0;
+		boolean isDuplicate = false;
+		StringBuffer sb = new StringBuffer(str);
+		while (index < sb.length()) {
+			value = sb.charAt(index);
+			isDuplicate = (checker & (1 << value)) > 0;
+			if (isDuplicate) {
+				sb.replace(index, sb.length() - 1,
+						sb.substring(index + 1, sb.length() - 1));
+			} else {
+				index++;
+			}
+			checker |= 1 << value;
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Design an algorithm and write code to remove the duplicate characters in
+	 * a string without using any additional Time Complexity : O(n) Space
+	 * Complexity : O(1)
+	 * 
+	 * @param charArr
+	 * @return
+	 */
+	private char[] removeDuplicate(char[] charArr) {
+		int checker = 0;
+		int value = 0;
+		int startIndex = 1;
+		int replaceIndex = 0;
+		boolean isDuplicate = false;
+		while (startIndex < charArr.length) {
+			value = charArr[replaceIndex];
+			isDuplicate = (checker & (1 << value)) > 0;
+			if (isDuplicate) {
+				charArr[replaceIndex] = charArr[startIndex];
+				startIndex++;
+				// continue;
+			} else {
+				checker |= 1 << value;
+				startIndex++;
+				replaceIndex++;
+			}
+			// checker |= 1<<value;
+		}
+		for (int i = replaceIndex + 1; i < charArr.length; i++) {
+			charArr[i] = '0';
+		}
+		return charArr;
+	}
+
+	/**
+	 * a word, phrase, or name formed by rearranging the letters of another,
+	 * such as cinema, formed from iceman.
+	 * 
+	 * @param str1
+	 * @param str2
+	 * @return
+	 */
+	 private boolean checkTwoStringsAnagram(String str1, String str2){
+		 //TODO
+		 return false;
+	 }
+
+	/**
+	 * Write a method to replace all spaces in a string with ‘%20’
+	 * Count the number of spaces during the first scan of the string 
+	 * Parse the string again from the end and for each character:
+	 * If a space is encountered, store “%20” Else, 
+	 * store the character as it is in the newly shifted location
+	 * @param charArr
+	 */
+	private void replaceSpaceWithChar(char[] charArr, String replacewith){
+		
+	}
+	
+	private String compress(String s) {
+		char pre_c = 0;
+		int compress_v = 0;
+		StringBuilder sb = new StringBuilder();
+		
+		for (char c : s.toCharArray()) {
+			if (c != pre_c) {
+				if (compress_v != 0) {
+					sb.append(compress_v);
+				}
+				sb.append(c);
+				pre_c = c;
+				compress_v = 1;
+			}
+			else {
+				compress_v++;
+			}
+		}
+		sb.append(compress_v);
+
+		String return_s = sb.toString();
+		
+		return return_s.length() > s.length() ? s : return_s;
 	}
 
 }
