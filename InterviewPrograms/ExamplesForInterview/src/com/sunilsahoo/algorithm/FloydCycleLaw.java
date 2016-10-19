@@ -89,7 +89,7 @@ public class FloydCycleLaw {
 
 		// Creating a loop for testing
 		head.next.next.next.next.next = head.next.next;
-		list.printList(head);
+//		list.printList(head);
 		list.detectAndRemoveLoop(head);
 		System.out.println("Linked List after removing loop : ");
 		list.printList(head);

@@ -183,8 +183,71 @@ public class BinaryTree {
 			// left
 			// right
 		}
-
 	}
+	
+	void printInorderWoRecurssion(Node node) {
+		if (node == null) {
+			return;
+		}
+
+		Stack<Node> stack = new Stack<>();
+		while (true) {
+			while (node != null) {
+				stack.push(node);
+				node = node.left;
+			}
+			if (stack.isEmpty()) {
+				break;
+			}
+			node = stack.pop();
+			System.out.print(node.key + " ");
+			node = node.right;
+		}
+	}
+	
+	
+	void postorderWoRecurssion(Node root) {
+		if (root == null)
+			return;
+
+		Stack<Node> leftStack = new Stack<Node>();
+		Stack<Node> rightStack = new Stack<Node>();
+
+		if (root.left != null)
+			leftStack.push(root.left);
+		if (root.right != null)
+			rightStack.push(root.right);
+
+		Stack<Integer> valueStack = new Stack<Integer>();
+		Stack<Integer> rightvalueStack = new Stack<Integer>();
+		// traverse the left sub-tree
+		postorderIterativeHelper(leftStack, valueStack);
+		// print the left sub-tree
+		System.out.print(valueStack);
+		
+		// traverse the right sub-tree
+		postorderIterativeHelper(rightStack, rightvalueStack);
+		// print the left sub-tree
+		System.out.print(rightvalueStack);
+
+		// print the root node
+		System.out.print(root.key);
+	}
+
+	private void postorderIterativeHelper(Stack<Node> stack,
+			Stack<Integer> valueStack) {
+		// traverse right sub-tree
+		while (!stack.isEmpty()) {
+			Node node = stack.pop();
+			valueStack.push(node.key);
+			if (node.left != null)
+				stack.push(node.left);
+			if (node.right != null)
+				stack.push(node.right);
+		}
+	}
+	
+	
 
 	/**
 	 * breadth first search
@@ -243,10 +306,14 @@ public class BinaryTree {
 
 		System.out.println("\nInorder traversal of binary tree is ");
 		tree.printInorder();
+		System.out.println("\nInorder traversal WO recursion of binary tree is ");
+		tree.printInorderWoRecurssion(tree.root);
 
 		System.out.println("\nPostorder traversal of binary tree is ");
 		tree.printPostorder();
-
+		
+		System.out.println("\nPostorder traversal WO recursion of binary tree is ");
+		tree.postorderWoRecurssion(tree.root);
 		
 		System.out.println("\n BFS");
 		tree.printBFS(tree.root);
@@ -261,6 +328,7 @@ public class BinaryTree {
 class Node {
 	int key;
 	Node left, right;
+	boolean visited;
 
 	public Node(int item) {
 		key = item;

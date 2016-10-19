@@ -5,11 +5,11 @@ import java.util.concurrent.Executors;
 
 public class ThreadPoolUsingExecutor {
 
-	private static final int NTHREDS = 10;
+	private static final int NTHREDS = 2;
 
 	public static void main(String[] args) {
 		ExecutorService executor = Executors.newFixedThreadPool(NTHREDS);
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 50; i++) {
 			Runnable worker = new MyRunnable(100L + i);
 			executor.execute(worker);
 		}

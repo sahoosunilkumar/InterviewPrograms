@@ -13,6 +13,13 @@ public class LinkedListProgram {
 		// Creating a loop for testing
 		head.next.next.next.next.next = head.next.next;
 		linkedListProgram.detectLoop(head);
+		
+		head = linkedListProgram.new Node(1);
+		head.next = linkedListProgram.new Node(3);
+		head.next.next = linkedListProgram.new Node(5);
+		head.next.next.next = linkedListProgram.new Node(7);
+		Node node = linkedListProgram.reverseLinkedList(head);
+		System.out.println(node+" "+node.next+" "+node.next.next+" "+node.next.next.next);
 	}
 
 	/**
@@ -113,6 +120,22 @@ public class LinkedListProgram {
 
 	}
 
+	
+	private Node reverseLinkedList(Node node){
+		if(node == null){
+			return null;
+		}
+		Node next = null, previous=null;
+		while(true){
+			next = node.next;
+			node.next=previous;
+			previous = node;
+			if (next == null) break;
+			node = next;
+		}
+		return previous;
+	}
+		
 	class Node {
 		int key;
 		Node previous, next;

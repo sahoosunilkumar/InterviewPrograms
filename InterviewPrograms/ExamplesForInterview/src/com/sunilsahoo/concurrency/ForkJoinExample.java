@@ -21,9 +21,9 @@ public class ForkJoinExample {
 		int nThreads = Runtime.getRuntime().availableProcessors();
 		System.out.println(nThreads);
 		Solver mfj = new Solver(test.getList());
-		ForkJoinExecutor pool = new ForkJoinPool(nThreads);
+		ForkJoinPool pool = new ForkJoinPool(nThreads);
 		pool.invoke(mfj);
-		long result = mfj.getResult();
+		long result = mfj.result;
 		System.out.println("Done. Result: " + result);
 		long sum = 0;
 		// check if the result was ok
@@ -67,7 +67,11 @@ class Solver extends RecursiveAction {
 			int[] l2 = Arrays.copyOfRange(list, midpoint, list.length);
 			Solver s1 = new Solver(l1);
 			Solver s2 = new Solver(l2);
-			forkJoin(s1, s2);
+			s1.fork();
+			s2.fork();
+			s1.join();
+			s2.join();
+			
 			result = s1.result + s2.result;
 		}
 	}

@@ -18,7 +18,6 @@ XOR has the following interesting properties:
 public class XOROperatorExample {
 public static void main(String[] args){
 	int[] array = {4,6,7,3,6,7};
-	getNonDuplicate(array);
 	getDuplicate(array);
 	swap(12, 50);
 	encryption(1000, 1059);
@@ -74,30 +73,6 @@ public static void main(String[] args){
 	 * Time Complexity: O(n)
 	 * Auxiliary Space: O(1)
 	 */
-	private static void getNonDuplicate(int[] array) {
-		int dup = array[0];
-		// int offset = 1;
-		for (int i = 1; i < array.length; i++) {
-			dup = (array[i]) ^ dup;
-		}
-		int setBit = dup & ~(dup - 1);
-		System.out.println("setbit :" + setBit);
-
-		int x = 0, y = 0;
-
-		System.out.println("array :"+XOROperatorExample.toString(array));
-		for (int i = 0; i < array.length; i++) {
-			if ((setBit & array[i]) == 1) {
-				x = x ^ array[i];
-			} else {
-				y = y ^ array[i];
-			}
-			
-		}
-
-		System.out.println(" x : " + x + " y  : " + y);
-	}
-	
 	
 	private static void getDuplicate(int[] array) {
 		int dup = array[0];
@@ -117,7 +92,6 @@ public static void main(String[] args){
 			} else {
 				y = y ^ array[i];
 			}
-			
 		}
 
 		System.out.println("non duplicate  x : " + x + " y  : " + y);
@@ -206,6 +180,13 @@ public static void main(String[] args){
 			xor ^=input;
 		}
 		return xor;
+	}
+	
+	private static int addNumbers(int a, int b){
+		if (b == 0) return a;
+		int sum = a ^ b; // add without carrying
+		int carry = (a & b) << 1; // carry, but don’t add 
+		return addNumbers(sum, carry); // recurse
 	}
 }
 

@@ -1,6 +1,7 @@
 package com.sunilsahoo.programs;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,8 +35,8 @@ public class StringProgram {
 		originalString = "byta";
 		System.out.println(originalString + " has unique chars :"
 				+ programObj.checkUnique(originalString));
-		System.out.println("After removing duplicates : "
-				+ programObj.removeDuplicate("adbgfraaghdl"));
+//		System.out.println("After removing duplicates : "
+//				+ programObj.removeDuplicate("adbgfraaghdl"));
 		char[] charArr = { 'a', 'b', 'd', 'g', 'f', 'r', 'a', 'a', 'g', 'h',
 				'd', 'l' };
 		System.out.println("After removing duplicates"
@@ -43,6 +44,8 @@ public class StringProgram {
 		System.out.println("Check Anagram : "
 				+ programObj.checkTwoStringsAnagram("ciodma", "iceman"));
 		System.out.println("After compression : "+programObj.compress("SSSunil"));
+		System.out.println("Longest Prefix as suffix substring : "+programObj.longestPrefixAsSuffixSUbstring("bananast"));
+		programObj.longestPrefixAsSuffixSUbstring1("adgrbananast");
 
 	}
 
@@ -292,25 +295,25 @@ public class StringProgram {
 		return true;
 	}
 
-	private String removeDuplicate(String str) {
-		int checker = 0;
-		int value = 0;
-		int index = 0;
-		boolean isDuplicate = false;
-		StringBuffer sb = new StringBuffer(str);
-		while (index < sb.length()) {
-			value = sb.charAt(index);
-			isDuplicate = (checker & (1 << value)) > 0;
-			if (isDuplicate) {
-				sb.replace(index, sb.length() - 1,
-						sb.substring(index + 1, sb.length() - 1));
-			} else {
-				index++;
-			}
-			checker |= 1 << value;
-		}
-		return sb.toString();
-	}
+//	private String removeDuplicate(String str) {
+//		int checker = 0;
+//		int value = 0;
+//		int index = 0;
+//		boolean isDuplicate = false;
+//		StringBuffer sb = new StringBuffer(str);
+//		while (index < sb.length()) {
+//			value = sb.charAt(index);
+//			isDuplicate = (checker & (1 << value)) > 0;
+//			if (isDuplicate) {
+//				sb.replace(index, sb.length() - 1,
+//						sb.substring(index + 1, sb.length() - 1));
+//			} else {
+//				index++;
+//			}
+//			checker |= 1 << value;
+//		}
+//		return sb.toString();
+//	}
 
 	/**
 	 * Design an algorithm and write code to remove the duplicate characters in
@@ -394,6 +397,93 @@ public class StringProgram {
 		String return_s = sb.toString();
 		
 		return return_s.length() > s.length() ? s : return_s;
+	}
+	/*
+	 * For string S, find the longest palindromic substring. Example: S = "bananas" LPS = "anana"
+	 * Time Complexity O(n), Space Complexity : O(n)
+	 */
+	private String longestPrefixAsSuffixSUbstring(String s) {
+		char[] charArr = new char[s.length() * 2 + 3];
+		charArr[0] = '$';
+		charArr[s.length() * 2 + 2] = '@';
+		for (int i = 0; i < s.length(); i++) {
+			charArr[2 * i + 1] = '#';
+			charArr[2 * i + 2] = s.charAt(i);
+		}
+		
+		charArr[s.length() * 2 + 1] = '#';
+		System.out.println(Utility.toString(charArr));
+		int[] P = new int[charArr.length];
+		int center = 0, right = 0;
+		for (int i = 1; i < charArr.length - 1; i++) {
+			int mirr = 2 * center - i;
+			if (i < right)
+				P[i] = Math.min(right - i, P[mirr]);
+			while (charArr[i + (1 + P[i])] == charArr[i - (1 + P[i])])
+				P[i]++;
+			if (i + P[i] > right) {
+				center = i;
+				right = i + P[i];
+			}
+		}
+		int length = 0;
+		center = 0;
+		for (int i = 1; i < P.length - 1; i++) {
+			if (P[i] > length) {
+				length = P[i];
+				center = i;
+			}
+		}
+		return s.substring((center - 1 - length) / 2,
+				(center - 1 + length) / 2);
+	}
+	
+	
+	
+	
+	private void longestPrefixAsSuffixSUbstring1(String s) {
+		int i =0;
+		int j = s.length()-1;
+		int startPosition=-1,endPosition = -1;
+		
+		HashMap<Character,Integer> map = new HashMap<>();
+		while(i<j){
+			if(map.containsKey(s.charAt(i))){
+				startPosition=i;
+				endPosition = s.charAt(i);
+			}else{
+				map.put(s.charAt(i), i);
+			}
+			if(map.containsKey(s.charAt(j))){
+				endPosition=j;
+				startPosition = map.get(s.charAt(j));
+			}else{
+				map.put(s.charAt(j), j);
+			}
+			if((startPosition !=-1) || (endPosition !=-1)){
+				break;
+			}
+			i++;
+			j--;
+		}
+		s = s.substring(startPosition, endPosition+1);
+		
+		System.out.println(s);
+		int[] fail = new int[s.length()];
+		i = 1;
+		j = s.length()-1;
+		while(i<j){
+			if(s.charAt(i)==s.charAt(j)){
+				fail[i]=fail[i-1]+1;
+				i++;
+				j--;
+			}else{
+				fail[i] = 0;
+				i++;
+			}
+		}
+		System.out.println(Utility.toString(fail));
+		System.out.println();
 	}
 
 }

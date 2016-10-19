@@ -5,6 +5,12 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 
+/**
+ * The java.util.concurrent.CyclicBarrier class is a synchronization mechanism
+ * that can synchronize threads progressing through some algorithm. In other
+ * words, it is a barrier that all threads must wait at, until all threads reach
+ * it, before any of the threads can continue.
+ */
 public class CyclicBarrierDemo {
 	public static void main(String[] args) {
 		Runnable action = new Runnable() {

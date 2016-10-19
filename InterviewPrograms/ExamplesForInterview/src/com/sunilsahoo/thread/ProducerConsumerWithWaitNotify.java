@@ -75,7 +75,6 @@ class Consumer extends Thread {
 
 }
 
-/** Copyright (c), AnkitMittal JavaMadeSoEasy.com */
 public class ProducerConsumerWithWaitNotify {
 	public static void main(String args[]) throws InterruptedException {
 
