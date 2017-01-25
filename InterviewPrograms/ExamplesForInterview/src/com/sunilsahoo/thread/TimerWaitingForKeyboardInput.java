@@ -3,14 +3,16 @@ package com.sunilsahoo.thread;
 
 // Type Ctrl+C (or equivalent keystroke combination on non-Windows platform)
 // to terminate.
-
-import java.util.*;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 class TimerWaitingForKeyboardInput {
 	public static void main(String[] args) {
 		Timer t = new Timer();
 
 		t.scheduleAtFixedRate(new TimerTask() {
+			@Override
 			public void run() {
 				System.out.println(new Date().toString());
 			}
@@ -34,6 +36,7 @@ class TimerWaitingForKeyboardInput {
 }
 
 class InputThread extends Thread {
+	@Override
 	public void run() {
 		try {
 			// Wait for user to type Enter key.

@@ -104,14 +104,12 @@ class OmnitureAnalyticsImpl implements IAnalyticsInterface {
 
 	@Override
 	public void init(String context) {
-		// TODO Auto-generated method stub
 		System.out.println("Omniture init implimented");
 
 	}
 
 	@Override
 	public void trackEvent(Map<String, Object> properties) {
-		// TODO Auto-generated method stub
 		System.out.println("Omniture trackEvent implimented " + properties);
 
 	}
@@ -122,14 +120,12 @@ class LeanplumAnalyticsImpl implements IAnalyticsInterface {
 
 	@Override
 	public void init(String context) {
-		// TODO Auto-generated method stub
 		System.out.println("LeanplumAnalyticsImpl init implimented");
 
 	}
 
 	@Override
 	public void trackEvent(Map<String, Object> properties) {
-		// TODO Auto-generated method stub
 		System.out.println(
 				"LeanplumAnalyticsImpl trackEvent implimented " + properties);
 

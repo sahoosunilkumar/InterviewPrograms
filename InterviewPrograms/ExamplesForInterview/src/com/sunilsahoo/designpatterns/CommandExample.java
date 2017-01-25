@@ -121,17 +121,20 @@ public class CommandExample {
 	interface ICommand { void execute(); }
 
 	static class DomesticEngineer implements ICommand {
-	   public void execute() {
+	   @Override
+	public void execute() {
 	      System.out.println( "take out the trash" );
 	}  }
 
 	static class Politician implements ICommand {
-	   public void execute() {
+	   @Override
+	public void execute() {
 	      System.out.println( "take money from the rich, take votes from the poor" );
 	}  }
 
 	static class Programmer implements ICommand {
-	   public void execute() {
+	   @Override
+	public void execute() {
 	      System.out.println( "sell the bugs, charge extra for the fixes" );
 	}  }
 

@@ -2,8 +2,8 @@ package com.sunilsahoo.concurrency;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * The java.util.concurrent.CyclicBarrier class is a synchronization mechanism

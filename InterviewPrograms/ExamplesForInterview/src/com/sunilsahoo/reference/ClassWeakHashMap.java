@@ -13,6 +13,7 @@ import java.util.WeakHashMap;
 public class ClassWeakHashMap {
 
 	public static class Referred {
+		@Override
 		protected void finalize() {
 			System.out.println("Good bye cruel world");
 		}

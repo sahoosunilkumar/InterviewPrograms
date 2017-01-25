@@ -1,5 +1,8 @@
 package com.sunilsahoo.designpatterns;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  * 
  * categories: Presentation Tier
@@ -40,10 +43,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -52,6 +51,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 public class ModelViewPresenterExample {
 	public static void main(String[] args) {
@@ -234,9 +234,9 @@ class FileSelectorJFrame extends JFrame
 		this.area = new JTextArea(100, 100);
 		JScrollPane pane = new JScrollPane(area);
 		pane.setHorizontalScrollBarPolicy(
-				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		pane.setVerticalScrollBarPolicy(
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		this.panel.add(pane);
 		this.area.setEditable(false);
 		pane.setBounds(150, 100, 250, 80);

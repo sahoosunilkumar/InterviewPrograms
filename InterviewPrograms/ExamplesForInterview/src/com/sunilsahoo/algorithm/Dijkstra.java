@@ -131,6 +131,7 @@ public class Dijkstra {
 		}
 		queue.add(new QueueNode(srcId, 0));
 		while (!queue.isEmpty()) {
+			System.out.println("queue : "+queue);
 			QueueNode currQueueNode = queue.remove();
 			unvisited[currQueueNode.nodeId] = false;
 			distance[currQueueNode.nodeId] = currQueueNode.distFromSrc;
@@ -229,6 +230,11 @@ class QueueNode {
 	public QueueNode(int id, int dist) {
 		nodeId = id;
 		distFromSrc = dist;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "nodeId :"+nodeId+" dist : "+distFromSrc;
 	}
 }
 

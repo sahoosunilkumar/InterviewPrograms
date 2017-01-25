@@ -87,42 +87,51 @@ class PrototypesModule {
 // 5. Sign-up for the clone() contract.
 // Each class calls "new" on itself FOR the client.
 class This implements Prototype, Command {
+	@Override
 	public Object clone() {
 		return new This();
 	}
 
+	@Override
 	public String getName() {
 		return "This";
 	}
 
+	@Override
 	public void execute() {
 		System.out.println("This: execute : "+this);
 	}
 }
 
 class That implements Prototype, Command {
+	@Override
 	public Object clone() {
 		return new That();
 	}
 
+	@Override
 	public String getName() {
 		return "That";
 	}
 
+	@Override
 	public void execute() {
 		System.out.println("That: execute : "+this);
 	}
 }
 
 class TheOther implements Prototype, Command {
+	@Override
 	public Object clone() {
 		return new TheOther();
 	}
 
+	@Override
 	public String getName() {
 		return "TheOther";
 	}
 
+	@Override
 	public void execute() {
 		System.out.println("TheOther: execute : "+this);
 	}

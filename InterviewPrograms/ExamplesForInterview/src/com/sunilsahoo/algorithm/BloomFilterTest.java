@@ -1,5 +1,9 @@
 package com.sunilsahoo.algorithm;
 
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 /*
  * This is a Java Program to implement Bloom Filter. 
  * A Bloom filter is a space-efficient probabilistic data structure 
@@ -13,10 +17,7 @@ package com.sunilsahoo.algorithm;
  * The Java program is successfully compiled and run on a Windows system. 
  * The program output is also shown below.
  */
-import java.util.*;
-import java.security.*;
-import java.math.*;
-import java.nio.*;
+import java.util.Scanner;
 
 /* Class BloomFilter */
 class BloomFilter {

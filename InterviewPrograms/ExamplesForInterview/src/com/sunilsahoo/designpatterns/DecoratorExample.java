@@ -26,6 +26,7 @@ public class DecoratorExample {
 	}
 
 	static class PromoCodeOffer implements Offer {
+		@Override
 		public void apply() {
 			System.out.print("PromoCodeOffer");
 		}
@@ -38,6 +39,7 @@ public class DecoratorExample {
 			core = inner;
 		}
 
+		@Override
 		public void apply() {
 			core.apply();
 			doX();
@@ -55,6 +57,7 @@ public class DecoratorExample {
 			core = inner;
 		}
 
+		@Override
 		public void apply() {
 			core.apply();
 		}
@@ -65,6 +68,7 @@ public class DecoratorExample {
 			super(inner);
 		}
 
+		@Override
 		public void apply() {
 			super.apply();
 			doX();
@@ -80,6 +84,7 @@ public class DecoratorExample {
 			super(inner);
 		}
 
+		@Override
 		public void apply() {
 			super.apply();
 			doY();

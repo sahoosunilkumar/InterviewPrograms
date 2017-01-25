@@ -28,12 +28,12 @@ package com.sunilsahoo.designpatterns;
 public class StateDesignPatternExample {
 	public static void main(String[] args) {
 
-		Call Call = new Call();
-		Call.observe();
-		Call.changeState();
-		Call.observe();
-		Call.changeState();
-		Call.observe();
+		Call call = new Call();
+		call.observe();
+		call.changeState();
+		call.observe();
+		call.changeState();
+		call.observe();
 
 	}
 }

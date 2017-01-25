@@ -1,7 +1,8 @@
 package com.sunilsahoo.cryptography;
 
-import java.security.*;
-import javax.crypto.*;
+import java.security.Key;
+
+import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class ClientServerAES {

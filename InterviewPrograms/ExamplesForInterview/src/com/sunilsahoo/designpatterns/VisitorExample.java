@@ -36,6 +36,7 @@ class Leaf implements Component {
 		number = num;
 	}
 
+	@Override
 	public void traverse() {
 		System.out.print(number + " ");
 	}
@@ -50,10 +51,11 @@ class Composite implements Component {
 		children.add(c);
 	}
 
+	@Override
 	public void traverse() {
 		System.out.print(letter + " ");
 		for (int i = 0; i < children.size(); i++)
-			((Component) children.get(i)).traverse();
+			children.get(i).traverse();
 	}
 }
 

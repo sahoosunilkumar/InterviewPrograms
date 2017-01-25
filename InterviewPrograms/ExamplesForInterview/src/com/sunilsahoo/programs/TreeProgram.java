@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 
 public class TreeProgram {
 
@@ -335,7 +335,6 @@ public class TreeProgram {
 		if (node == null) {
 			if ((minDepth == 0) || (depth < minDepth)) {
 				minDepth = depth;
-				System.out.println(depth + " Min depth : " + minDepth);
 			}
 			return;
 		}

@@ -1,7 +1,9 @@
 package com.sunilsahoo.cryptography;
 
-import java.security.*;
-import javax.crypto.*;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+
+import javax.crypto.Cipher;
 
 //
 // Public Key cryptography using the RSA algorithm.

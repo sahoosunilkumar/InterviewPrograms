@@ -50,7 +50,6 @@ class AudioValidator implements IFileValidator {
 
 	@Override
 	public void validate(String filname) {
-		// TODO Auto-generated method stub
 		if (filname.endsWith("mp3")) {
 			System.out.println(filname + " is Mp3 file");
 			fileValidator = null;
@@ -72,7 +71,6 @@ class VideoValidator implements IFileValidator {
 
 	@Override
 	public void validate(String filname) {
-		// TODO Auto-generated method stub
 		if (filname.endsWith("mp4")) {
 			System.out.println(filname + " is a Vudio file");
 			fileValidator = null;
@@ -94,7 +92,6 @@ class ImageValidator implements IFileValidator {
 
 	@Override
 	public void validate(String filname) {
-		// TODO Auto-generated method stub
 		if (filname.endsWith("jpg")) {
 			System.out.println(filname + " is an Image file");
 			fileValidator = null;

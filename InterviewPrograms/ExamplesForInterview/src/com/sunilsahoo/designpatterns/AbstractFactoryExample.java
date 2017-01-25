@@ -105,6 +105,7 @@ public class AbstractFactoryExample {
 		 * public Castle createCastle() { return new ElfCastle(); }
 		 */
 
+		@Override
 		public King createKing() {
 			return new ElfKing();
 		}
@@ -127,6 +128,7 @@ public class AbstractFactoryExample {
 		 * public Castle createCastle() { return new OrcCastle(); }
 		 */
 
+		@Override
 		public King createKing() {
 			return new OrcKing();
 		}

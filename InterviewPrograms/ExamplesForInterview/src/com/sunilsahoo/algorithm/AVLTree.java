@@ -140,7 +140,7 @@ public class AVLTree {
 		queue.add(new QueueNode(root, 0));
 		int maxLevelVisited = -1;
 		while (!queue.isEmpty()) {
-			QueueNode currentNode = (QueueNode) queue.remove();
+			QueueNode currentNode = queue.remove();
 			if (currentNode.level > maxLevelVisited) {
 				maxLevelVisited = currentNode.level;
 				System.out.print("\nlevel-" + currentNode.level + " nodes: ");

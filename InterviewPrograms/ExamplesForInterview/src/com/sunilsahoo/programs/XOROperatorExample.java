@@ -27,6 +27,9 @@ public static void main(String[] args){
 	System.out.println("Missing number :"+getMissingNo(a, 5));
 	int inputArr[] = {1,5,12,4,1,5,12};
 	System.out.println("findNumberOccurringOddNumberOfTimes :"+findNumberOccurringOddNumberOfTimes(inputArr));
+
+	System.out.println("add number : "+addNumbers(50, 20));
+	System.out.println("subtract number : "+subtractNumbers(10, 15));
 }
 
 	/*
@@ -81,11 +84,8 @@ public static void main(String[] args){
 			dup = (array[i]) ^ dup;
 		}
 		int setBit = dup & ~(dup - 1);
-		System.out.println("setbit :" + setBit);
 
 		int x = 0, y = 0;
-
-		System.out.println("array :"+XOROperatorExample.toString(array));
 		for (int i = 0; i < array.length; i++) {
 			if ((setBit & array[i]) == 1) {
 				x = x ^ array[i];
@@ -186,7 +186,12 @@ public static void main(String[] args){
 		if (b == 0) return a;
 		int sum = a ^ b; // add without carrying
 		int carry = (a & b) << 1; // carry, but don’t add 
+		System.out.println("sum : "+sum+" carry : "+carry);
 		return addNumbers(sum, carry); // recurse
+	}
+	private static int subtractNumbers(int a, int b){
+		b = addNumbers(~b, 1);
+		return addNumbers(a, b); // recurse
 	}
 }
 

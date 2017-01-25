@@ -1,8 +1,6 @@
 package com.sunilsahoo.reference;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
  * A sample for Detecting and locating memory leaks in Java
@@ -12,6 +10,7 @@ import java.util.List;
 public class ClassWeak {
 
 	public static class Referred {
+		@Override
 		protected void finalize() {
 			System.out.println("Good bye cruel world");
 		}

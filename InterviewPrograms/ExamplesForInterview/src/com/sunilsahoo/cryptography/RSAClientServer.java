@@ -61,9 +61,9 @@ public class RSAClientServer {
 	public static String byteArrayToHexString(byte[] bytes) {
 		StringBuffer buffer = new StringBuffer();
 		for (int i = 0; i < bytes.length; i++) {
-			if (((int) bytes[i] & 0xff) < 0x10)
+			if ((bytes[i] & 0xff) < 0x10)
 				buffer.append("0");
-			buffer.append(Long.toString((int) bytes[i] & 0xff, 16));
+			buffer.append(Long.toString(bytes[i] & 0xff, 16));
 		}
 		return buffer.toString();
 	}

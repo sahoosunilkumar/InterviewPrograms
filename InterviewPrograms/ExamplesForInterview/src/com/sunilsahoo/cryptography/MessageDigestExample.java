@@ -1,6 +1,6 @@
 package com.sunilsahoo.cryptography;
 
-import java.security.*;
+import java.security.MessageDigest;
 
 //
 // Generate a Message Digest

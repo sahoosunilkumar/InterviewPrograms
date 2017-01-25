@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import com.sunilsahoo.algorithm.Utility;
 
@@ -11,6 +12,7 @@ public class StringProgram {
 	public static void main(String[] args) {
 		StringProgram programObj = new StringProgram();
 		System.out.println(programObj.checkBalancedParenthesis(")(PH)N(X)"));
+		System.out.println("balanced brackets : "+programObj.checkBalancedBrackets("{[]}"));
 		System.out.println(programObj
 				.longestSubstringWithNonRepeatingCharacters("ABCDABDEFGCABD"));
 
@@ -46,6 +48,10 @@ public class StringProgram {
 		System.out.println("After compression : "+programObj.compress("SSSunil"));
 		System.out.println("Longest Prefix as suffix substring : "+programObj.longestPrefixAsSuffixSUbstring("bananast"));
 		programObj.longestPrefixAsSuffixSUbstring1("adgrbananast");
+		
+		String encode = TinyURL.encode(123);
+		System.out.println ( "after Encoding : " + encode ) ;
+		System.out.println ( "after Decoding : " + TinyURL.decode (encode) ) ;
 
 	}
 
@@ -63,7 +69,32 @@ public class StringProgram {
 			}
 		}
 		return (balancedParenthesisCount == 0) ? true : false;
+	}
+	/* Check balanced brackets in a string Time Complexity is O(n) */
+	private boolean checkBalancedBrackets(String str) {
+		Stack<Character> parenthesisStack = new Stack<>();
 
+		for (int i = 0; i < str.length(); i++) {
+			if ('(' == str.charAt(i) || '{' == str.charAt(i)
+					|| '[' == str.charAt(i)) {
+				parenthesisStack.push(str.charAt(i));
+			} else {
+				if (isMatching(str.charAt(i), parenthesisStack.isEmpty() ? ' '
+						: parenthesisStack.peek())) {
+					if ((')' == str.charAt(i) || '}' == str.charAt(i)
+							|| ']' == str.charAt(i))) {
+						parenthesisStack.pop();
+					}
+				} else {
+					return false;
+				}
+
+			}
+		}
+		return parenthesisStack.isEmpty();
+	}
+	boolean isMatching(char inputChar, char matchAgainst){
+		return (')' == inputChar && '(' == matchAgainst) || ('}' == inputChar && '{' == matchAgainst) || (']' == inputChar && '[' == matchAgainst);
 	}
 
 	/*
@@ -442,7 +473,7 @@ public class StringProgram {
 	
 	
 	private void longestPrefixAsSuffixSUbstring1(String s) {
-		int i =0;
+		int i = 0;
 		int j = s.length()-1;
 		int startPosition=-1,endPosition = -1;
 		
@@ -482,8 +513,36 @@ public class StringProgram {
 				i++;
 			}
 		}
-		System.out.println(Utility.toString(fail));
+		System.out.println(" fail : "+Utility.toString(fail));
 		System.out.println();
 	}
+	
+	
+	
 
+}
+
+
+class TinyURL {
+	private static final String ALPHABET_MAP = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" ;
+	private static final int BASE = ALPHABET_MAP.length() ;
+
+	public static String encode ( int IndexNum ) {
+		StringBuilder sb = new StringBuilder() ;
+		
+		while ( IndexNum > 0 ) {
+			sb.append ( ALPHABET_MAP.charAt ( IndexNum % BASE ) ) ;
+			IndexNum /= BASE ;
+		}
+		return sb.reverse().toString() ;
+	}
+
+	public static int decode ( String str ) {
+		int Num = 0 ;
+
+		for ( int i = 0, len = str.length(); i < len; i++ ) {
+			Num = Num * BASE + ALPHABET_MAP.indexOf ( str.charAt(i) ) ;
+		}
+		return Num ;
+	}
 }

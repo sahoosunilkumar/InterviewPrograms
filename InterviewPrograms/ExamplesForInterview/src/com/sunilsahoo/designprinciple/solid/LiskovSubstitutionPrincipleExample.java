@@ -59,6 +59,7 @@ interface IFlayer {
 }
 
 class Airplane implements IFlayer {
+	@Override
 	public void fly() {
 		// TODO start run
 		// TODO start takeoff

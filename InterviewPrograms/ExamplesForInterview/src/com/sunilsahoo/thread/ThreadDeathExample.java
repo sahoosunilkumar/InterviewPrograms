@@ -12,6 +12,7 @@ class MyThread extends Thread {
 		super(tg, name);
 	}
 
+	@Override
 	public void run() {
 		System.out.println("About to do something.");
 		doSomething();
@@ -44,6 +45,7 @@ class MyThreadGroup extends ThreadGroup {
 		super(name);
 	}
 
+	@Override
 	public void uncaughtException(Thread t, Throwable e) {
 		if (e instanceof MyThreadDeath) {
 			reportError(t, e);

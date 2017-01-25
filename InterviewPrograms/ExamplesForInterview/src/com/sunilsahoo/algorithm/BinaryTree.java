@@ -38,11 +38,14 @@ Case 2: Both left and right subtrees have equal number of nodes.
 
 T(n) = 2T(|_n/2_|) + c
 
-This recursive function is in the standard form (T(n) = aT(n/b) + (-)(n) ) for master method http://en.wikipedia.org/wiki/Master_theorem. If we solve it by master method we get (-)(n)
+This recursive function is in the standard form (T(n) = aT(n/b) + (-)(n) ) 
+for master method http://en.wikipedia.org/wiki/Master_theorem. If we solve it by master method we get (-)(n)
 
 Auxiliary Space : If we don’t consider size of stack for function calls then O(1) otherwise O(n).
 
-Unlike linear data structures (Array, Linked List, Queues, Stacks, etc) which have only one logical way to traverse them, trees can be traversed in different ways. Following are the generally used ways for traversing trees.
+Unlike linear data structures (Array, Linked List, Queues, Stacks, etc) 
+which have only one logical way to traverse them, trees can be traversed in different ways. 
+Following are the generally used ways for traversing trees.
 
 Example Tree
 Example Tree

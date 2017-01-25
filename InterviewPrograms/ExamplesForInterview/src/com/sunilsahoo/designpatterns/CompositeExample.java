@@ -118,6 +118,7 @@ class File implements AbstractFile
 		m_name = name;
 	}
 
+	@Override
 	public void ls() {
 		System.out.println(CompositeExample.g_indent + m_name);
 	}
@@ -136,6 +137,7 @@ class Directory implements AbstractFile
 		m_files.add(obj);
 	}
 
+	@Override
 	public void ls() {
 		System.out.println(CompositeExample.g_indent + m_name);
 		CompositeExample.g_indent.append("   ");

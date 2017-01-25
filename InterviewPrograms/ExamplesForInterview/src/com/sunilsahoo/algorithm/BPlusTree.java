@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Vector;
 
@@ -30,7 +30,7 @@ class BPlusTree {
     private static void executeCommand(Command c, BufferedWriter output) throws InvalidCommandException, IOException {
     	// execute command, does as it says, calls the appropriate procedure to accomplish the command
     	// There are also some debug options to help the user see what's going on
-        switch( (int) c.getCommand() ) {
+        switch( c.getCommand() ) {
         case 'd':
         	if( c.getXValue() == 1 && !debug) {
         		debug = true;
@@ -62,7 +62,7 @@ class BPlusTree {
         	insertIntoTree(new DataNode(c.getXValue()));
             break;
         }
-        if(debug && (int)c.getCommand() != 'p') {
+        if(debug && c.getCommand() != 'p') {
         	printTree(new BufferedWriter(new PrintWriter(System.out)));
         	System.out.println("--->OPERATION COMPLETE");
         }
@@ -101,7 +101,7 @@ class BPlusTree {
             for(int i=0; i < nodeList.size(); i++) {
             	
             	// get the node at position i
-                BPlusNode node = (BPlusNode)nodeList.elementAt(i);
+                BPlusNode node = nodeList.elementAt(i);
                 
                 // convert the node into a string
                 toprint += node.toString() + " ";
@@ -211,6 +211,7 @@ class Command {
 		xvalue = 0;
 	}
 	
+	@Override
 	public String toString() {
 		return "command = " + command + " x = " + xvalue;
 	}
@@ -303,7 +304,7 @@ abstract class BPlusNode {
 	}
 	
 	public DataNode getDataAt(int index) {
-		return (DataNode) data.elementAt(index);
+		return data.elementAt(index);
 	}
 	
 	protected void propagate(DataNode dnode, BPlusNode right) {
@@ -330,7 +331,7 @@ abstract class BPlusNode {
 				// add the necessary data and pointers to existing parent
 				boolean dnodeinserted = false;
 				for(int i = 0; !dnodeinserted && i < parent.data.size(); i++) {
-					if( ((DataNode)parent.data.elementAt(i)).inOrder(dnode) ) {
+					if( parent.data.elementAt(i).inOrder(dnode) ) {
 						parent.data.add(i,dnode);
 						((TreeNode)parent).pointer.add(i+1, right);
 						dnodeinserted = true;
@@ -367,10 +368,11 @@ abstract class BPlusNode {
 	}
 	
 	// Convert a node to a string
+	@Override
 	public String toString() {
 		String s = "";
 		for(int i=0; i < data.size(); i++) {
-			s += ((DataNode)data.elementAt(i)).toString() + " ";
+			s += data.elementAt(i).toString() + " ";
 		}
 		return s + "#";
 	}
@@ -409,10 +411,11 @@ class LeafNode extends BPlusNode {
 		return nextNode;
 	}
 
+	@Override
 	public boolean search(DataNode x) {
 		// search through the data sequentially until x is found, or there are no more entries
 		for(int i=0; i < data.size(); i++) {
-			if( ((DataNode)data.elementAt(i)).getData() == x.getData() ) {
+			if( data.elementAt(i).getData() == x.getData() ) {
 				return true;
 			}
 		}
@@ -423,7 +426,7 @@ class LeafNode extends BPlusNode {
 		// insert dnode into the vector (it will now be overpacked)
 		boolean dnodeinserted = false;
 		for(int i=0; !dnodeinserted && i < data.size(); i++) {
-			if( ((DataNode)data.elementAt(i)).inOrder(dnode) ) {
+			if( data.elementAt(i).inOrder(dnode) ) {
 				data.add(i,dnode);
 				dnodeinserted = true;
 			}
@@ -453,19 +456,20 @@ class LeafNode extends BPlusNode {
 		this.setNextNode(right);
 		
 		// get the middle item's data
-		DataNode mid =  (DataNode) data.elementAt(data.size()-1);
+		DataNode mid =  data.elementAt(data.size()-1);
 
 		// propagate the data and pointers into the parent node
 		this.propagate(mid, right);
 	}
 
+	@Override
 	public BPlusNode insert(DataNode dnode) {
 		// if the leaf isn't full insert it at the proper place
 		if(data.size() < maxsize-1) {
 			boolean dnodeinserted = false;
 			int i = 0;
 			while(!dnodeinserted && i < data.size()) {
-				if( ((DataNode)data.elementAt(i)).inOrder(dnode) ) {
+				if( data.elementAt(i).inOrder(dnode) ) {
 					data.add(i,dnode);
 					dnodeinserted = true;
 				}
@@ -502,7 +506,7 @@ class TreeNode extends BPlusNode {
 		int i = 0;
 		boolean xptrfound = false;
 		while(!xptrfound && i < data.size()) {
-			if( ((DataNode)data.elementAt(i)).inOrder(x ) ) {
+			if( data.elementAt(i).inOrder(x ) ) {
 				xptrfound = true;
 			}
 			else {
@@ -513,15 +517,16 @@ class TreeNode extends BPlusNode {
 		
 		
 		// return the Node in pointer(i)
-		return (BPlusNode) pointer.elementAt(i);
+		return pointer.elementAt(i);
 		
 	}
 
 	// returns the pointer at a specific index in the pointer stack
 	public BPlusNode getPointerAt(int index) {
-		return (BPlusNode) pointer.elementAt(index);
+		return pointer.elementAt(index);
 	}
 
+	@Override
 	boolean search(DataNode dnode) {
 		// get a pointer to where dnode.data should be found
 		BPlusNode next = this.getPointerTo(dnode);
@@ -543,11 +548,11 @@ class TreeNode extends BPlusNode {
 		// insert dnode into the vector (it will now be overpacked)
 		boolean dnodeinserted = false;
 		for(int i=0; !dnodeinserted && i < data.size(); i++) {
-			if( ((DataNode)data.elementAt(i)).inOrder(dnode) ) {
+			if( data.elementAt(i).inOrder(dnode) ) {
 				data.add(i,dnode);
-				((TreeNode)this).pointer.remove(i);
-				((TreeNode)this).pointer.add(i, left);
-				((TreeNode)this).pointer.add(i+1, right);
+				this.pointer.remove(i);
+				this.pointer.add(i, left);
+				this.pointer.add(i+1, right);
 				dnodeinserted = true;
                 
                 // set the location of the insert this will be used to set the parent
@@ -558,14 +563,14 @@ class TreeNode extends BPlusNode {
             // set the location of the insert this will be used to set the parent
             insertlocation = data.size();
 			data.add(dnode);
-			((TreeNode)this).pointer.remove(((TreeNode)this).pointer.size()-1);
-			((TreeNode)this).pointer.add(left);
-			((TreeNode)this).pointer.add(right);
+			this.pointer.remove(this.pointer.size()-1);
+			this.pointer.add(left);
+			this.pointer.add(right);
             
 		}
 		
 		// get the middle dataNode
-		DataNode mid = (DataNode) data.remove(splitlocation);
+		DataNode mid = data.remove(splitlocation);
 		
 		// create a new tree node to accomodate the split 
 		TreeNode newright = new TreeNode(maxsize);
@@ -598,6 +603,7 @@ class TreeNode extends BPlusNode {
 		this.propagate(mid, newright);
 	}
 
+	@Override
 	BPlusNode insert(DataNode dnode) {
 		BPlusNode next = this.getPointerTo(dnode);
 		
@@ -612,7 +618,8 @@ class DataNode {
     DataNode() {
         data = null;
     }   
-    public String toString() {
+    @Override
+	public String toString() {
 		return data.toString();
 	}
 	public DataNode(int x) {

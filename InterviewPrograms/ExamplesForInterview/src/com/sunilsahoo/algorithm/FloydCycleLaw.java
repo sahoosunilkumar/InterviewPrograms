@@ -81,11 +81,11 @@ public class FloydCycleLaw {
 	// Driver program to test above functions
 	public static void main(String[] args) {
 		FloydCycleLaw list = new FloydCycleLaw();
-		list.head = new Node(50);
-		list.head.next = new Node(20);
-		list.head.next.next = new Node(15);
-		list.head.next.next.next = new Node(4);
-		list.head.next.next.next.next = new Node(10);
+		FloydCycleLaw.head = new Node(50);
+		FloydCycleLaw.head.next = new Node(20);
+		FloydCycleLaw.head.next.next = new Node(15);
+		FloydCycleLaw.head.next.next.next = new Node(4);
+		FloydCycleLaw.head.next.next.next.next = new Node(10);
 
 		// Creating a loop for testing
 		head.next.next.next.next.next = head.next.next;

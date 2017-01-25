@@ -19,7 +19,7 @@ public class AnnotationTest {
         
         Class businessLogicClass = BusinessLogic.class;
         for(Method method : businessLogicClass.getMethods()) {
-            Todo todoAnnotation = (Todo)method.getAnnotation(Todo.class);
+            Todo todoAnnotation = method.getAnnotation(Todo.class);
             if(todoAnnotation != null) {
                 System.out.println(" Method Name : " + method.getName());
                 System.out.println(" Author : " + todoAnnotation.author());

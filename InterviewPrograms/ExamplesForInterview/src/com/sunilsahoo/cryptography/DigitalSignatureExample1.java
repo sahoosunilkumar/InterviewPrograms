@@ -1,6 +1,9 @@
 package com.sunilsahoo.cryptography;
 
-import java.security.*;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.Signature;
+import java.security.SignatureException;
 
 //
 // This example uses the digital signature features to generate and

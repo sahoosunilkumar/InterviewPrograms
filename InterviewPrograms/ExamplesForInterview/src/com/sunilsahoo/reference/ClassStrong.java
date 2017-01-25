@@ -3,6 +3,7 @@ package com.sunilsahoo.reference;
 public class ClassStrong {
 
 	public static class Referred {
+		@Override
 		protected void finalize() {
 			System.out.println("Good bye cruel world");
 		}

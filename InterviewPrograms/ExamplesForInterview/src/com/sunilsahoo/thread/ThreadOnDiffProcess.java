@@ -1,6 +1,7 @@
 package com.sunilsahoo.thread;
 
 class MyRunnable1 implements Runnable {
+	@Override
 	public void run() {
 		for (int i = 0; i < 5; i++) {
 			try {
@@ -15,6 +16,7 @@ class MyRunnable1 implements Runnable {
 }
 
 class MyRunnable2 implements Runnable {
+	@Override
 	public void run() {
 		for (int i = 0; i < 5; i++) {
 			try {

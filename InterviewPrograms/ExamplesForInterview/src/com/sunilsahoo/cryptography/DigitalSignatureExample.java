@@ -1,6 +1,8 @@
 package com.sunilsahoo.cryptography;
-import java.security.*;
-import javax.crypto.*;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.MessageDigest;
+
 //
 // This program demonstrates the digital signature technique at the
 // primative level by generating a message digest of the plaintext
@@ -8,6 +10,7 @@ import javax.crypto.*;
 // To verify the signature, the message digest is again generated from
 // the plaintext and compared with the decryption of the signature
 // using the public key.  If they match, the signature is verified.
+import javax.crypto.Cipher;
 
 public class DigitalSignatureExample {
 	public static void main(String[] args) throws Exception {

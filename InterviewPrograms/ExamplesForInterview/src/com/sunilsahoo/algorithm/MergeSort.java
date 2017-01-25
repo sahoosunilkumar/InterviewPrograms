@@ -23,7 +23,9 @@ For example, if you draw the space tree out, it seems like it is O(nlgn)
                    2   2 2   2.....................             | 16
                   / \  /\ ........................
                  1  1  1 1 1 1 1 1 1 1 1 1 1 1 1 1              | 16
-where height of tree is O(logn) => Space complexity is O(nlogn + n) = O(nlogn). However, this is not the case in the actual code as it does not execute in parallel. For example, in the case where N = 16, this is how the code for mergesort executes. N = 16.
+where height of tree is O(logn) => Space complexity is O(nlogn + n) = O(nlogn). 
+However, this is not the case in the actual code as it does not execute in parallel. 
+For example, in the case where N = 16, this is how the code for mergesort executes. N = 16.
 
                            16
                           /
@@ -123,30 +125,55 @@ public class MergeSort {
         }
     }
  
-    private void mergeParts(int lowerIndex, int middle, int higherIndex, int[] array) {
-    	
-        for (int i = lowerIndex; i <= higherIndex; i++) {
-            tempMergArr[i] = array[i];
-        }
-        int i = lowerIndex;
-        int j = middle + 1;
-        int k = lowerIndex;
-        while (i <= middle && j <= higherIndex) {
-            if (tempMergArr[i] <= tempMergArr[j]) {
-                array[k] = tempMergArr[i];
-                i++;
-            } else {
-                array[k] = tempMergArr[j];
-                j++;
+//    private void mergeParts(int lowerIndex, int middle, int higherIndex, int[] array) {
+//    	
+//        for (int i = lowerIndex; i <= higherIndex; i++) {
+//            tempMergArr[i] = array[i];
+//        }
+//        int i = lowerIndex;
+//        int j = middle + 1;
+//        int k = lowerIndex;
+//        while (i <= middle && j <= higherIndex) {
+//            if (tempMergArr[i] <= tempMergArr[j]) {
+//                array[k] = tempMergArr[i];
+//                i++;
+//            } else {
+//                array[k] = tempMergArr[j];
+//                j++;
+//            }
+//            k++;
+//        }
+//        while (i <= middle) {
+//            array[k] = tempMergArr[i];
+//            k++;
+//            i++;
+//        }
+//        System.out.println("low : "+lowerIndex+" high : "+higherIndex+" middle : "+middle+" result : "+Utility.toString(tempMergArr));
+//        
+//    }
+    
+    private void mergeParts(int low, int middle, int high, int input[]){
+        int temp[] = new int[high-low+1];
+        int i = low;
+        int j = middle+1;
+        int r = 0;
+        while(i <= middle && j <= high){
+            if(input[i] <= input[j]){
+                temp[r++] = input[i++];
+            }else{
+                temp[r++] = input[j++];
             }
-            k++;
         }
-        while (i <= middle) {
-            array[k] = tempMergArr[i];
-            k++;
-            i++;
+        while(i <= middle){
+            temp[r++] = input[i++];
         }
-        System.out.println("low : "+lowerIndex+" high : "+higherIndex+" middle : "+middle+" result : "+Utility.toString(tempMergArr));
         
+        while(j <= high){
+            temp[r++] = input[j++];
+        }
+        i = low;
+        for(int k=0; k < temp.length;){
+            input[i++] = temp[k++];
+        }
     }
 }

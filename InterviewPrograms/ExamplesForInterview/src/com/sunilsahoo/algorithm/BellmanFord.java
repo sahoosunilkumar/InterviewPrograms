@@ -1,7 +1,11 @@
 package com.sunilsahoo.algorithm;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 /*
  * Bellman-Ford algorithm can detect negative cycles in the graph.
@@ -36,124 +40,106 @@ Step 4: If there is no negative cycle, return false
 
  * Time Complexity is O(VE) Space Complexity is O(V)
  */
-class Graph {
-	private int V;
-	private List<Edge> edges;
-
-	public Graph(int v) {
-		V = v;
-		edges = new ArrayList<Edge>();
-	}
-
-	public int getV() {
-		return V;
-	}
-
-	public void setV(int v) {
-		V = v;
-	}
-
-	public List<Edge> getEdges() {
-		return edges;
-	}
-
-	public void setEdges(List<Edge> edges) {
-		this.edges = edges;
-	}
-
-	public void addEdge(int u, int v, int w) {
-		Edge e = new Edge(u, v, w);
-		edges.add(e);
-	}
-}
-
-class Edge {
-	private int u;
-	private int v;
-	private int w;
-
-	public int getU() {
-		return u;
-	}
-
-	public void setU(int u) {
-		this.u = u;
-	}
-
-	public int getV() {
-		return v;
-	}
-
-	public void setV(int v) {
-		this.v = v;
-	}
-
-	public int getW() {
-		return w;
-	}
-
-	public void setW(int w) {
-		this.w = w;
-	}
-
-	public Edge(int u, int v, int w) {
-		this.u = u;
-		this.v = v;
-		this.w = w;
-	}
-}
 
 public class BellmanFord {
+	private static final int INFINITY = 100000;
 	public static void main(String[] args) {
-		Graph g = createTestGraph();
-		int distance[] = new int[g.getV()];
-		boolean hasNegativeCycle = getShortestPathsBellmanFord(g, 1, distance);
-		if (!hasNegativeCycle) {
-			for (int i = 1; i < distance.length; i++)
-				System.out.println(i + " " + (distance[i] == Integer.MAX_VALUE
-						? "-" : distance[i]));
-		} else {
-			System.out.println(
-					"No solution found since negative cycle exists in the graph!");
-		}
+		BellmanFord program = new BellmanFord();
+		Graph graph = program.new Graph();
+		graph.addEdge(0, 3, 8);
+        graph.addEdge(0, 1, 4);
+        graph.addEdge(0, 2, 5);
+        graph.addEdge(1, 2, -3);
+        graph.addEdge(2, 4, 4);
+        graph.addEdge(3, 4, 2);
+        graph.addEdge(4, 3, 1);
+        
+        
+        Vertex sourceVertex = graph.getAllVertex().iterator().next();
+        program.getShortestPathsBellmanFord(graph, sourceVertex);
+	
 	}
 
-	private static Graph createTestGraph() {
-		int v = 7;
-		Graph g = new Graph(v);
-		g.addEdge(1, 2, 4);
-		g.addEdge(1, 4, 9);
-		g.addEdge(2, 3, -1);
-		g.addEdge(3, 6, 3);
-		g.addEdge(4, 3, 2);
-		g.addEdge(4, 5, -5);
-		g.addEdge(5, 6, 0);
-		return g;
-	}
 
-	public static boolean getShortestPathsBellmanFord(Graph g, int source,
-			int[] distance) {
-		int V = g.getV();
-		for (int i = 1; i < V; i++) {
-			distance[i] = Integer.MAX_VALUE;
+	public void getShortestPathsBellmanFord(Graph graph, Vertex sourceVertex) {
+		Map<Integer, Integer> distanceMap = new HashMap<>();
+		Map<Integer, Integer> parentNodeMap = new HashMap<>();
+//		Vertex sourceVertex = graph.getAllVertex().iterator().next();
+		for(Vertex vertex : graph.getAllVertex()){
+			distanceMap.put(vertex.id, INFINITY);
+			parentNodeMap.put(vertex.id,null);
 		}
-		distance[source] = 0;
-		for (int i = 1; i < V; i++) {
-			for (Edge e : g.getEdges()) {
-				int u = e.getU(), v = e.getV(), w = e.getW();
-				if (distance[u] != Integer.MAX_VALUE
-						&& distance[v] > distance[u] + w) {
-					distance[v] = distance[u] + w;
+		
+		distanceMap.put(sourceVertex.id, 0);
+		
+		//iterate the loop V-1 times to get shortest path
+		int size = graph.getAllVertex().size();
+		for(int counter = 0; counter<size-1;counter++){
+			for (Vertex vertex : graph.getAllVertex()) {
+				for(Edge edge : vertex.getAllAdjacents()){
+					System.out.println("map : "+distanceMap+" source : "+edge.source+" destination : "+edge.destination);
+					if(distanceMap.get(edge.destination.id) > edge.weight+distanceMap.get(edge.source.id)){
+						distanceMap.put(edge.destination.id, (edge.weight+distanceMap.get(edge.source.id)));
+						parentNodeMap.put(edge.destination.id, edge.source.id);
+					}
 				}
 			}
 		}
-		for (Edge e : g.getEdges()) {
-			int u = e.getU(), v = e.getV(), w = e.getW();
-			if (distance[u] != Integer.MAX_VALUE
-					&& distance[v] > distance[u] + w) {
-				return true;
+		
+		//iterate one more time to find -ve weight cycle
+		for (Vertex vertex : graph.getAllVertex()) {
+			for(Edge edge : vertex.getAllAdjacents()){
+				if(distanceMap.get(edge.destination.id) > edge.weight+distanceMap.get(edge.source.id)){
+					System.out.println("Negative cycle exist");
+				}
 			}
 		}
-		return false;
+		
+		System.out.println("shortest path : "+distanceMap);
+		System.out.println("parent path : "+parentNodeMap);
+	}
+	
+	
+	class Graph{
+		Map<Integer,Vertex> vertexMap = new HashMap<>();
+		void addEdge(int sourceVertex, int destinationVertex, int weight){
+			if(!vertexMap.containsKey(sourceVertex)){
+				vertexMap.put(sourceVertex, new Vertex(sourceVertex));
+			}
+			if(!vertexMap.containsKey(destinationVertex)){
+				vertexMap.put(destinationVertex, new Vertex(destinationVertex));
+			}
+			Vertex source = vertexMap.get(sourceVertex);
+			Vertex destination = vertexMap.get(destinationVertex);
+			System.out.println(" source : "+source+" destination : "+destination);
+			vertexMap.get(sourceVertex).addAdjacentVertex(new Edge(source, destination, weight));
+		}
+		Collection<Vertex> getAllVertex(){
+			return vertexMap.values();
+		}
+	}
+	
+	class Vertex{
+		private List<Edge> edgeList = new ArrayList<>();
+		int id;
+		Vertex(int vertex){
+			this.id = vertex;
+		}
+		void addAdjacentVertex(Edge edge){
+			edgeList.add(edge);
+		}
+		List<Edge> getAllAdjacents(){
+			return edgeList;
+		}
+	}
+	
+	class Edge{
+		public Vertex source, destination;
+		public int weight;
+		Edge(Vertex source, Vertex destination, int weight){
+			this.source = source;
+			this.destination = destination;
+			this.weight = weight;
+		}
 	}
 }

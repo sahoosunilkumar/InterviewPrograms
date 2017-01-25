@@ -31,6 +31,11 @@ public class ArrayProgram {
 		A = new int[] { 2,4,5,5,5,8,9 };
 		A = arrayProgram.removeDuplicatesFromSortedArray(A);
 		System.out.println("After removing duplicates : "+Utility.toString(A));
+		
+		
+		int arr[] = {15, 2, 4, 8, 9, 5, 10, 23};
+		int sum = 23;
+		arrayProgram.findSubArraySum(arr, sum);
 	}
 
 	/**
@@ -302,5 +307,33 @@ public class ArrayProgram {
 			i++;
 		}
 		return A;
+	}
+	
+	/**
+	 * Time complexity O(n)
+	 * @param arr
+	 * @param sum
+	 * @return
+	 */
+	private boolean findSubArraySum(int arr[], int sum) {
+		int curr_sum = arr[0], start = 0, i;
+		for (i = 1; i <= arr.length; i++) {
+			while (curr_sum > sum && start < i - 1) {
+				curr_sum = curr_sum - arr[start];
+				start++;
+			}
+			if (curr_sum == sum) {
+				int p = i - 1;
+				System.out.println(
+						"Sum found between indexes " + start + " and " + p);
+				return true;
+
+			}
+
+			if (i < arr.length)
+				curr_sum = curr_sum + arr[i];
+		}
+		System.out.println("No subarray found");
+		return false;
 	}
 }

@@ -1,8 +1,13 @@
 package com.sunilsahoo.cryptography;
 
-import java.io.*;
-import java.net.*;
-import javax.net.ssl.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import javax.net.ssl.SSLServerSocketFactory;
 
 //
 // Example of an HTTPS server to illustrate SSL certificate and socket

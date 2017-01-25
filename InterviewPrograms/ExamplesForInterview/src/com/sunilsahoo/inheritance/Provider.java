@@ -2,14 +2,14 @@ package com.sunilsahoo.inheritance;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-abstract public class Provider {
+ abstract public class Provider {
 
-	public String getName() {
-		return "Sunil";
-	}
+//	public String getName() {
+//		return "Sunil";
+//	}
+	 abstract String getName();
 
 	private static HashMap<String, Object> classMap = new HashMap<>();
 

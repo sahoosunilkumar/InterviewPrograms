@@ -50,6 +50,7 @@ class Consumer extends Thread {
 		prod = obj;
 	}
 
+	@Override
 	public void run() {
 		/*
 		 * consumer will wait till producer is producing.

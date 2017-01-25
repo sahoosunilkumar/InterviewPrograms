@@ -80,7 +80,7 @@ public class ProducerConsumerWithBlockingQueue {
 			e.printStackTrace();
 		}
 		consumerThread.start();
-		consumerThread1.start();
+//		consumerThread1.start();
 
 	}
 

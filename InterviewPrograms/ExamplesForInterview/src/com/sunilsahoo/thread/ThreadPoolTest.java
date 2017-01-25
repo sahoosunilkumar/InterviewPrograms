@@ -57,6 +57,7 @@ class LinkedBlockingQueueCustom<E> implements BlockingQueueCustom<E> {
 	 * else waits for space to become available. After inserting element it
 	 * notifies all waiting threads.
 	 */
+	@Override
 	public synchronized void put(E item) throws InterruptedException {
 
 		// check space is available or not.
@@ -74,6 +75,7 @@ class LinkedBlockingQueueCustom<E> implements BlockingQueueCustom<E> {
 	 * available else waits for element to become available. After removing
 	 * element it notifies all waiting threads.
 	 */
+	@Override
 	public synchronized E take() throws InterruptedException {
 
 		// waits element is available or not.
@@ -90,6 +92,7 @@ class LinkedBlockingQueueCustom<E> implements BlockingQueueCustom<E> {
 	/**
 	 * Returns size of LinkedBlockingQueueCustom.
 	 */
+	@Override
 	public synchronized int size() {
 		return queue.size();
 	}
@@ -182,6 +185,7 @@ class ThreadPool10sThread extends Thread {
 
 	}
 
+	@Override
 	public void run() {
 		try {
 			/*

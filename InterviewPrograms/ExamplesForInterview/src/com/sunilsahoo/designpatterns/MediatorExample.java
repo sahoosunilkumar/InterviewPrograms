@@ -71,6 +71,7 @@ class Producer extends Thread {
 		id = num++;
 	}
 
+	@Override
 	public void run() {
 		int num;
 		while (true) {
@@ -91,6 +92,7 @@ class Consumer extends Thread {
 		id = num++;
 	}
 
+	@Override
 	public void run() {
 		while (true) {
 			System.out.print("c" + id + "-" + med.retrieveMessage() + "  ");

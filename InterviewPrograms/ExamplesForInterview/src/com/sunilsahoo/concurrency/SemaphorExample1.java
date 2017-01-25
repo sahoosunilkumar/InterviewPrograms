@@ -20,6 +20,7 @@ class SendingThread extends Thread{
 		this.semaphore = semaphore;
 	}
 
+	@Override
 	public void run() {
 		while (true) {
 			System.out.println("inside sending thread");
@@ -41,6 +42,7 @@ class RecevingThread extends Thread{
 		this.semaphore = semaphore;
 	}
 
+	@Override
 	public void run() {
 		while (true) {
 			this.semaphore.release();

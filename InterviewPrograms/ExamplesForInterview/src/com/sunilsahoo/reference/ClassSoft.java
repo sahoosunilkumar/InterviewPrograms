@@ -12,6 +12,7 @@ import java.util.List;
 public class ClassSoft {
 
 	public static class Referred {
+		@Override
 		protected void finalize() {
 			System.out.println("Good bye cruel world");
 		}
