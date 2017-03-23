@@ -23,7 +23,7 @@ public class Practise {
 	String inputStr;
 
 	public static void main(String[] args) {
-		Scanner sc;
+//		Scanner sc;
 //		GenTest test = new GenTest();
 //		test.setValue(new int[]{4,5});
 //		System.out.println(test.getValue());

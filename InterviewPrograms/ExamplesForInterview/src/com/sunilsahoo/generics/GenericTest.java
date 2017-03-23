@@ -1,6 +1,5 @@
 package com.sunilsahoo.generics;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenericTest {

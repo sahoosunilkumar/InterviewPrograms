@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 
 public class TreeProgram {
@@ -400,6 +401,51 @@ public class TreeProgram {
 		}
 		return true;
 	}
+	
+	/**
+	 * Using two stack technique.
+	 * right stack will push children to left stack (left child first)
+	 * left stack will push children to right stack (right child first)
+	 * 
+	 * @param root
+	 */
+	private void spiralOrderTraversal(Node root) {
+		Stack<Node> leftStack = new Stack<Node>();
+		Stack<Node> rightStack = new Stack<Node>();
+		rightStack.push(root);
+
+		while (true) {
+			if (leftStack.isEmpty() && rightStack.isEmpty()) {
+				break;
+			}
+
+			while (!rightStack.isEmpty()) {
+				Node node = rightStack.pop();
+				if (node.left != null) {
+					leftStack.push(node.left);
+				}
+
+				if (node.right != null) {
+					leftStack.push(node.right);
+				}
+				System.out.print(node.key+" ");
+			}
+
+			while (!leftStack.isEmpty()) {
+				Node node = leftStack.pop();
+
+				if (node.right != null) {
+					rightStack.push(node.right);
+				}
+
+				if (node.left != null) {
+					rightStack.push(node.left);
+				}
+				System.out.print(node.key+" ");
+			}
+		}
+
+	}
 
 	// Driver method
 	public static void main(String[] args) {
@@ -455,6 +501,29 @@ public class TreeProgram {
 		root.left.right = new Node(3);
 
 		System.out.println("\nIs BST : " + treeProgram.isBST(root));
+		
+		
+		root = new Node(1);
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.left.left = new Node(4);
+		root.left.right = new Node(5);
+		
+		root.right.left = new Node(6);
+		root.right.right = new Node(7);
+		
+		root.left.left.left = new Node(8);
+		root.left.left.right = new Node(9);
+		
+		root.left.right.left = new Node(10);
+		root.left.right.right = new Node(11);
+		
+		root.right.left.left = new Node(12);
+		root.right.left.right = new Node(13);
+		root.right.right.left = new Node(14);
+		root.right.right.right = new Node(15);
+		System.out.println("Spiral order Traversal : ");
+		treeProgram.spiralOrderTraversal(root);
 	}
 
 	static Node prev = null;

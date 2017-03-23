@@ -161,7 +161,6 @@ public class Dijkstra {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return nodeList.toString();
 	}
 
@@ -218,7 +217,6 @@ class GraphNode {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return nodeId + " : " + parentDist + " next: " + next;
 	}
 }
@@ -233,7 +231,6 @@ class QueueNode {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "nodeId :"+nodeId+" dist : "+distFromSrc;
 	}
 }

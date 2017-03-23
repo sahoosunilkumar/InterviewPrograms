@@ -36,6 +36,7 @@ public class SelectionSort {
 			for (in = out + 1; in < nElems; in++) {
 				if (arr[in] < arr[min])
 					min = in;
+				System.out.println(min+" in :"+in+" out :"+out+"---------"+Utility.toString(arr));
 			}
 
 			swap(out, min, arr); // swap them

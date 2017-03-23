@@ -41,7 +41,7 @@ public class FloydCycleLaw {
 		 * to find the first node which is part of the Linked List
 		 */
 		ptr1 = curr;
-		while (1 == 1) {
+		while (true) {
 
 			/*
 			 * Now start a pointer from loop_node and check if it ever reaches

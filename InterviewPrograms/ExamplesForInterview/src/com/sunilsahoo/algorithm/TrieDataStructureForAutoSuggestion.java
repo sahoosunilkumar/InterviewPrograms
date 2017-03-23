@@ -3,12 +3,20 @@ package com.sunilsahoo.algorithm;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-/*
-
-A Trie, also called a Prefix Tree, is a tree structure that stores words with a common prefix under the same sequence of edges in the tree eliminating the need for storing the same prefix each time for each word. From Wikipedia:
-A trie, or prefix tree, is an ordered tree data structure that is used to store an associative array where the keys are usually strings. Unlike a binary search tree, no node in the tree stores the key associated with that node; instead, its position in the tree shows what key it is associated with. All the descendants of a node have a common prefix of the string associated with that node, and the root is associated with the empty string.
+/**
+ * A Trie, also called a Prefix Tree, is a tree structure that stores words with
+ * a common prefix under the same sequence of edges in the tree eliminating the
+ * need for storing the same prefix each time for each word. From Wikipedia: A
+ * trie, or prefix tree, is an ordered tree data structure that is used to store
+ * an associative array where the keys are usually strings. Unlike a binary
+ * search tree, no node in the tree stores the key associated with that node;
+ * instead, its position in the tree shows what key it is associated with. All
+ * the descendants of a node have a common prefix of the string associated with
+ * that node, and the root is associated with the empty string.
+ * 
+ * @author sunilkumarsahoo
+ *
  */
-
 public class TrieDataStructureForAutoSuggestion {
 
 	public static int counter = 0;
