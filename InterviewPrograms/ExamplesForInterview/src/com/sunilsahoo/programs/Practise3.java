@@ -14,6 +14,22 @@ import com.sunilsahoo.algorithm.Utility;
 public class Practise3 {
 	static final HashMap<Integer, String> BASE7MAP = new HashMap<Integer, String>();
 	public static void main(String[] args){
+		
+		String data1 = "Sunil";
+		String constraint = "sk";
+		int index = data1.toLowerCase().indexOf(constraint.toString().toLowerCase());
+        if (index != -1) {
+//        	int index1 = index;
+        	int index2 = index+constraint.length();
+            String substr1 = data1.substring(0,index);
+            String substr2 = data1.substring(index2);
+            String substr3 = data1.substring(index, index2);
+            System.out.println(index+" : "+index2);
+//            String substr3 = data1.substring(beginIndex)
+            System.out.println(substr1+"<b>"+substr3+"</b>"+substr2);
+            
+        }
+        
 		Set<PersonTest> set = new HashSet<PersonTest>();
 		set.add(new PersonTest("sunil", 1));
 		set.add(new PersonTest("susil", 2));

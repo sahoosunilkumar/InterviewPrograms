@@ -13,10 +13,10 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class SrtModifier {
-	static String sourceDirectory = "/Users/sunilkumarsahoo/Desktop/Movies/2016 - Game of Thrones - Season 6 - 10 (1280x720) Episodes/Game.of.Thrones.S06E09.HDTV.x264-KILLERS[ettv].srt";
+	static String sourceDirectory = "/Users/sunilkumarsahoo/Desktop/Baahubali2.srt";
 //	00:55:52,354 --> 00:55:55,312
 	static String format = "00:53:30,800 --> 00:53:33,835";
-	static int modifyInSec = 1;
+	static int modifyInSec = -35;
 	static LinkedHashMap<String,List<Integer>> map = new LinkedHashMap<>();
 public static void main(String[] args){
 	
@@ -98,6 +98,9 @@ private static String modify(StringBuilder data, int sec){
 		if(second<0){
 			second = 60+second;
 			carry = -1;
+		}else if(second>59){
+			second = second-60;
+			carry = 1;
 		}
 		if(carry == -1){
 			minute = minute -1;
@@ -107,9 +110,22 @@ private static String modify(StringBuilder data, int sec){
 			}else{
 				carry = 0;
 			}
+		}else if(carry ==1){
+			minute = minute +1;
+			if(minute<0){
+				minute = 60+minute;
+				carry = -1;
+			}else if(minute>59){
+				minute = minute-60;
+				carry = 1;
+			}else{
+				carry = 0;
+			}
 		}
 		if(carry == -1){
 			hour = hour -1;
+		}else if(carry ==1){
+			hour = hour +1;
 		}
 		String formattedSec = format(second);
 
@@ -120,7 +136,7 @@ private static String modify(StringBuilder data, int sec){
 		data.replace(ls.get(0)+1, ls.get(0)+3, formattedMin);
 		data.replace(ls.get(0)-2, ls.get(0), formattedHour);
 		
-		System.out.println(data);
+		System.out.println(data+" : "+ls);
 		
 		second = Integer.parseInt(data.substring(ls.get(3)+1, ls.get(3)+3));
 		minute = Integer.parseInt(data.substring(ls.get(2)+1, ls.get(2)+3));
@@ -131,6 +147,9 @@ private static String modify(StringBuilder data, int sec){
 		if(second<0){
 			second = 60+second;
 			carry = -1;
+		}else if(second>59){
+			second = second-60;
+			carry = 1;
 		}
 		if(carry == -1){
 			minute = minute -1;
@@ -140,9 +159,22 @@ private static String modify(StringBuilder data, int sec){
 			}else{
 				carry = 0;
 			}
+		}else if(carry ==1){
+			minute = minute +1;
+			if(minute<0){
+				minute = 60+minute;
+				carry = -1;
+			}else if(minute>59){
+				minute = minute-60;
+				carry = 1;
+			}else{
+				carry = 0;
+			}
 		}
 		if(carry == -1){
 			hour = hour -1;
+		}else if(carry ==1){
+			hour = hour +1;
 		}
 		
 		formattedSec = format(second);
