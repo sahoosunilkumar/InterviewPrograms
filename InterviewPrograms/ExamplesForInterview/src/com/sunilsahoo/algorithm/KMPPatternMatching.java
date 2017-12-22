@@ -57,11 +57,12 @@ public class KMPPatternMatching {
 		if (patternLength == 0)
 			return 0;
 		int[] fail = computeFailKMP(pattern);
-		System.out.println(" lsp :"+Utility.toString(fail));
+		System.out.println(" lsp :" + Utility.toString(fail));
 		int textCounter = 0;
 		int patternCounter = 0;
 		while (textCounter < textLength) {
-			System.out.println("textcounter : "+textCounter+" pattern counter : "+patternCounter);
+			System.out.println("textcounter : " + textCounter
+					+ " pattern counter : " + patternCounter);
 			if (text.charAt(textCounter) == pattern.charAt(patternCounter)) {
 				if (patternCounter == patternLength - 1)
 					return textCounter - patternCounter;

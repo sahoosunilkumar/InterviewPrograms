@@ -45,7 +45,8 @@ class Consumer1 implements Runnable {
 		while (true) {
 			try {
 				// take/consume from sharedQueue.
-				System.out.println("CONSUMED : " + sharedQueue.take()+" BY : "+Thread.currentThread().getName());
+				System.out.println("CONSUMED : " + sharedQueue.take() + " BY : "
+						+ Thread.currentThread().getName());
 			} catch (InterruptedException ex) {
 
 			}
@@ -60,7 +61,8 @@ public class ProducerConsumerWithBlockingQueue {
 	public static void main(String args[]) {
 
 		// Creating shared object
-		BlockingQueue<Integer> sharedQueue = new LinkedBlockingQueue<Integer>(10);
+		BlockingQueue<Integer> sharedQueue = new LinkedBlockingQueue<Integer>(
+				10);
 
 		Producer1 producer = new Producer1(sharedQueue);
 		Consumer1 consumer = new Consumer1(sharedQueue);
@@ -72,7 +74,7 @@ public class ProducerConsumerWithBlockingQueue {
 		Thread consumerThread1 = new Thread(consumer1, "Consumer1Thread");
 		consumerThread1.setName("Cons 2");
 		producerThread.start();
-		
+
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -80,7 +82,7 @@ public class ProducerConsumerWithBlockingQueue {
 			e.printStackTrace();
 		}
 		consumerThread.start();
-//		consumerThread1.start();
+		// consumerThread1.start();
 
 	}
 

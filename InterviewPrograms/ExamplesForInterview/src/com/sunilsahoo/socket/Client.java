@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+@SuppressWarnings("serial")
 public class Client extends JFrame {
 	private final JTextField msgField = new JTextField();
 	private final JTextArea msgArea = new JTextArea();

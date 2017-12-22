@@ -22,9 +22,10 @@ public class PrototypeExample {
 
 	public static void main(String[] args1) {
 		initializePrototypes();
-		System.out.println("Get Object assigned : "+PrototypesModule.get("This"));
+		System.out.println(
+				"Get Object assigned : " + PrototypesModule.get("This"));
 		System.out.println();
-		String[] strArr = { "This", "That", "TheOther"};
+		String[] strArr = { "This", "That", "TheOther" };
 		Object[] objects = new Object[9];
 		int total = 0;
 
@@ -72,7 +73,7 @@ class PrototypesModule {
 		System.out.println(name + " not found");
 		return null;
 	}
-	
+
 	public static Object get(String name) {
 		// 4. The "virtual ctor"
 		for (int i = 0; i < total; i++) {
@@ -99,7 +100,7 @@ class This implements Prototype, Command {
 
 	@Override
 	public void execute() {
-		System.out.println("This: execute : "+this);
+		System.out.println("This: execute : " + this);
 	}
 }
 
@@ -116,7 +117,7 @@ class That implements Prototype, Command {
 
 	@Override
 	public void execute() {
-		System.out.println("That: execute : "+this);
+		System.out.println("That: execute : " + this);
 	}
 }
 
@@ -133,6 +134,6 @@ class TheOther implements Prototype, Command {
 
 	@Override
 	public void execute() {
-		System.out.println("TheOther: execute : "+this);
+		System.out.println("TheOther: execute : " + this);
 	}
 }

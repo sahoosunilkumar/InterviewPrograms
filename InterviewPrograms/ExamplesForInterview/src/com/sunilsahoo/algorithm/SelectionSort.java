@@ -32,11 +32,13 @@ public class SelectionSort {
 		int out, in, min, nElems = arr.length;
 		for (out = 0; out < nElems - 1; out++) {
 			min = out;
-			System.out.println("out : "+out+" min : "+min+" to string : "+Utility.toString(arr));
+			System.out.println("out : " + out + " min : " + min
+					+ " to string : " + Utility.toString(arr));
 			for (in = out + 1; in < nElems; in++) {
 				if (arr[in] < arr[min])
 					min = in;
-				System.out.println(min+" in :"+in+" out :"+out+"---------"+Utility.toString(arr));
+				System.out.println(min + " in :" + in + " out :" + out
+						+ "---------" + Utility.toString(arr));
 			}
 
 			swap(out, min, arr); // swap them

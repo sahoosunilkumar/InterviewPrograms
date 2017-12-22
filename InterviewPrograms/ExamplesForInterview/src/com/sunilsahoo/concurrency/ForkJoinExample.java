@@ -71,7 +71,7 @@ class Solver extends RecursiveAction {
 			s2.fork();
 			s1.join();
 			s2.join();
-			
+
 			result = s1.result + s2.result;
 		}
 	}

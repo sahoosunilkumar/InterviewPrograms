@@ -60,20 +60,22 @@ public class GraphTraversal {
 			}
 		}
 	}
+
 	void findLoop(int startVertex) {
 		List<Integer> list = new ArrayList<>();
 		findLoop(startVertex, list);
 	}
+
 	void findLoop(int startVertex, List<Integer> list) {
 		list.add(startVertex);
-//		System.out.print(startVertex + " ");
+		// System.out.print(startVertex + " ");
 		Iterator<Integer> itr = vertexArr[startVertex].iterator();
 		while (itr.hasNext()) {
 			int node = itr.next();
 			if (!list.contains(node)) {
 				findLoop(node, list);
-			}else{
-//				System.out.println("loop vertex is "+ node);
+			} else {
+				// System.out.println("loop vertex is "+ node);
 				noOfLoops++;
 			}
 		}
@@ -121,12 +123,12 @@ public class GraphTraversal {
 		g.addEdge(0, 1);
 		g.addEdge(0, 2);
 		g.addEdge(1, 2);
-//		g.addEdge(2, 0);
+		// g.addEdge(2, 0);
 		g.addEdge(2, 3);
 		g.addEdge(3, 4);
 		g.addEdge(4, 5);
 		g.addEdge(4, 8);
-		
+
 		g.addEdge(5, 6);
 		g.addEdge(6, 4);
 		g.addEdge(6, 7);
@@ -134,13 +136,11 @@ public class GraphTraversal {
 		g.addEdge(8, 3);
 		g.addEdge(8, 9);
 
-
-		
 		int startPoint = 0;
 		g.findLoop(startPoint);
 
 		System.out.println("no of loops " + noOfLoops);
-		
+
 		System.out.println("start dfs from " + startPoint);
 		g.dfs(startPoint);
 		System.out.println("complete dfs ");

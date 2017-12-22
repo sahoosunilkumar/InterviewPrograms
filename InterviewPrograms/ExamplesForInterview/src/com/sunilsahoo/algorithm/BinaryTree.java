@@ -187,7 +187,7 @@ public class BinaryTree {
 			// right
 		}
 	}
-	
+
 	void printInorderWoRecurssion(Node node) {
 		if (node == null) {
 			return;
@@ -207,8 +207,7 @@ public class BinaryTree {
 			node = node.right;
 		}
 	}
-	
-	
+
 	void postorderWoRecurssion(Node root) {
 		if (root == null)
 			return;
@@ -227,7 +226,7 @@ public class BinaryTree {
 		postorderIterativeHelper(leftStack, valueStack);
 		// print the left sub-tree
 		System.out.print(valueStack);
-		
+
 		// traverse the right sub-tree
 		postorderIterativeHelper(rightStack, rightvalueStack);
 		// print the left sub-tree
@@ -249,8 +248,6 @@ public class BinaryTree {
 				stack.push(node.right);
 		}
 	}
-	
-	
 
 	/**
 	 * breadth first search
@@ -299,7 +296,9 @@ public class BinaryTree {
 		tree.root.left = new Node(2);
 		tree.root.right = new Node(3);
 		tree.root.left.left = new Node(4);
+		tree.root.left.left.left = new Node(8);
 		tree.root.left.right = new Node(5);
+		tree.root.left.right.right = new Node(9);
 		tree.root.right.left = new Node(6);
 		tree.root.right.right = new Node(7);
 
@@ -309,19 +308,22 @@ public class BinaryTree {
 
 		System.out.println("\nInorder traversal of binary tree is ");
 		tree.printInorder();
-		System.out.println("\nInorder traversal WO recursion of binary tree is ");
+		System.out
+				.println("\nInorder traversal WO recursion of binary tree is ");
 		tree.printInorderWoRecurssion(tree.root);
 
 		System.out.println("\nPostorder traversal of binary tree is ");
 		tree.printPostorder();
-		
-		System.out.println("\nPostorder traversal WO recursion of binary tree is ");
+
+		System.out.println(
+				"\nPostorder traversal WO recursion of binary tree is ");
 		tree.postorderWoRecurssion(tree.root);
-		
+
 		System.out.println("\n BFS");
 		tree.printBFS(tree.root);
-		
+
 	}
+
 	static Node prev = null;
 }
 
@@ -353,4 +355,5 @@ class EntryNode {
 		this.level = level;
 		this.node = node;
 	}
+
 }

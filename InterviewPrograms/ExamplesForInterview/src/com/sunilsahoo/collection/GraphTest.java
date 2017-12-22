@@ -2,38 +2,38 @@ package com.sunilsahoo.collection;
 
 import java.util.LinkedList;
 
-
 public class GraphTest {
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Graph graph = createGraph();
 		Nodeg[] n = graph.getNodes();
 		Nodeg start = n[3];
 		Nodeg end = n[5];
 		System.out.println(doesRootExists(graph, start, end));
 	}
-	
+
 	/**
 	 * it uses bfs
+	 * 
 	 * @param graph
 	 * @param start
 	 * @param end
 	 * @return
 	 */
-	private static boolean doesRootExists(Graph graph, Nodeg start, Nodeg end){
+	private static boolean doesRootExists(Graph graph, Nodeg start, Nodeg end) {
 		LinkedList<Nodeg> queue = new LinkedList<Nodeg>();
-		for(Nodeg node: graph.getNodes()){
+		for (Nodeg node : graph.getNodes()) {
 			node.state = State.Unvisited;
 		}
 		start.state = State.Visiting;
-        queue.add(start);
-		while(!queue.isEmpty()){
+		queue.add(start);
+		while (!queue.isEmpty()) {
 			Nodeg node = queue.removeFirst();
-			if(node!= null){
-				for(Nodeg adjacent : node.getAdjacentNodes()){
-					if(adjacent.state == State.Unvisited){
-						if(adjacent == end){
+			if (node != null) {
+				for (Nodeg adjacent : node.getAdjacentNodes()) {
+					if (adjacent.state == State.Unvisited) {
+						if (adjacent == end) {
 							return true;
-						}else{
+						} else {
 							adjacent.state = State.Visiting;
 							queue.add(adjacent);
 						}
@@ -44,12 +44,12 @@ public class GraphTest {
 		}
 		return false;
 	}
-	
+
 	public enum State {
 		Unvisited, Visited, Visiting;
 	}
-	
-	private static Graph createGraph(){
+
+	private static Graph createGraph() {
 		Graph graph = new Graph(6);
 		Nodeg[] nodeArr = new Nodeg[6];
 		nodeArr[0] = new Nodeg("a", 3);
@@ -58,36 +58,38 @@ public class GraphTest {
 		nodeArr[3] = new Nodeg("d", 1);
 		nodeArr[4] = new Nodeg("e", 1);
 		nodeArr[5] = new Nodeg("f", 0);
-		
-		//add adjacents
+
+		// add adjacents
 		nodeArr[0].addAdjacent(nodeArr[1]);
 		nodeArr[0].addAdjacent(nodeArr[2]);
 		nodeArr[0].addAdjacent(nodeArr[3]);
 		nodeArr[3].addAdjacent(nodeArr[4]);
 		nodeArr[4].addAdjacent(nodeArr[5]);
-		
-		for(int i =0; i<nodeArr.length; i++){
+
+		for (int i = 0; i < nodeArr.length; i++) {
 			graph.addNode(nodeArr[i]);
 		}
 		return graph;
 	}
 }
 
-
 class Graph {
 	Nodeg[] vertices;
 	int verticesCount;
-	
-	Graph(int veticeCount){
+
+	Graph(int veticeCount) {
 		vertices = new Nodeg[veticeCount];
 	}
-	public Nodeg[] getNodes(){
-	return vertices;	
+
+	public Nodeg[] getNodes() {
+		return vertices;
 	}
-	public void addNode(Nodeg node){
+
+	public void addNode(Nodeg node) {
 		vertices[verticesCount++] = node;
 	}
 }
+
 class Nodeg {
 	String vertex;
 	int adjacentCount;

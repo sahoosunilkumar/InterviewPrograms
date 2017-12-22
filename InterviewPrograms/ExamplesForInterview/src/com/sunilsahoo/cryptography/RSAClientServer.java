@@ -67,26 +67,28 @@ public class RSAClientServer {
 		}
 		return buffer.toString();
 	}
-	
-	
-	/*// Hardcode the RSA key
-	String modulusString = "00d56047acf652298e3fcdbb8cecbc32214722aa1625f88480cf570cee373ada932b140c29b00dc44f6e59e7018dddca66b2f1c645dacb9d4a45459cfa8f7e33df";
-	String exponentString = "18bc01730656bde47476f7cfbd3d8f9e15ede9c389814672dc161e349b08627fc885fe9d2442ae92f0214c7e97cf0b9a9fc876df4f53517ab63d710f997b2779";
-	String publicExponentString = "65537";
-			
-	// Load the key into BigIntegers
-	BigInteger modulus = new BigInteger(modulusString, 16);
-	BigInteger exponent = new BigInteger(exponentString, 16);
-	BigInteger pubExponent = new BigInteger(publicExponentString);
-			
-	// Create private and public key specs
-	RSAPrivateKeySpec privateSpec = new RSAPrivateKeySpec(modulus, exponent);
-	RSAPublicKeySpec publicSpec = new RSAPublicKeySpec(modulus, pubExponent);
-			
-	// Create a key factory
-	KeyFactory factory = KeyFactory.getInstance("RSA");
-			
-	// Create the RSA private and public keys
-	PrivateKey priv = factory.generatePrivate(privateSpec);
-	PublicKey pub = factory.generatePublic(publicSpec);*/
+
+	/*
+	 * // Hardcode the RSA key String modulusString =
+	 * "00d56047acf652298e3fcdbb8cecbc32214722aa1625f88480cf570cee373ada932b140c29b00dc44f6e59e7018dddca66b2f1c645dacb9d4a45459cfa8f7e33df";
+	 * String exponentString =
+	 * "18bc01730656bde47476f7cfbd3d8f9e15ede9c389814672dc161e349b08627fc885fe9d2442ae92f0214c7e97cf0b9a9fc876df4f53517ab63d710f997b2779";
+	 * String publicExponentString = "65537";
+	 * 
+	 * // Load the key into BigIntegers BigInteger modulus = new
+	 * BigInteger(modulusString, 16); BigInteger exponent = new
+	 * BigInteger(exponentString, 16); BigInteger pubExponent = new
+	 * BigInteger(publicExponentString);
+	 * 
+	 * // Create private and public key specs RSAPrivateKeySpec privateSpec =
+	 * new RSAPrivateKeySpec(modulus, exponent); RSAPublicKeySpec publicSpec =
+	 * new RSAPublicKeySpec(modulus, pubExponent);
+	 * 
+	 * // Create a key factory KeyFactory factory =
+	 * KeyFactory.getInstance("RSA");
+	 * 
+	 * // Create the RSA private and public keys PrivateKey priv =
+	 * factory.generatePrivate(privateSpec); PublicKey pub =
+	 * factory.generatePublic(publicSpec);
+	 */
 }

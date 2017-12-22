@@ -28,7 +28,7 @@ public class PalindromeExample {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Because int has 32-bit, so we cut int in two havles, and the second half
 	 * is in reverse order, then we see if two halves are equal or not.
@@ -42,17 +42,17 @@ public class PalindromeExample {
 	 * 
 	 * UPDATE2: Since two parts of bits share the same middle bit. So if there
 	 * are odd number of effective bits we ignore the last one in y.
-	 * */
+	 */
 	static boolean isBitPalindrome(int x) {
 		int y = 0, count = 0;
-		
+
 		// count the # of effectively bits of x
 		int t = x;
 		while (t != 0) {
 			t >>= 1;
 			count++;
 		}
-		
+
 		for (int i = 0; i < 16; i++) {
 			// left move y for the next bit
 			y <<= 1;

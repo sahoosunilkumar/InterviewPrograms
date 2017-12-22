@@ -1,31 +1,26 @@
 package com.sunilsahoo.programs;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
-
-import javax.swing.text.Utilities;
 
 public class Practise1 {
 	public static void main(String args[]) {
 		Practise1 practise = new Practise1();
 
+		System.out.println(Math.ceil(8));
+		System.out.println(Math.ceil(8.1));
+		System.out.println(Math.ceil(8.9));
 		int x = 5;
 		int y = 7;
 		practise.swap(x, y);
-		System.out.println("x : "+x+" y : "+y);
-		
+		System.out.println("x : " + x + " y : " + y);
+
 		int arr[] = { 25, 36 };
 		long sum = practise.countSum(arr);
 		System.out.println("sum : " + sum);
-		practise.missingWords("I am using hackerrank to improve programming", "am hackerrank to improve");
+		practise.missingWords("I am using hackerrank to improve programming",
+				"am hackerrank to improve");
 		int[] numbers = { 2, 3, 7, 4, 1, 5, 6, 8, 8, 9 };
 		practise.findDuplicateNumber(numbers);
 		int[] numbersMultipleDuplicateArr = { 2, 3, 3, 1, 5, 4, 2, 7, 8, 9, 10,
@@ -51,23 +46,22 @@ public class Practise1 {
 				"hs.remove( new Emp(24)--->>>" + hs.remove(new Emp(24)));
 		System.out.println("Now HashSet Size--->>>" + hs.size());
 	}
-	
-	private void swap(int value1, int value2){
-        value1 = value1+ value2;
-        value2 = value1 - value2;
-        value1 = value1 - value2;
-        System.out.println(value1+" : "+value2);
-    }
-	
-	
+
+	private void swap(int value1, int value2) {
+		value1 = value1 + value2;
+		value2 = value1 - value2;
+		value1 = value1 - value2;
+		System.out.println(value1 + " : " + value2);
+	}
+
 	static String[] missingWords1(String s, String t) {
-        if(s == null){
+		if (s == null) {
 			return null;
 		}
-		if(t == null){
+		if (t == null) {
 			return s.split(" ");
 		}
-        
+
 		String sentenceWordArr[] = s.split(" ");
 		String matchingWordArr[] = t.split(" ");
 		List<String> list = new ArrayList<>();
@@ -76,7 +70,7 @@ public class Practise1 {
 			for (int j = 0; j < matchingWordArr.length; j++) {
 				if (sentenceWordArr[i].equals(matchingWordArr[j])) {
 					isMatched = true;
-                    matchingWordArr[j] = "";
+					matchingWordArr[j] = "";
 					break;
 				}
 			}
@@ -86,18 +80,17 @@ public class Practise1 {
 		}
 		String[] missingWordsArr = new String[list.size()];
 		list.toArray(missingWordsArr);
-        return missingWordsArr;
+		return missingWordsArr;
 	}
-	
-	
+
 	static String[] missingWords(String s, String t) {
-        if(s == null){
+		if (s == null) {
 			return null;
 		}
-		if(t == null){
+		if (t == null) {
 			return s.split(" ");
 		}
-        
+
 		String sentenceWordArr[] = s.split(" ");
 		String matchingWordArr[] = t.split(" ");
 		List<String> list = new ArrayList<>();
@@ -106,7 +99,7 @@ public class Practise1 {
 			for (int j = 0; j < matchingWordArr.length; j++) {
 				if (sentenceWordArr[i].equals(matchingWordArr[j])) {
 					isMatched = true;
-                    matchingWordArr[j] = "";
+					matchingWordArr[j] = "";
 					break;
 				}
 			}
@@ -117,7 +110,7 @@ public class Practise1 {
 		String[] missingWordsArr = new String[list.size()];
 		list.toArray(missingWordsArr);
 		System.out.println(list);
-        return missingWordsArr;
+		return missingWordsArr;
 	}
 
 	static long countSum(int[] numbers) {
@@ -172,6 +165,39 @@ public class Practise1 {
 				System.out.print(Math.abs(numbers[i]) + " ");
 			}
 		}
+	}
+
+	public Integer countChange(Integer money, List<Integer> coins) {
+		int[][] cointChangeWays = new int[coins.size() + 1][money + 1];
+
+		// if amount=0 then just return empty set to make the change
+		for (int i = 0; i <= coins.size(); i++) {
+			cointChangeWays[i][0] = 1;
+		}
+
+		// if no coins given, 0 ways to change the amount
+		for (int i = 1; i <= money; i++) {
+			cointChangeWays[0][i] = 0;
+		}
+
+		// now fill rest of the matrix.
+
+		for (int i = 1; i <= coins.size(); i++) {
+			for (int j = 1; j <= money; j++) {
+				// check if the coin value is less than the amount needed
+				if (coins.get(i - 1) <= j) {
+					// reduce the amount by coin value and
+					// use the subproblem solution (amount-v[i]) and
+					// add the solution from the top to it
+					cointChangeWays[i][j] = cointChangeWays[i - 1][j]
+							+ cointChangeWays[i][j - coins.get(i - 1)];
+				} else {
+					// just copy the value from the top
+					cointChangeWays[i][j] = cointChangeWays[i - 1][j];
+				}
+			}
+		}
+		return cointChangeWays[coins.size()][money];
 	}
 }
 

@@ -13,256 +13,267 @@ import java.util.Vector;
 
 class BPlusTree {
 
-    private static BPlusNode tree;
-    private static int degree;
-    private static boolean debug;
-    
-    private BPlusTree(int x) {
-      // a B+ Tree must have an initial degree
-    	degree = x;
-    	
-    	// The initial type of Node for a B+Tree is a leaf
-    	tree = new LeafNode(degree);
-    	
-    	debug = false;
-    }
-    
-    private static void executeCommand(Command c, BufferedWriter output) throws InvalidCommandException, IOException {
-    	// execute command, does as it says, calls the appropriate procedure to accomplish the command
-    	// There are also some debug options to help the user see what's going on
-        switch( c.getCommand() ) {
-        case 'd':
-        	if( c.getXValue() == 1 && !debug) {
-        		debug = true;
-                System.out.println("ENTERING DEBUG MODE");
-        	}
-        	else if ( c.getXValue() == 0 && debug) {
-        		debug = false;
-                System.out.println("EXITTING DEBUG MODE");
-        	}
-        	else if (c.getXValue() != 0 || c.getXValue() != 1){
-        		throw new InvalidCommandException("Invalid Operand with command d. Must be 0 or 1.");
-        	}
-        case 'p':
-        	if(debug) {
-                System.out.println("PRINTING TREE");
-        	}
-        	printTree(output);
-            break;
-        case 's':
-        	if(debug) {
-                System.out.println("SEARCHING TREE FOR x = " + c.getXValue());
-        	}
-        	searchTree(c.getXValue(), output);
-        	break;
-        case 'i':
-        	if(debug) {
-                System.out.println("INSERTING x = " + c.getXValue() + " INTO THE TREE");
-        	}
-        	insertIntoTree(new DataNode(c.getXValue()));
-            break;
-        }
-        if(debug && c.getCommand() != 'p') {
-        	printTree(new BufferedWriter(new PrintWriter(System.out)));
-        	System.out.println("--->OPERATION COMPLETE");
-        }
-    }
-    
-    private static void insertIntoTree(DataNode dnode) {
-    	tree = tree.insert(dnode);
+	private static BPlusNode tree;
+	private static int degree;
+	private static boolean debug;
+
+	private BPlusTree(int x) {
+		// a B+ Tree must have an initial degree
+		degree = x;
+
+		// The initial type of Node for a B+Tree is a leaf
+		tree = new LeafNode(degree);
+
+		debug = false;
 	}
 
-	private static void searchTree(int x, BufferedWriter output) throws IOException {
-		
+	private static void executeCommand(Command c, BufferedWriter output)
+			throws InvalidCommandException, IOException {
+		// execute command, does as it says, calls the appropriate procedure to
+		// accomplish the command
+		// There are also some debug options to help the user see what's going
+		// on
+		switch (c.getCommand()) {
+		case 'd':
+			if (c.getXValue() == 1 && !debug) {
+				debug = true;
+				System.out.println("ENTERING DEBUG MODE");
+			} else if (c.getXValue() == 0 && debug) {
+				debug = false;
+				System.out.println("EXITTING DEBUG MODE");
+			} else if (c.getXValue() != 0 || c.getXValue() != 1) {
+				throw new InvalidCommandException(
+						"Invalid Operand with command d. Must be 0 or 1.");
+			}
+		case 'p':
+			if (debug) {
+				System.out.println("PRINTING TREE");
+			}
+			printTree(output);
+			break;
+		case 's':
+			if (debug) {
+				System.out.println("SEARCHING TREE FOR x = " + c.getXValue());
+			}
+			searchTree(c.getXValue(), output);
+			break;
+		case 'i':
+			if (debug) {
+				System.out.println(
+						"INSERTING x = " + c.getXValue() + " INTO THE TREE");
+			}
+			insertIntoTree(new DataNode(c.getXValue()));
+			break;
+		}
+		if (debug && c.getCommand() != 'p') {
+			printTree(new BufferedWriter(new PrintWriter(System.out)));
+			System.out.println("--->OPERATION COMPLETE");
+		}
+	}
+
+	private static void insertIntoTree(DataNode dnode) {
+		tree = tree.insert(dnode);
+	}
+
+	private static void searchTree(int x, BufferedWriter output)
+			throws IOException {
+
 		// search the tree starting from the top
-        if( tree.search(new DataNode(x)) ) {
-            output.write("FOUND" + System.getProperty("line.separator"));    
-        }
-        else {
-            output.write("NOT FOUND" + System.getProperty("line.separator"));
-        }
+		if (tree.search(new DataNode(x))) {
+			output.write("FOUND" + System.getProperty("line.separator"));
+		} else {
+			output.write("NOT FOUND" + System.getProperty("line.separator"));
+		}
 	}
 
 	@SuppressWarnings("unchecked")
-    private static void printTree(BufferedWriter output) throws IOException {
-        // create a vector to store all the nodes from each level as we 
-        Vector<BPlusNode> nodeList = new Vector();
-        
-        // put the root of the tree onto the stack to start the process
-        nodeList.add(tree);
+	private static void printTree(BufferedWriter output) throws IOException {
+		// create a vector to store all the nodes from each level as we
+		Vector<BPlusNode> nodeList = new Vector();
 
-        boolean done = false;
-        while(! done) {
-        	// this vector will hold all the children of the nodes in the current level
-            Vector<BPlusNode> nextLevelList = new Vector();
-            String toprint = "";
-            
-            // for each node in the list convert it to a string and add any children to the nextlevel stack
-            for(int i=0; i < nodeList.size(); i++) {
-            	
-            	// get the node at position i
-                BPlusNode node = nodeList.elementAt(i);
-                
-                // convert the node into a string
-                toprint += node.toString() + " ";
-                
-                // if this is a leaf node we need only print the contents
-                if(node.isLeafNode()) {
-                    done = true;
-                }
-                // if this is a tree node print the contents and populate
-                // the temp vector with nodes that node i points to
-                else
-                {
-                    for(int j=0; j < node.size()+1 ; j++) {
-                        nextLevelList.add( ((TreeNode)node).getPointerAt(j) );
-                    }
-                }
-            }
-            
-            // print the level
-            output.write(toprint + System.getProperty("line.separator"));
-            
-            // go to the next level and print it
-            nodeList = nextLevelList;
-        }
+		// put the root of the tree onto the stack to start the process
+		nodeList.add(tree);
+
+		boolean done = false;
+		while (!done) {
+			// this vector will hold all the children of the nodes in the
+			// current level
+			Vector<BPlusNode> nextLevelList = new Vector();
+			String toprint = "";
+
+			// for each node in the list convert it to a string and add any
+			// children to the nextlevel stack
+			for (int i = 0; i < nodeList.size(); i++) {
+
+				// get the node at position i
+				BPlusNode node = nodeList.elementAt(i);
+
+				// convert the node into a string
+				toprint += node.toString() + " ";
+
+				// if this is a leaf node we need only print the contents
+				if (node.isLeafNode()) {
+					done = true;
+				}
+				// if this is a tree node print the contents and populate
+				// the temp vector with nodes that node i points to
+				else {
+					for (int j = 0; j < node.size() + 1; j++) {
+						nextLevelList.add(((TreeNode) node).getPointerAt(j));
+					}
+				}
+			}
+
+			// print the level
+			output.write(toprint + System.getProperty("line.separator"));
+
+			// go to the next level and print it
+			nodeList = nextLevelList;
+		}
 	}
 
 	private static void readDegree(BufferedReader in) {
-        // get the tree's degree from input
+		// get the tree's degree from input
 		try {
-        	int x = Integer.parseInt(in.readLine().trim());
-        	
-        	// set the degree of the tree
-        	new BPlusTree(x);
-        	
-        } catch (Exception e1) {
-            System.err.println("degree could not be read... defaulting to order 3");
-            new BPlusTree(3);
-        }
-    }
-    
-    public static void main(String[] args) throws IOException {
-        // if there are too many arguments error
-        if(args.length > 1) {
-            System.err.println("Syntax error in call sequence, use:\n\tjava BplusTree");
-        }
-        else {
-            
-        	// declare a reader on Standard in, incase the file reader fails
-            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            
-            // create a new file to store output
-            BufferedWriter output = new BufferedWriter( new FileWriter(new File("bplustree.out")) );            
-            try {
-                in = new BufferedReader(new InputStreamReader(new FileInputStream("bplustree.inp")));
-            } catch (FileNotFoundException e) {
-                System.err.println("Error: specified file not found (defaulting to standard input)");
-            }
-            
-            // get the degree of the B+Tree
-            readDegree(in);
-        	
-            // declare a new command object
-            Command c = new Command(); 
-            
-            // continue executing commands until quit is reached
-            while(c.getCommand() != 'q') {
-                try {
-                	// read a command from input
-                    c.readCommand(in);
-                    
+			int x = Integer.parseInt(in.readLine().trim());
+
+			// set the degree of the tree
+			new BPlusTree(x);
+
+		} catch (Exception e1) {
+			System.err.println(
+					"degree could not be read... defaulting to order 3");
+			new BPlusTree(3);
+		}
+	}
+
+	public static void main(String[] args) throws IOException {
+		// if there are too many arguments error
+		if (args.length > 1) {
+			System.err.println(
+					"Syntax error in call sequence, use:\n\tjava BplusTree");
+		} else {
+
+			// declare a reader on Standard in, incase the file reader fails
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(System.in));
+
+			// create a new file to store output
+			BufferedWriter output = new BufferedWriter(
+					new FileWriter(new File("bplustree.out")));
+			try {
+				in = new BufferedReader(new InputStreamReader(
+						new FileInputStream("bplustree.inp")));
+			} catch (FileNotFoundException e) {
+				System.err.println(
+						"Error: specified file not found (defaulting to standard input)");
+			}
+
+			// get the degree of the B+Tree
+			readDegree(in);
+
+			// declare a new command object
+			Command c = new Command();
+
+			// continue executing commands until quit is reached
+			while (c.getCommand() != 'q') {
+				try {
+					// read a command from input
+					c.readCommand(in);
+
 					// execute the command
-                    executeCommand(c, output);
-                } 
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-                catch (InvalidCommandException e) {
-                    System.err.println(e.getMessage());
-                    System.out.println("Valid Query-Modes:\n\ti x - insert x into tree\n\ts x - find x in tree\n\tp   - print tree\n\tq   - quit");
-                }
-                catch (NumberFormatException e) {
-                	System.err.println("This type of command requires a integer operand");
-                    System.out.println("Valid Query-Modes:\n\ti x - insert x into tree\n\ts x - find x in tree\n\tp   - print tree\n\tq   - quit");
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                    System.exit(-1);
-                }
-            }
-            
-            // close input and output
-            output.close();
-            in.close();
-            
-            // output.write("Exitting");
-            System.exit(0);
-        }
-    }
+					executeCommand(c, output);
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InvalidCommandException e) {
+					System.err.println(e.getMessage());
+					System.out.println(
+							"Valid Query-Modes:\n\ti x - insert x into tree\n\ts x - find x in tree\n\tp   - print tree\n\tq   - quit");
+				} catch (NumberFormatException e) {
+					System.err.println(
+							"This type of command requires a integer operand");
+					System.out.println(
+							"Valid Query-Modes:\n\ti x - insert x into tree\n\ts x - find x in tree\n\tp   - print tree\n\tq   - quit");
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.exit(-1);
+				}
+			}
+
+			// close input and output
+			output.close();
+			in.close();
+
+			// output.write("Exitting");
+			System.exit(0);
+		}
+	}
 }
 
 class Command {
 	int xvalue;
 	char command;
-	
+
 	Command() {
 		command = 0;
 		xvalue = 0;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "command = " + command + " x = " + xvalue;
 	}
 
-	public void readCommand(BufferedReader in) throws InvalidCommandException, IOException, NumberFormatException {
-        
+	public void readCommand(BufferedReader in)
+			throws InvalidCommandException, IOException, NumberFormatException {
+
 		boolean readcommand = false;
-		
-		// until a command has been read (valid or invalid) get something from input
-		while(!readcommand && in.ready()) {
-			command = (char)in.read();
+
+		// until a command has been read (valid or invalid) get something from
+		// input
+		while (!readcommand && in.ready()) {
+			command = (char) in.read();
 
 			// if the line is a comment output the rest of the line
-        	if(command == '#') {
-        		// print the comment to the screen
-                System.out.println( in.readLine() );
-        	}
-        	// if a valid command was read get any necessary arguments
-        	else if(this.validCommand()) {
-        		if(this.commandWithArgument()) {
-        			xvalue = Integer.parseInt(in.readLine().trim());
-        		}
-        		else {
-        			xvalue = 0;
-        			in.readLine();
-        		}
-        		readcommand = true;
-        	}
-        	else {
-        		// clean up the rest of the garbage on the input line
-        		in.readLine();
-        		throw new InvalidCommandException(command);
-        	}
+			if (command == '#') {
+				// print the comment to the screen
+				System.out.println(in.readLine());
+			}
+			// if a valid command was read get any necessary arguments
+			else if (this.validCommand()) {
+				if (this.commandWithArgument()) {
+					xvalue = Integer.parseInt(in.readLine().trim());
+				} else {
+					xvalue = 0;
+					in.readLine();
+				}
+				readcommand = true;
+			} else {
+				// clean up the rest of the garbage on the input line
+				in.readLine();
+				throw new InvalidCommandException(command);
+			}
 		}
 	}
-	
+
 	public char getCommand() {
 		return command;
 	}
-	
+
 	public int getXValue() {
 		return xvalue;
 	}
-	
+
 	private boolean validCommand() {
 		return commandWithArgument() || commandWithoutArgument();
 	}
+
 	// list of commands that have an argument
 	private boolean commandWithArgument() {
-		return this.command == 'i' || this.command == 's' || this.command == 'd';
+		return this.command == 'i' || this.command == 's'
+				|| this.command == 'd';
 	}
+
 	// list of commands that don't have arguments
 	private boolean commandWithoutArgument() {
 		return this.command == 'p' || this.command == 'q';
@@ -274,8 +285,9 @@ class InvalidCommandException extends Exception {
 	private static final long serialVersionUID = -2169157330841961180L;
 
 	InvalidCommandException(char command) {
-        super("Error: invalid query-mode \"" + command + "\" entered");
-    }
+		super("Error: invalid query-mode \"" + command + "\" entered");
+	}
+
 	InvalidCommandException(String s) {
 		super(s);
 	}
@@ -292,130 +304,136 @@ abstract class BPlusNode {
 
 	public boolean isLeafNode() {
 		// determine if a node is a leafnode
-	    return this.getClass().getName().trim().equals("LeafNode");
+		return this.getClass().getName().trim().equals("LeafNode");
 	}
 
 	// both types of node need to insert and search
 	abstract BPlusNode insert(DataNode dnode);
+
 	abstract boolean search(DataNode x);
 
 	protected boolean isFull() {
-		return data.size() == maxsize-1;
+		return data.size() == maxsize - 1;
 	}
-	
+
 	public DataNode getDataAt(int index) {
 		return data.elementAt(index);
 	}
-	
+
 	protected void propagate(DataNode dnode, BPlusNode right) {
-		// propogate takes a piece of data and two pointers left(this) and right and pushes the data up the tree
+		// propogate takes a piece of data and two pointers left(this) and right
+		// and pushes the data up the tree
 
 		// if there was no parent
-		if(parent == null) {
-			
+		if (parent == null) {
+
 			// create a new parent
 			TreeNode newparent = new TreeNode(maxsize);
-			
+
 			// add the necessary data and pointers
 			newparent.data.add(dnode);
 			newparent.pointer.add(this);
 			newparent.pointer.add(right);
-			
+
 			// update the parent information for right and left
 			this.setParent(newparent);
 			right.setParent(newparent);
-		}
-		else {
+		} else {
 			// if the parent is not full
-			if( ! parent.isFull() ) {
+			if (!parent.isFull()) {
 				// add the necessary data and pointers to existing parent
 				boolean dnodeinserted = false;
-				for(int i = 0; !dnodeinserted && i < parent.data.size(); i++) {
-					if( parent.data.elementAt(i).inOrder(dnode) ) {
-						parent.data.add(i,dnode);
-						((TreeNode)parent).pointer.add(i+1, right);
+				for (int i = 0; !dnodeinserted && i < parent.data.size(); i++) {
+					if (parent.data.elementAt(i).inOrder(dnode)) {
+						parent.data.add(i, dnode);
+						((TreeNode) parent).pointer.add(i + 1, right);
 						dnodeinserted = true;
 					}
 				}
-				if(!dnodeinserted) {
+				if (!dnodeinserted) {
 					parent.data.add(dnode);
-					((TreeNode)parent).pointer.add(right);
+					((TreeNode) parent).pointer.add(right);
 				}
-				
-				// set the necessary parent on the right node, left.parent is already set
+
+				// set the necessary parent on the right node, left.parent is
+				// already set
 				right.setParent(this.parent);
 			}
 			// the parent is full
 			else {
-                // split will take car of setting the parent of both nodes, because 
+				// split will take car of setting the parent of both nodes,
+				// because
 				// there are 3 different ways the parents need to be set
-                ((TreeNode)parent).split(dnode, this, right);
+				((TreeNode) parent).split(dnode, this, right);
 
 			}
 		}
 	}
-	
+
 	public int size() {
 		return data.size();
 	}
 
-	@SuppressWarnings("unchecked") BPlusNode(int degree) {
+	@SuppressWarnings("unchecked")
+	BPlusNode(int degree) {
 		// initially the parent node is null
-	    parent = null;
-	    
-	    data = new Vector();
-	    maxsize = degree;
+		parent = null;
+
+		data = new Vector();
+		maxsize = degree;
 	}
-	
+
 	// Convert a node to a string
 	@Override
 	public String toString() {
 		String s = "";
-		for(int i=0; i < data.size(); i++) {
+		for (int i = 0; i < data.size(); i++) {
 			s += data.elementAt(i).toString() + " ";
 		}
 		return s + "#";
 	}
 
-	// this operation traverses the tree using the parent nodes until the parent is null and returns the node
+	// this operation traverses the tree using the parent nodes until the parent
+	// is null and returns the node
 	protected BPlusNode findRoot() {
 		BPlusNode node = this;
-		
-		while(node.parent != null) {
+
+		while (node.parent != null) {
 			node = node.parent;
 		}
-		
+
 		return node;
 	}
 
 	protected void setParent(BPlusNode newparent) {
 		this.parent = newparent;
 	}
-} 
+}
 
 class LeafNode extends BPlusNode {
 	private LeafNode nextNode;
-	
+
 	LeafNode(int degree) {
 		super(degree);
-		
+
 		// initially the nextnode is null
 		nextNode = null;
 	}
-	
+
 	private void setNextNode(LeafNode next) {
 		nextNode = next;
 	}
-	
+
 	protected LeafNode getNextNode() {
 		return nextNode;
 	}
 
 	@Override
 	public boolean search(DataNode x) {
-		// search through the data sequentially until x is found, or there are no more entries
-		for(int i=0; i < data.size(); i++) {
-			if( data.elementAt(i).getData() == x.getData() ) {
+		// search through the data sequentially until x is found, or there are
+		// no more entries
+		for (int i = 0; i < data.size(); i++) {
+			if (data.elementAt(i).getData() == x.getData()) {
 				return true;
 			}
 		}
@@ -425,38 +443,37 @@ class LeafNode extends BPlusNode {
 	protected void split(DataNode dnode) {
 		// insert dnode into the vector (it will now be overpacked)
 		boolean dnodeinserted = false;
-		for(int i=0; !dnodeinserted && i < data.size(); i++) {
-			if( data.elementAt(i).inOrder(dnode) ) {
-				data.add(i,dnode);
+		for (int i = 0; !dnodeinserted && i < data.size(); i++) {
+			if (data.elementAt(i).inOrder(dnode)) {
+				data.add(i, dnode);
 				dnodeinserted = true;
 			}
 		}
-		if(!dnodeinserted) {
+		if (!dnodeinserted) {
 			data.add(data.size(), dnode);
 		}
-		
+
 		// calculate the split point; ceiling(maxsize/2)
 		int splitlocation;
-		if(maxsize%2 == 0) {
-			splitlocation = maxsize/2;
+		if (maxsize % 2 == 0) {
+			splitlocation = maxsize / 2;
+		} else {
+			splitlocation = (maxsize + 1) / 2;
 		}
-		else {
-			splitlocation = (maxsize+1)/2;
-		}
-				
+
 		// create new LeafNode
 		LeafNode right = new LeafNode(maxsize);
-		
-		for(int i = data.size()-splitlocation; i > 0; i--) {
+
+		for (int i = data.size() - splitlocation; i > 0; i--) {
 			right.data.add(data.remove(splitlocation));
 		}
-		
+
 		// link the two together
 		right.setNextNode(this.getNextNode());
 		this.setNextNode(right);
-		
+
 		// get the middle item's data
-		DataNode mid =  data.elementAt(data.size()-1);
+		DataNode mid = data.elementAt(data.size() - 1);
 
 		// propagate the data and pointers into the parent node
 		this.propagate(mid, right);
@@ -465,26 +482,26 @@ class LeafNode extends BPlusNode {
 	@Override
 	public BPlusNode insert(DataNode dnode) {
 		// if the leaf isn't full insert it at the proper place
-		if(data.size() < maxsize-1) {
+		if (data.size() < maxsize - 1) {
 			boolean dnodeinserted = false;
 			int i = 0;
-			while(!dnodeinserted && i < data.size()) {
-				if( data.elementAt(i).inOrder(dnode) ) {
-					data.add(i,dnode);
+			while (!dnodeinserted && i < data.size()) {
+				if (data.elementAt(i).inOrder(dnode)) {
+					data.add(i, dnode);
 					dnodeinserted = true;
 				}
 				i++;
 			}
-			if(!dnodeinserted) {
+			if (!dnodeinserted) {
 				data.add(data.size(), dnode);
 			}
 		}
-		
+
 		// if the leaf is full split
 		else {
 			this.split(dnode);
 		}
-		
+
 		// return the root of the tree
 		return this.findRoot();
 	}
@@ -492,33 +509,33 @@ class LeafNode extends BPlusNode {
 
 class TreeNode extends BPlusNode {
 	protected Vector<BPlusNode> pointer;
-	
+
 	// constructor for TreeNode
-	// x-1 is the maximum # of DataNodes a single node can store 
-	@SuppressWarnings("unchecked") TreeNode(int x) {
+	// x-1 is the maximum # of DataNodes a single node can store
+	@SuppressWarnings("unchecked")
+	TreeNode(int x) {
 		super(x);
 		pointer = new Vector();
 	}
 
-	// this will find the correct pointer to the next lowest level of the tree where x should be found
+	// this will find the correct pointer to the next lowest level of the tree
+	// where x should be found
 	public BPlusNode getPointerTo(DataNode x) {
 		// find the index i where x would be located
 		int i = 0;
 		boolean xptrfound = false;
-		while(!xptrfound && i < data.size()) {
-			if( data.elementAt(i).inOrder(x ) ) {
+		while (!xptrfound && i < data.size()) {
+			if (data.elementAt(i).inOrder(x)) {
 				xptrfound = true;
-			}
-			else {
-				i++;				
+			} else {
+				i++;
 			}
 
 		}
-		
-		
+
 		// return the Node in pointer(i)
 		return pointer.elementAt(i);
-		
+
 	}
 
 	// returns the pointer at a specific index in the pointer stack
@@ -530,75 +547,79 @@ class TreeNode extends BPlusNode {
 	boolean search(DataNode dnode) {
 		// get a pointer to where dnode.data should be found
 		BPlusNode next = this.getPointerTo(dnode);
-	
+
 		// recursive call to find dnode.data if it is present
 		return next.search(dnode);
 	}
 
 	protected void split(DataNode dnode, BPlusNode left, BPlusNode right) {
 		// calculate the split point ( floor(maxsize/2)
-		int splitlocation, insertlocation = 0; 
-		if(maxsize%2 == 0) {
-			splitlocation = maxsize/2;
+		int splitlocation, insertlocation = 0;
+		if (maxsize % 2 == 0) {
+			splitlocation = maxsize / 2;
+		} else {
+			splitlocation = (maxsize + 1) / 2 - 1;
 		}
-		else {
-			splitlocation = (maxsize+1)/2 -1;
-		}
-		
+
 		// insert dnode into the vector (it will now be overpacked)
 		boolean dnodeinserted = false;
-		for(int i=0; !dnodeinserted && i < data.size(); i++) {
-			if( data.elementAt(i).inOrder(dnode) ) {
-				data.add(i,dnode);
+		for (int i = 0; !dnodeinserted && i < data.size(); i++) {
+			if (data.elementAt(i).inOrder(dnode)) {
+				data.add(i, dnode);
 				this.pointer.remove(i);
 				this.pointer.add(i, left);
-				this.pointer.add(i+1, right);
+				this.pointer.add(i + 1, right);
 				dnodeinserted = true;
-                
-                // set the location of the insert this will be used to set the parent
+
+				// set the location of the insert this will be used to set the
+				// parent
 				insertlocation = i;
 			}
 		}
-		if(!dnodeinserted) {
-            // set the location of the insert this will be used to set the parent
-            insertlocation = data.size();
+		if (!dnodeinserted) {
+			// set the location of the insert this will be used to set the
+			// parent
+			insertlocation = data.size();
 			data.add(dnode);
-			this.pointer.remove(this.pointer.size()-1);
+			this.pointer.remove(this.pointer.size() - 1);
 			this.pointer.add(left);
 			this.pointer.add(right);
-            
+
 		}
-		
+
 		// get the middle dataNode
 		DataNode mid = data.remove(splitlocation);
-		
-		// create a new tree node to accomodate the split 
-		TreeNode newright = new TreeNode(maxsize);
-		
-		// populate the data and pointers of the new right node
-		for(int i=data.size()-splitlocation; i > 0; i--) {
-			newright.data.add(this.data.remove(splitlocation));
-			newright.pointer.add(this.pointer.remove(splitlocation+1));
-		}
-		newright.pointer.add(this.pointer.remove(splitlocation+1));		
 
-        // set the parents of right and left
-		// if the item was inserted before the split point both nodes are children of left
-        if(insertlocation < splitlocation) {
-            left.setParent(this);
-            right.setParent(this);
-        }
-        // if the item was inserted at the splitpoint the nodes have different parents this and right
-        else if(insertlocation == splitlocation) {
-            left.setParent(this);
-            right.setParent(newright);
-        }
-        // if the item was was inserted past the splitpoint the nodes are children of right
-        else {
-            left.setParent(newright);
-            right.setParent(newright);
-        }
-        
+		// create a new tree node to accomodate the split
+		TreeNode newright = new TreeNode(maxsize);
+
+		// populate the data and pointers of the new right node
+		for (int i = data.size() - splitlocation; i > 0; i--) {
+			newright.data.add(this.data.remove(splitlocation));
+			newright.pointer.add(this.pointer.remove(splitlocation + 1));
+		}
+		newright.pointer.add(this.pointer.remove(splitlocation + 1));
+
+		// set the parents of right and left
+		// if the item was inserted before the split point both nodes are
+		// children of left
+		if (insertlocation < splitlocation) {
+			left.setParent(this);
+			right.setParent(this);
+		}
+		// if the item was inserted at the splitpoint the nodes have different
+		// parents this and right
+		else if (insertlocation == splitlocation) {
+			left.setParent(this);
+			right.setParent(newright);
+		}
+		// if the item was was inserted past the splitpoint the nodes are
+		// children of right
+		else {
+			left.setParent(newright);
+			right.setParent(newright);
+		}
+
 		// propogate the node up
 		this.propagate(mid, newright);
 	}
@@ -606,30 +627,33 @@ class TreeNode extends BPlusNode {
 	@Override
 	BPlusNode insert(DataNode dnode) {
 		BPlusNode next = this.getPointerTo(dnode);
-		
+
 		return next.insert(dnode);
 	}
 }
 
 class DataNode {
-    // I chose Integer because it allows a null value, unlike int
-    private Integer data;
-    
-    DataNode() {
-        data = null;
-    }   
-    @Override
+	// I chose Integer because it allows a null value, unlike int
+	private Integer data;
+
+	DataNode() {
+		data = null;
+	}
+
+	@Override
 	public String toString() {
 		return data.toString();
 	}
-	public DataNode(int x) {
-        data = x;
-    }
-    public int getData() {
-        return data.intValue();
-    }   
-    public boolean inOrder(DataNode dnode) {
-        return (dnode.getData() <= this.data.intValue());
-    }
-}
 
+	public DataNode(int x) {
+		data = x;
+	}
+
+	public int getData() {
+		return data.intValue();
+	}
+
+	public boolean inOrder(DataNode dnode) {
+		return (dnode.getData() <= this.data.intValue());
+	}
+}

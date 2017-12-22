@@ -2,7 +2,6 @@ package com.sunilsahoo.concurrency;
 
 import java.util.concurrent.Semaphore;
 
-
 public class SemaphorExample1 {
 	public static void main(String[] args) {
 		Semaphore semaphore = new Semaphore(4);
@@ -13,7 +12,7 @@ public class SemaphorExample1 {
 	}
 }
 
-class SendingThread extends Thread{
+class SendingThread extends Thread {
 	Semaphore semaphore = null;
 
 	public SendingThread(Semaphore semaphore) {
@@ -35,7 +34,7 @@ class SendingThread extends Thread{
 	}
 }
 
-class RecevingThread extends Thread{
+class RecevingThread extends Thread {
 	Semaphore semaphore = null;
 
 	public RecevingThread(Semaphore semaphore) {

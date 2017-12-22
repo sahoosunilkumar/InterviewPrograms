@@ -18,19 +18,19 @@ public class Test {
 
 		System.gc();
 		System.out.println("Strong reference Size of Map : " + aMap.size()
-		+ " map : " + aMap);
+				+ " map : " + aMap);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("After 1 seconds Strong reference Size of Map : " + aMap.size()
-		+ " map : " + aMap);
+		System.out.println("After 1 seconds Strong reference Size of Map : "
+				+ aMap.size() + " map : " + aMap);
 
 		// WEAK reference
 		WeakHashMap<String, String> aWeakMap = new WeakHashMap<String, String>();
-		System.out.println("size of map : "+aWeakMap.size());
+		System.out.println("size of map : " + aWeakMap.size());
 
 		name = new String("susil");
 		empId = new String("bi218");
@@ -48,15 +48,9 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("After 1 seconds Weak reference Size of Map : " + aWeakMap.size()
-		+ " map : " + aWeakMap);
-		
-		
-		
-		
-		
-		
-		
+		System.out.println("After 1 seconds Weak reference Size of Map : "
+				+ aWeakMap.size() + " map : " + aWeakMap);
+
 		LinkedHashMap<String, String> aLinkedMap = new LinkedHashMap<String, String>();
 
 		name = new String("lipi");
@@ -67,32 +61,33 @@ public class Test {
 		name = null;
 
 		System.gc();
-		System.out.println("Strong reference Size of linked Map : " + aLinkedMap.size()
-		+ " map : " + aLinkedMap);
+		System.out.println("Strong reference Size of linked Map : "
+				+ aLinkedMap.size() + " map : " + aLinkedMap);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("After 1 seconds Strong reference Size of linked Map : " + aLinkedMap.size()
-		+ " map : " + aLinkedMap);
+		System.out.println(
+				"After 1 seconds Strong reference Size of linked Map : "
+						+ aLinkedMap.size() + " map : " + aLinkedMap);
 
 	}
 }
 
-//class Employee {
-//	private String name;
+// class Employee {
+// private String name;
 //
-//	Employee(String name) {
-//		this.name = name;
-//	}
-//}
+// Employee(String name) {
+// this.name = name;
+// }
+// }
 //
-//class EmployeeVal {
-//	private String jobType;
+// class EmployeeVal {
+// private String jobType;
 //
-//	EmployeeVal(String jobType) {
-//		this.jobType = jobType;
-//	}
-//}
+// EmployeeVal(String jobType) {
+// this.jobType = jobType;
+// }
+// }

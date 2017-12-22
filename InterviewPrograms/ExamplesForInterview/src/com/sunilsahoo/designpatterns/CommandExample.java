@@ -18,27 +18,26 @@ import java.util.List;
  * 
  * Problem :
  * 
- * Need to issue requests to objects without knowing anything about the 
+ * Need to issue requests to objects without knowing anything about the
  * operation being requested or the receiver of the request.
  * 
- * Command decouples the object that invokes the
- * operation from the one that knows how to perform it. To achieve this
- * separation, the designer creates an abstract base class that maps a receiver
- * (an object) with an action (a pointer to a member function). The base class
- * contains an execute method that simply calls the action on the receiver. All
- * clients of Command objects treat each object as a "black box" by simply
- * invoking the object's virtual execute method whenever the client requires the
- * object's "service". A Command class holds some subset of the following: an
- * object, a method to be applied to the object, and the arguments to be passed
- * when the method is applied. The Command's "execute" method then causes the
- * pieces to come together. Sequences of Command objects can be assembled into
- * composite (or macro) commands.
+ * Command decouples the object that invokes the operation from the one that
+ * knows how to perform it. To achieve this separation, the designer creates an
+ * abstract base class that maps a receiver (an object) with an action (a
+ * pointer to a member function). The base class contains an execute method that
+ * simply calls the action on the receiver. All clients of Command objects treat
+ * each object as a "black box" by simply invoking the object's virtual execute
+ * method whenever the client requires the object's "service". A Command class
+ * holds some subset of the following: an object, a method to be applied to the
+ * object, and the arguments to be passed when the method is applied. The
+ * Command's "execute" method then causes the pieces to come together. Sequences
+ * of Command objects can be assembled into composite (or macro) commands.
  * 
  * @author sunilkumarsahoo
  *
  */
 public class CommandExample {
-	
+
 	public static void main(String[] args) {
 		CommandExample[] objs = { new CommandExample(1),
 				new CommandExample(2) };
@@ -54,20 +53,20 @@ public class CommandExample {
 		for (int i = 0; i < cmds.length; i++)
 			System.out.print(cmds[i].execute() + " ");
 		System.out.println();
-		
+
 		System.out.println("=====Example 2=====");
-		
+
 		List<ICommand> queue = produceRequests();
-		   workOffRequests( queue );
+		workOffRequests(queue);
 	}
-	
-	//===============EXAMPLE1==========
-	
+
+	// ===============EXAMPLE1==========
+
 	private int state;
 
-	public CommandExample( int in ) {
-	      state = in;
-	   }
+	public CommandExample(int in) {
+		state = in;
+	}
 
 	public int addOne(Integer one) {
 		return state + one.intValue();
@@ -112,42 +111,44 @@ public class CommandExample {
 		}
 	}
 
+	// ===========EXAMPLE2==========
 
-	//===========EXAMPLE2==========
-	
-	
-	
-	
-	interface ICommand { void execute(); }
-
-	static class DomesticEngineer implements ICommand {
-	   @Override
-	public void execute() {
-	      System.out.println( "take out the trash" );
-	}  }
-
-	static class Politician implements ICommand {
-	   @Override
-	public void execute() {
-	      System.out.println( "take money from the rich, take votes from the poor" );
-	}  }
-
-	static class Programmer implements ICommand {
-	   @Override
-	public void execute() {
-	      System.out.println( "sell the bugs, charge extra for the fixes" );
-	}  }
-
-	public static List<ICommand> produceRequests() {
-	   List<ICommand> queue = new ArrayList<>();
-	   queue.add( new DomesticEngineer() );
-	   queue.add( new Politician() );
-	   queue.add( new Programmer() );
-	   return queue;
+	interface ICommand {
+		void execute();
 	}
 
-	public static void workOffRequests( List<ICommand> queue ) {
-	   for (Iterator it = queue.iterator(); it.hasNext(); )
-	      ((ICommand)it.next()).execute();
+	static class DomesticEngineer implements ICommand {
+		@Override
+		public void execute() {
+			System.out.println("take out the trash");
+		}
+	}
+
+	static class Politician implements ICommand {
+		@Override
+		public void execute() {
+			System.out.println(
+					"take money from the rich, take votes from the poor");
+		}
+	}
+
+	static class Programmer implements ICommand {
+		@Override
+		public void execute() {
+			System.out.println("sell the bugs, charge extra for the fixes");
+		}
+	}
+
+	public static List<ICommand> produceRequests() {
+		List<ICommand> queue = new ArrayList<>();
+		queue.add(new DomesticEngineer());
+		queue.add(new Politician());
+		queue.add(new Programmer());
+		return queue;
+	}
+
+	public static void workOffRequests(List<ICommand> queue) {
+		for (Iterator it = queue.iterator(); it.hasNext();)
+			((ICommand) it.next()).execute();
 	}
 }

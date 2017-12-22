@@ -1,4 +1,5 @@
 package com.sunilsahoo.algorithm;
+
 /*
  * MergeSort time Complexity is O(nlgn) which is a fundamental knowledge. 
  * Merge Sort space complexity will always be O(n) including with arrays. 
@@ -93,87 +94,91 @@ in a larger case, n = 64
 which is 64*3 <= 3*n = 3*64
  */
 public class MergeSort {
-//	private int[] array;
-    private int[] tempMergArr;
-    private int length;
- 
-    public static void main(String a[]){
-         
-        int[] inputArr = {45,23,11,10,98,30};
-        MergeSort mms = new MergeSort();
-        mms.sort(inputArr);
-        System.out.println(Utility.toString(inputArr));
-    }
-     
-    public void sort(int array[]) {
-//        this.array = inputArr;
-        this.length = array.length;
-        this.tempMergArr = new int[length];
-        doMergeSort(0, length - 1, array);
-    }
- 
-    private void doMergeSort(int lowerIndex, int higherIndex, int[] array) {
-         System.out.println("do merge : low = "+lowerIndex+" high = "+higherIndex);
-        if (lowerIndex < higherIndex) {
-            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
-            // Below step sorts the left side of the array
-            doMergeSort(lowerIndex, middle, array);
-            // Below step sorts the right side of the array
-            doMergeSort(middle + 1, higherIndex, array);
-            // Now merge both sides
-            mergeParts(lowerIndex, middle, higherIndex, array);
-        }
-    }
- 
-//    private void mergeParts(int lowerIndex, int middle, int higherIndex, int[] array) {
-//    	
-//        for (int i = lowerIndex; i <= higherIndex; i++) {
-//            tempMergArr[i] = array[i];
-//        }
-//        int i = lowerIndex;
-//        int j = middle + 1;
-//        int k = lowerIndex;
-//        while (i <= middle && j <= higherIndex) {
-//            if (tempMergArr[i] <= tempMergArr[j]) {
-//                array[k] = tempMergArr[i];
-//                i++;
-//            } else {
-//                array[k] = tempMergArr[j];
-//                j++;
-//            }
-//            k++;
-//        }
-//        while (i <= middle) {
-//            array[k] = tempMergArr[i];
-//            k++;
-//            i++;
-//        }
-//        System.out.println("low : "+lowerIndex+" high : "+higherIndex+" middle : "+middle+" result : "+Utility.toString(tempMergArr));
-//        
-//    }
-    
-    private void mergeParts(int low, int middle, int high, int input[]){
-        int temp[] = new int[high-low+1];
-        int i = low;
-        int j = middle+1;
-        int r = 0;
-        while(i <= middle && j <= high){
-            if(input[i] <= input[j]){
-                temp[r++] = input[i++];
-            }else{
-                temp[r++] = input[j++];
-            }
-        }
-        while(i <= middle){
-            temp[r++] = input[i++];
-        }
-        
-        while(j <= high){
-            temp[r++] = input[j++];
-        }
-        i = low;
-        for(int k=0; k < temp.length;){
-            input[i++] = temp[k++];
-        }
-    }
+	// private int[] array;
+	private int[] tempMergArr;
+	private int length;
+
+	public static void main(String a[]) {
+
+		int[] inputArr = { 45, 23, 11, 10, 98, 30 };
+		MergeSort mms = new MergeSort();
+		mms.sort(inputArr);
+		System.out.println(Utility.toString(inputArr));
+	}
+
+	public void sort(int array[]) {
+		// this.array = inputArr;
+		this.length = array.length;
+		this.tempMergArr = new int[length];
+		doMergeSort(0, length - 1, array);
+	}
+
+	private void doMergeSort(int lowerIndex, int higherIndex, int[] array) {
+		System.out.println(
+				"do merge : low = " + lowerIndex + " high = " + higherIndex);
+		if (lowerIndex >= higherIndex) {
+			return;
+		}
+		int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+		// Below step sorts the left side of the array
+		doMergeSort(lowerIndex, middle, array);
+		// Below step sorts the right side of the array
+		doMergeSort(middle + 1, higherIndex, array);
+		// Now merge both sides
+		mergeParts(lowerIndex, middle, higherIndex, array);
+	}
+
+	// private void mergeParts(int lowerIndex, int middle, int higherIndex,
+	// int[] array) {
+	//
+	// for (int i = lowerIndex; i <= higherIndex; i++) {
+	// tempMergArr[i] = array[i];
+	// }
+	// int i = lowerIndex;
+	// int j = middle + 1;
+	// int k = lowerIndex;
+	// while (i <= middle && j <= higherIndex) {
+	// if (tempMergArr[i] <= tempMergArr[j]) {
+	// array[k] = tempMergArr[i];
+	// i++;
+	// } else {
+	// array[k] = tempMergArr[j];
+	// j++;
+	// }
+	// k++;
+	// }
+	// while (i <= middle) {
+	// array[k] = tempMergArr[i];
+	// k++;
+	// i++;
+	// }
+	// System.out.println("low : "+lowerIndex+" high : "+higherIndex+" middle :
+	// "+middle+" result : "+Utility.toString(tempMergArr));
+	//
+	// }
+
+	private void mergeParts(int low, int middle, int high, int input[]) {
+		int temp[] = new int[high - low + 1];
+		int i = low;
+		int j = middle + 1;
+		int r = 0;
+		while (i <= middle && j <= high) {
+			if (input[i] <= input[j]) {
+				temp[r++] = input[i++];
+			} else {
+				temp[r++] = input[j++];
+			}
+		}
+		while (i <= middle) {
+			temp[r++] = input[i++];
+		}
+
+		while (j <= high) {
+			temp[r++] = input[j++];
+		}
+		i = low;
+		for (int k = 0; k < temp.length;) {
+			input[i++] = temp[k++];
+		}
+	}
 }

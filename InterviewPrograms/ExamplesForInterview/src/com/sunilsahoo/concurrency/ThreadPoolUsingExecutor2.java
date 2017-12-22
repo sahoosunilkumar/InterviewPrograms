@@ -5,26 +5,25 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
-
 public class ThreadPoolUsingExecutor2 {
 
 	private static final int NTHREDS = 3;
 
 	public static void main(String[] args) {
-		
+
 		// Creating shared object
-				BlockingQueue<Integer> sharedQueue = new LinkedBlockingQueue<Integer>();
+		BlockingQueue<Integer> sharedQueue = new LinkedBlockingQueue<Integer>();
 
-				Producer1 producer = new Producer1(sharedQueue);
-				Consumer1 consumer = new Consumer1(sharedQueue);
+		Producer1 producer = new Producer1(sharedQueue);
+		Consumer1 consumer = new Consumer1(sharedQueue);
 
-				Thread producerThread = new Thread(producer, "Producer1Thread");
-				Thread consumerThread = new Thread(consumer, "Consumer1Thread");
-				producerThread.start();
-				consumerThread.start();
-				
+		Thread producerThread = new Thread(producer, "Producer1Thread");
+		Thread consumerThread = new Thread(consumer, "Consumer1Thread");
+		producerThread.start();
+		consumerThread.start();
+
 		ExecutorService executor = Executors.newFixedThreadPool(NTHREDS);
-		while(!sharedQueue.isEmpty()){
+		while (!sharedQueue.isEmpty()) {
 			executor.execute(consumer);
 		}
 		// This will make the executor accept no new threads

@@ -16,16 +16,12 @@ package com.sunilsahoo.collection;
  * want to model customers leaving the queue from other positions.)
  * 
  * 
- * Our Deque ADT             Interface java.util.Deque
-                             throws exceptions          returns special value
-first( )                     getFirst( )                peekFirst( )
-last( )                      getLast( )                 peekLast( )
-addFirst(e)                  addFirst(e)                offerFirst(e)
-addLast(e)                   addLast(e)                 offerLast(e)
-removeFirst( )               removeFirst( )             pollFirst( )
-removeLast( )                removeLast( )              pollLast( )
-size( )                                      size( )
-isEmpty( )                                   isEmpty( )
+ * Our Deque ADT Interface java.util.Deque throws exceptions returns special
+ * value first( ) getFirst( ) peekFirst( ) last( ) getLast( ) peekLast( )
+ * addFirst(e) addFirst(e) offerFirst(e) addLast(e) addLast(e) offerLast(e)
+ * removeFirst( ) removeFirst( ) pollFirst( ) removeLast( ) removeLast( )
+ * pollLast( ) size( ) size( ) isEmpty( ) isEmpty( )
+ * 
  * @author sunilkumarsahoo
  *
  */

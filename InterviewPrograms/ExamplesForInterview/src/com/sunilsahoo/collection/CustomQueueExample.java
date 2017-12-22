@@ -1,34 +1,25 @@
 package com.sunilsahoo.collection;
 
 /**
- * first-in, first-out (FIFO) principle 
- * enqueue(e): Adds element e to the back of queue. 
- * dequeue(): Removes and returns the first element from the queue (or
+ * first-in, first-out (FIFO) principle enqueue(e): Adds element e to the back
+ * of queue. dequeue(): Removes and returns the first element from the queue (or
  * null if the queue is empty). The queue ADT also includes the following
  * accessor methods (with first being analogous to the stack’s top method):
  * first(): Returns the first element of the queue, without removing it (or null
- * if the queue is empty).
- * size(): Returns the number of elements in the queue.
+ * if the queue is empty). size(): Returns the number of elements in the queue.
  * isEmpty(): Returns a boolean indicating whether the queue is empty.
  * 
- * size() = O(1)
- * isEmpty() = O(1)
- * enqueue() = O(1)
- * dequeue() = O(1)
- * first() = O(1)
+ * size() = O(1) isEmpty() = O(1) enqueue() = O(1) dequeue() = O(1) first() =
+ * O(1)
  * 
- * Performance of a queue realized by an array. The space usage is O(N), 
- * where N is the size of the array, determined at the time the queue is created, 
- * and independent from the number n < N of elements that are actually in the queue.
+ * Performance of a queue realized by an array. The space usage is O(N), where N
+ * is the size of the array, determined at the time the queue is created, and
+ * independent from the number n < N of elements that are actually in the queue.
  * 
  * 
- * Our Queue ADT    Interface java.util.Queue
-                    throws exceptions          returns special value
-enqueue(e)          add(e)                     offer(e)
-dequeue( )          remove( )                  poll()
-first( )            element( )                 peek()
-size( )                           size( )
-isEmpty( )                        isEmpty( )
+ * Our Queue ADT Interface java.util.Queue throws exceptions returns special
+ * value enqueue(e) add(e) offer(e) dequeue( ) remove( ) poll() first( )
+ * element( ) peek() size( ) size( ) isEmpty( ) isEmpty( )
  */
 public class CustomQueueExample {
 	public static void main(String[] args) {

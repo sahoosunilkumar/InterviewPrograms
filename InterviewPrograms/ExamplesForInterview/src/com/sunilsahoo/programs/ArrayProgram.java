@@ -27,13 +27,13 @@ public class ArrayProgram {
 		System.out.println(arrayProgram.findMaxProfitStock(stockPriceArr));
 		int[] stockPriceArr1 = { 100, 80, 120, 130, 70, 60, 100, 125 };
 		System.out.println(arrayProgram.findMaxProfit(stockPriceArr1));
-		
-		A = new int[] { 2,4,5,5,5,8,9 };
+
+		A = new int[] { 2, 4, 5, 5, 5, 8, 9 };
 		A = arrayProgram.removeDuplicatesFromSortedArray(A);
-		System.out.println("After removing duplicates : "+Utility.toString(A));
-		
-		
-		int arr[] = {15, 2, 4, 8, 9, 5, 10, 23};
+		System.out
+				.println("After removing duplicates : " + Utility.toString(A));
+
+		int arr[] = { 15, 2, 4, 8, 9, 5, 10, 23 };
 		int sum = 23;
 		arrayProgram.findSubArraySum(arr, sum);
 	}
@@ -290,7 +290,7 @@ public class ArrayProgram {
 		}
 		return maxProfit;
 	}
-	
+
 	private int[] removeDuplicatesFromSortedArray(int[] A) {
 		int len = A.length;
 		int i = 0;
@@ -301,16 +301,17 @@ public class ArrayProgram {
 				A[++i] = A[j];
 		}
 		i++;
-		while(i<len){
-			
+		while (i < len) {
+
 			A[i] = -1;
 			i++;
 		}
 		return A;
 	}
-	
+
 	/**
 	 * Time complexity O(n)
+	 * 
 	 * @param arr
 	 * @param sum
 	 * @return

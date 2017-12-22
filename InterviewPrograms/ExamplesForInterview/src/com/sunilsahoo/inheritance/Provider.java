@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
- abstract public class Provider {
+abstract public class Provider {
 
-//	public String getName() {
-//		return "Sunil";
-//	}
-	 abstract String getName();
+	// public String getName() {
+	// return "Sunil";
+	// }
+	abstract String getName();
 
 	private static HashMap<String, Object> classMap = new HashMap<>();
 
@@ -20,7 +20,7 @@ import java.util.Set;
 			Set<Class> listenerSet = null;
 			if (classMap.get(classInst.getName()) == null) {
 				classMap.put(classInst.getName(), classInst.newInstance());
-			}else{
+			} else {
 				listenerSet = listenerMap.get(classInst.getName());
 			}
 			if (listenerSet == null) {

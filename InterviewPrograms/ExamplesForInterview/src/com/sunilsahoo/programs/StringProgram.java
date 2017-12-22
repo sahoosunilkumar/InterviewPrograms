@@ -11,8 +11,10 @@ import com.sunilsahoo.algorithm.Utility;
 public class StringProgram {
 	public static void main(String[] args) {
 		StringProgram programObj = new StringProgram();
+		System.out.println("" + (0 ^ 1 ^ 2 ^ 1));
 		System.out.println(programObj.checkBalancedParenthesis(")(PH)N(X)"));
-		System.out.println("balanced brackets : "+programObj.checkBalancedBrackets("{[]}"));
+		System.out.println("balanced brackets : "
+				+ programObj.checkBalancedBrackets("{[]}"));
 		System.out.println(programObj
 				.longestSubstringWithNonRepeatingCharacters("ABCDABDEFGCABD"));
 
@@ -34,24 +36,26 @@ public class StringProgram {
 		String originalString = "a,b$cde!fgci";
 		System.out.println("Reversed String: "
 				+ programObj.reverseStringWithPunctuation(originalString));
-		originalString = "byta";
+		originalString = "bcdb";
 		System.out.println(originalString + " has unique chars :"
 				+ programObj.checkUnique(originalString));
-//		System.out.println("After removing duplicates : "
-//				+ programObj.removeDuplicate("adbgfraaghdl"));
+		// System.out.println("After removing duplicates : "
+		// + programObj.removeDuplicate("adbgfraaghdl"));
 		char[] charArr = { 'a', 'b', 'd', 'g', 'f', 'r', 'a', 'a', 'g', 'h',
 				'd', 'l' };
 		System.out.println("After removing duplicates"
 				+ Utility.toString(programObj.removeDuplicate(charArr)));
 		System.out.println("Check Anagram : "
 				+ programObj.checkTwoStringsAnagram("ciodma", "iceman"));
-		System.out.println("After compression : "+programObj.compress("SSSunil"));
-		System.out.println("Longest Prefix as suffix substring : "+programObj.longestPrefixAsSuffixSUbstring("bananast"));
+		System.out.println(
+				"After compression : " + programObj.compress("SSSunil"));
+		System.out.println("Longest Prefix as suffix substring : "
+				+ programObj.longestPrefixAsSuffixSUbstring("bananast"));
 		programObj.longestPrefixAsSuffixSUbstring1("adgrbananast");
-		
+
 		String encode = TinyURL.encode(123);
-		System.out.println ( "after Encoding : " + encode ) ;
-		System.out.println ( "after Decoding : " + TinyURL.decode (encode) ) ;
+		System.out.println("after Encoding : " + encode);
+		System.out.println("after Decoding : " + TinyURL.decode(encode));
 
 	}
 
@@ -70,6 +74,7 @@ public class StringProgram {
 		}
 		return (balancedParenthesisCount == 0) ? true : false;
 	}
+
 	/* Check balanced brackets in a string Time Complexity is O(n) */
 	private boolean checkBalancedBrackets(String str) {
 		Stack<Character> parenthesisStack = new Stack<>();
@@ -93,8 +98,11 @@ public class StringProgram {
 		}
 		return parenthesisStack.isEmpty();
 	}
-	boolean isMatching(char inputChar, char matchAgainst){
-		return (')' == inputChar && '(' == matchAgainst) || ('}' == inputChar && '{' == matchAgainst) || (']' == inputChar && '[' == matchAgainst);
+
+	boolean isMatching(char inputChar, char matchAgainst) {
+		return (')' == inputChar && '(' == matchAgainst)
+				|| ('}' == inputChar && '{' == matchAgainst)
+				|| (']' == inputChar && '[' == matchAgainst);
 	}
 
 	/*
@@ -318,33 +326,14 @@ public class StringProgram {
 		int value = 0;
 		for (int i = 0; i < str.length(); i++) {
 			value = str.charAt(i) - 'a';
-			if ((checker & (1 << value)) > 0) {
+			int temp = 1 << value;
+			if ((checker & temp) > 0) {
 				return false;
 			}
-			checker |= 1 << value;
+			checker |= temp;
 		}
 		return true;
 	}
-
-//	private String removeDuplicate(String str) {
-//		int checker = 0;
-//		int value = 0;
-//		int index = 0;
-//		boolean isDuplicate = false;
-//		StringBuffer sb = new StringBuffer(str);
-//		while (index < sb.length()) {
-//			value = sb.charAt(index);
-//			isDuplicate = (checker & (1 << value)) > 0;
-//			if (isDuplicate) {
-//				sb.replace(index, sb.length() - 1,
-//						sb.substring(index + 1, sb.length() - 1));
-//			} else {
-//				index++;
-//			}
-//			checker |= 1 << value;
-//		}
-//		return sb.toString();
-//	}
 
 	/**
 	 * Design an algorithm and write code to remove the duplicate characters in
@@ -388,28 +377,29 @@ public class StringProgram {
 	 * @param str2
 	 * @return
 	 */
-	 private boolean checkTwoStringsAnagram(String str1, String str2){
-		 //TODO
-		 return false;
-	 }
+	private boolean checkTwoStringsAnagram(String str1, String str2) {
+		// TODO
+		return false;
+	}
 
 	/**
-	 * Write a method to replace all spaces in a string with ‘%20’
-	 * Count the number of spaces during the first scan of the string 
-	 * Parse the string again from the end and for each character:
-	 * If a space is encountered, store “%20” Else, 
-	 * store the character as it is in the newly shifted location
+	 * Write a method to replace all spaces in a string with ‘%20’ Count the
+	 * number of spaces during the first scan of the string Parse the string
+	 * again from the end and for each character: If a space is encountered,
+	 * store “%20” Else, store the character as it is in the newly shifted
+	 * location
+	 * 
 	 * @param charArr
 	 */
-	private void replaceSpaceWithChar(char[] charArr, String replacewith){
-		
+	private void replaceSpaceWithChar(char[] charArr, String replacewith) {
+
 	}
-	
+
 	private String compress(String s) {
 		char pre_c = 0;
 		int compress_v = 0;
 		StringBuilder sb = new StringBuilder();
-		
+
 		for (char c : s.toCharArray()) {
 			if (c != pre_c) {
 				if (compress_v != 0) {
@@ -418,20 +408,20 @@ public class StringProgram {
 				sb.append(c);
 				pre_c = c;
 				compress_v = 1;
-			}
-			else {
+			} else {
 				compress_v++;
 			}
 		}
 		sb.append(compress_v);
 
 		String return_s = sb.toString();
-		
+
 		return return_s.length() > s.length() ? s : return_s;
 	}
+
 	/*
-	 * For string S, find the longest palindromic substring. Example: S = "bananas" LPS = "anana"
-	 * Time Complexity O(n), Space Complexity : O(n)
+	 * For string S, find the longest palindromic substring. Example: S =
+	 * "bananas" LPS = "anana" Time Complexity O(n), Space Complexity : O(n)
 	 */
 	private String longestPrefixAsSuffixSUbstring(String s) {
 		char[] charArr = new char[s.length() * 2 + 3];
@@ -441,7 +431,7 @@ public class StringProgram {
 			charArr[2 * i + 1] = '#';
 			charArr[2 * i + 2] = s.charAt(i);
 		}
-		
+
 		charArr[s.length() * 2 + 1] = '#';
 		System.out.println(Utility.toString(charArr));
 		int[] P = new int[charArr.length];
@@ -468,81 +458,74 @@ public class StringProgram {
 		return s.substring((center - 1 - length) / 2,
 				(center - 1 + length) / 2);
 	}
-	
-	
-	
-	
+
 	private void longestPrefixAsSuffixSUbstring1(String s) {
 		int i = 0;
-		int j = s.length()-1;
-		int startPosition=-1,endPosition = -1;
-		
-		HashMap<Character,Integer> map = new HashMap<>();
-		while(i<j){
-			if(map.containsKey(s.charAt(i))){
-				startPosition=i;
+		int j = s.length() - 1;
+		int startPosition = -1, endPosition = -1;
+
+		HashMap<Character, Integer> map = new HashMap<>();
+		while (i < j) {
+			if (map.containsKey(s.charAt(i))) {
+				startPosition = i;
 				endPosition = s.charAt(i);
-			}else{
+			} else {
 				map.put(s.charAt(i), i);
 			}
-			if(map.containsKey(s.charAt(j))){
-				endPosition=j;
+			if (map.containsKey(s.charAt(j))) {
+				endPosition = j;
 				startPosition = map.get(s.charAt(j));
-			}else{
+			} else {
 				map.put(s.charAt(j), j);
 			}
-			if((startPosition !=-1) || (endPosition !=-1)){
+			if ((startPosition != -1) || (endPosition != -1)) {
 				break;
 			}
 			i++;
 			j--;
 		}
-		s = s.substring(startPosition, endPosition+1);
-		
+		s = s.substring(startPosition, endPosition + 1);
+
 		System.out.println(s);
 		int[] fail = new int[s.length()];
 		i = 1;
-		j = s.length()-1;
-		while(i<j){
-			if(s.charAt(i)==s.charAt(j)){
-				fail[i]=fail[i-1]+1;
+		j = s.length() - 1;
+		while (i < j) {
+			if (s.charAt(i) == s.charAt(j)) {
+				fail[i] = fail[i - 1] + 1;
 				i++;
 				j--;
-			}else{
+			} else {
 				fail[i] = 0;
 				i++;
 			}
 		}
-		System.out.println(" fail : "+Utility.toString(fail));
+		System.out.println(" fail : " + Utility.toString(fail));
 		System.out.println();
 	}
-	
-	
-	
 
 }
 
-
 class TinyURL {
-	private static final String ALPHABET_MAP = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" ;
-	private static final int BASE = ALPHABET_MAP.length() ;
+	private static final String ALPHABET_MAP = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	private static final int BASE = ALPHABET_MAP.length();
 
-	public static String encode ( int IndexNum ) {
-		StringBuilder sb = new StringBuilder() ;
-		
-		while ( IndexNum > 0 ) {
-			sb.append ( ALPHABET_MAP.charAt ( IndexNum % BASE ) ) ;
-			IndexNum /= BASE ;
+	public static String encode(int IndexNum) {
+		StringBuilder sb = new StringBuilder();
+
+		while (IndexNum > 0) {
+			sb.append(ALPHABET_MAP.charAt(IndexNum % BASE));
+			IndexNum /= BASE;
 		}
-		return sb.reverse().toString() ;
+		return sb.reverse().toString();
 	}
 
-	public static int decode ( String str ) {
-		int Num = 0 ;
+	public static int decode(String str) {
+		int Num = 0;
 
-		for ( int i = 0, len = str.length(); i < len; i++ ) {
-			Num = Num * BASE + ALPHABET_MAP.indexOf ( str.charAt(i) ) ;
+		for (int i = 0, len = str.length(); i < len; i++) {
+			Num = Num * BASE + ALPHABET_MAP.indexOf(str.charAt(i));
 		}
-		return Num ;
+		return Num;
 	}
 }

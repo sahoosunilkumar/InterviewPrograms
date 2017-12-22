@@ -274,7 +274,7 @@ public class TreeProgram {
 		}
 		/* first print data of node */
 
-		/* then recur on left sutree */
+		/* then recur on left subtree */
 		printLeftViewOfTree(node.left, currentLevel);
 
 		/* now recur on right subtree */
@@ -387,8 +387,7 @@ public class TreeProgram {
 	 * then the tree is BST. Time Complexity: O(n) We can avoid the use of
 	 * Auxiliary Array. While doing In-Order traversal, we can keep track of
 	 * previously visited node. If the value of the currently visited node is
-	 * less than the previous value, then tree is not BST. Thanks to ygos for
-	 * this space optimization.
+	 * less than the previous value, then tree is not BST.
 	 */
 	private boolean isBST(Node root) {
 		if (root != null) {
@@ -401,11 +400,11 @@ public class TreeProgram {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Using two stack technique.
-	 * right stack will push children to left stack (left child first)
-	 * left stack will push children to right stack (right child first)
+	 * Using two stack technique. right stack will push children to left stack
+	 * (left child first) left stack will push children to right stack (right
+	 * child first)
 	 * 
 	 * @param root
 	 */
@@ -428,7 +427,7 @@ public class TreeProgram {
 				if (node.right != null) {
 					leftStack.push(node.right);
 				}
-				System.out.print(node.key+" ");
+				System.out.print(node.key + " ");
 			}
 
 			while (!leftStack.isEmpty()) {
@@ -441,7 +440,7 @@ public class TreeProgram {
 				if (node.left != null) {
 					rightStack.push(node.left);
 				}
-				System.out.print(node.key+" ");
+				System.out.print(node.key + " ");
 			}
 		}
 
@@ -501,23 +500,22 @@ public class TreeProgram {
 		root.left.right = new Node(3);
 
 		System.out.println("\nIs BST : " + treeProgram.isBST(root));
-		
-		
+
 		root = new Node(1);
 		root.left = new Node(2);
 		root.right = new Node(3);
 		root.left.left = new Node(4);
 		root.left.right = new Node(5);
-		
+
 		root.right.left = new Node(6);
 		root.right.right = new Node(7);
-		
+
 		root.left.left.left = new Node(8);
 		root.left.left.right = new Node(9);
-		
+
 		root.left.right.left = new Node(10);
 		root.left.right.right = new Node(11);
-		
+
 		root.right.left.left = new Node(12);
 		root.right.left.right = new Node(13);
 		root.right.right.left = new Node(14);
@@ -528,7 +526,6 @@ public class TreeProgram {
 
 	static Node prev = null;
 }
-
 
 /*
  * Class containing left and right child of current node and key value

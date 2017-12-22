@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+@SuppressWarnings("serial")
 public class Server extends JFrame {
 	private final JTextArea msgArea = new JTextArea();
 	private DatagramSocket socket;

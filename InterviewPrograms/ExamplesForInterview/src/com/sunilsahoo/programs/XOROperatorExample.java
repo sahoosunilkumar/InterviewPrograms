@@ -2,35 +2,36 @@ package com.sunilsahoo.programs;
 
 /**
  * One solution is to use the bitwise XOR operator.
-
-If you know for a fact that exactly one element is duplicated.
-
-XOR has the following interesting properties:
-
-1. XOR is associative, so (x ^ y) ^ z = x ^ (y ^ z)
-2. XOR is commutative: x ^ y = y ^ x
-3. XOR is its own inverse: x ^ y = 0 iff x = y
-4. XOR has zero as an identity: x ^ 0 = x
-
+ * 
+ * If you know for a fact that exactly one element is duplicated.
+ * 
+ * XOR has the following interesting properties:
+ * 
+ * 1. XOR is associative, so (x ^ y) ^ z = x ^ (y ^ z) 2. XOR is commutative: x
+ * ^ y = y ^ x 3. XOR is its own inverse: x ^ y = 0 iff x = y 4. XOR has zero as
+ * an identity: x ^ 0 = x
+ * 
  * @author sunilkumarsahoo
  *
  */
 public class XOROperatorExample {
-public static void main(String[] args){
-	int[] array = {4,6,7,3,6,7};
-	getDuplicate(array);
-	swap(12, 50);
-	encryption(1000, 1059);
-	String s = "Sunil";
-	System.out.println(reverseWithXOR(s));
-	int a[] = {1,2,3,4,6,7};
-	System.out.println("Missing number :"+getMissingNo(a, 5));
-	int inputArr[] = {1,5,12,4,1,5,12};
-	System.out.println("findNumberOccurringOddNumberOfTimes :"+findNumberOccurringOddNumberOfTimes(inputArr));
+	public static void main(String[] args) {
+		int[] array = { 4, 6, 7, 3, 6, 7 };
+		System.out.println("output : " + (3 ^ 8 ^ 3));
+		getDuplicate(array);
+		swap(12, 50);
+		encryption(1000, 1059);
+		String s = "Sunil";
+		System.out.println(reverseWithXOR(s));
+		int a[] = { 1, 2, 3, 4, 6, 7 };
+		System.out.println("Missing number :" + getMissingNo(a, 5));
+		int inputArr[] = { 1, 5, 12, 4, 1, 5, 12 };
+		System.out.println("findNumberOccurringOddNumberOfTimes :"
+				+ findNumberOccurringOddNumberOfTimes(inputArr));
 
-	System.out.println("add number : "+addNumbers(50, 20));
-	System.out.println("subtract number : "+subtractNumbers(10, 15));
-}
+		System.out.println("add number : " + addNumbers(50, 20));
+		System.out.println("subtract number : " + subtractNumbers(10, 15));
+	}
 
 	/*
 	 * Let x and y be the non-repeating elements we are looking for and arr[] be
@@ -73,10 +74,9 @@ public static void main(String[] args){
 	 * We have chosen the rightmost set bit of the xor as it is easy to find
 	 * out.
 	 * 
-	 * Time Complexity: O(n)
-	 * Auxiliary Space: O(1)
+	 * Time Complexity: O(n) Auxiliary Space: O(1)
 	 */
-	
+
 	private static void getDuplicate(int[] array) {
 		int dup = array[0];
 		// int offset = 1;
@@ -95,18 +95,17 @@ public static void main(String[] args){
 		}
 
 		System.out.println("non duplicate  x : " + x + " y  : " + y);
-		  for(int i = 0; i < array.length; i++)
-		  {
-		    if((i & setBit) ==1)
-		      x = x ^ i; /*XOR of first set in arr[] and {1, 2, ...n }*/
-		    else
-		      y = y ^ i; /*XOR of second set in arr[] and {1, 2, ...n } */
-		  }
-		  
-		  System.out.println("\n duplicate "+ x+" y :"+ y);
-		
+		for (int i = 0; i < array.length; i++) {
+			if ((i & setBit) == 1)
+				x = x ^ i; /* XOR of first set in arr[] and {1, 2, ...n } */
+			else
+				y = y ^ i; /* XOR of second set in arr[] and {1, 2, ...n } */
+		}
+
+		System.out.println("\n duplicate " + x + " y :" + y);
+
 	}
-	
+
 	/**
 	 * XOR all the array elements, let the result of XOR be X1. 2) XOR all
 	 * numbers from 1 to n, let XOR be X2. 1/2 3) XOR of X1 and X2 gives the
@@ -126,73 +125,76 @@ public static void main(String[] args){
 			x2 = x2 ^ i;
 		return (x1 ^ x2);
 	}
-	
-	private static void swap(int x, int y){
-		System.out.println("Before swaping x : "+x+" y : "+y);
-		x = x^y;
-		y = x^y;
-		x = x^y;
-		System.out.println("After swaping x : "+x+" y : "+y);
+
+	private static void swap(int x, int y) {
+		System.out.println("Before swaping x : " + x + " y : " + y);
+		x = x ^ y;
+		y = x ^ y;
+		x = x ^ y;
+		System.out.println("After swaping x : " + x + " y : " + y);
 	}
-	
-	private static void encryption(int data, int encryptionKey){
-		System.out.println("Before encryption data : "+data+" encryptionKey : "+encryptionKey);
-		data = data^encryptionKey;
-		System.out.println("After encryption data : "+data+" encryptionKey : "+encryptionKey);
-		data = data^encryptionKey;
-		System.out.println("After Decryption data : "+data+" encryptionKey : "+encryptionKey);
-		
+
+	private static void encryption(int data, int encryptionKey) {
+		System.out.println("Before encryption data : " + data
+				+ " encryptionKey : " + encryptionKey);
+		data = data ^ encryptionKey;
+		System.out.println("After encryption data : " + data
+				+ " encryptionKey : " + encryptionKey);
+		data = data ^ encryptionKey;
+		System.out.println("After Decryption data : " + data
+				+ " encryptionKey : " + encryptionKey);
+
 	}
-	
-	static String toString(int[] arr){
+
+	static String toString(int[] arr) {
 		StringBuffer sb = new StringBuffer();
-		for(int i =0; i <arr.length; i++){
-			if(i ==0){
+		for (int i = 0; i < arr.length; i++) {
+			if (i == 0) {
 				sb.append(arr[i]);
-			}else{
+			} else {
 				sb.append(",").append(arr[i]);
 			}
 		}
 		return sb.toString();
 	}
-	
+
 	static final String reverseWithXOR(String string) {
-        char[] array = string.toCharArray();
-        int length = array.length;
-        int half = (int) Math.floor(array.length / 2);
-        for (int i = 0; i < half; i++) {
-            array[i] ^= array[length - i - 1];
-            array[length - i - 1] ^= array[i];
-            array[i] ^= array[length - i - 1];
-        }
-        return String.valueOf(array);
-    }
-	
+		char[] array = string.toCharArray();
+		int length = array.length;
+		int half = (int) Math.floor(array.length / 2);
+		for (int i = 0; i < half; i++) {
+			array[i] ^= array[length - i - 1];
+			array[length - i - 1] ^= array[i];
+			array[i] ^= array[length - i - 1];
+		}
+		return String.valueOf(array);
+	}
+
 	/*
 	 * Find the Number Occurring Odd Number of Times Given an array of positive
 	 * integers. All numbers occur even number of times except one number which
 	 * occurs odd number of times. Find the number in O(n) time & constant
 	 * space. Example: I/P = [1, 2, 3, 2, 3, 1, 3] O/P = 3
 	 */
-	private static int findNumberOccurringOddNumberOfTimes(int[] inputArr){
+	private static int findNumberOccurringOddNumberOfTimes(int[] inputArr) {
 		int xor = 0;
-		for(int input :inputArr){
-			xor ^=input;
+		for (int input : inputArr) {
+			xor ^= input;
 		}
 		return xor;
 	}
-	
-	private static int addNumbers(int a, int b){
-		if (b == 0) return a;
+
+	private static int addNumbers(int a, int b) {
+		if (b == 0)
+			return a;
 		int sum = a ^ b; // add without carrying
-		int carry = (a & b) << 1; // carry, but don’t add 
-		System.out.println("sum : "+sum+" carry : "+carry);
+		int carry = (a & b) << 1; // carry, but don’t add
+		System.out.println("sum : " + sum + " carry : " + carry);
 		return addNumbers(sum, carry); // recurse
 	}
-	private static int subtractNumbers(int a, int b){
+
+	private static int subtractNumbers(int a, int b) {
 		b = addNumbers(~b, 1);
 		return addNumbers(a, b); // recurse
 	}
 }
-
-

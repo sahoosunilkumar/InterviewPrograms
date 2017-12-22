@@ -7,7 +7,7 @@ import javax.crypto.SecretKey;
 public class MessageAuthenticationExample {
 	public static void main(String[] args) throws Exception {
 		byte[] plainText = "Sunil Kumar Sahoo".getBytes();
-		System.out.println("Input Text : "+new String(plainText));
+		System.out.println("Input Text : " + new String(plainText));
 		// get a key for the HmacMD5 algorithm
 		System.out.println("\nStart generating key");
 		KeyGenerator keyGen = KeyGenerator.getInstance("HmacMD5");

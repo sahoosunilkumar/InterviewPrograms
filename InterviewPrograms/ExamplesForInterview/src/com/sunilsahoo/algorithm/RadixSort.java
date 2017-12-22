@@ -1,29 +1,30 @@
 package com.sunilsahoo.algorithm;
 
 import java.util.Arrays;
+
 /**
  * Radix sort is a non-comparative integer sorting algorithm that sorts data
  * with integer keys by grouping keys by the individual digits which share the
  * same significant position and value. A positional notation is required, but
  * because integers can represent strings of characters (e.g., names or dates)
  * and specially formatted floating point numbers, radix sort is not limited to
- * integers. 
+ * integers.
  * 
- * Family: Bucket. 
- * Space: 10 Buckets with at most n integers per bucket. 
- * Stable: True.
+ * Family: Bucket. Space: 10 Buckets with at most n integers per bucket. Stable:
+ * True.
  * 
- * Average case = O(n*k) Worst case = O(n*k) Best case = O(n*k) 
- * NOTE: n is the number of digits and k is the average bucket size
+ * Average case = O(n*k) Worst case = O(n*k) Best case = O(n*k) NOTE: n is the
+ * number of digits and k is the average bucket size
  * 
  */
 public class RadixSort {
 
 	public static void main(String[] args) {
-		Integer[] unsorted = {064, 8, 216, 512, 027, 729, 000, 001, 343, 125};
+		Integer[] unsorted = { 064, 8, 216, 512, 027, 729, 000, 001, 343, 125 };
 		unsorted = sort(unsorted);
 		System.out.println(Utility.toString(unsorted));
 	}
+
 	private static final int NUMBER_OF_BUCKETS = 10;
 
 	public static Integer[] sort(Integer[] unsorted) {

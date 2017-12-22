@@ -1,14 +1,11 @@
 package com.sunilsahoo.designpatterns;
 
 /**
- * Type: Structural 
- * Intent :
- * • Provide a surrogate or placeholder for another
+ * Type: Structural Intent : • Provide a surrogate or placeholder for another
  * object to control access to it. • Use an extra level of indirection to
  * support distributed, controlled, or intelligent access. • Add a wrapper and
- * delegation to protect the real component from undue complexity. 
- * Problem :
- * You need to support resource-hungry objects, and you do not want to instantiate
+ * delegation to protect the real component from undue complexity. Problem : You
+ * need to support resource-hungry objects, and you do not want to instantiate
  * such objects unless and until they are actually requested by the client.
  * 
  * There are four common situations in which the Proxy pattern is applicable. 1.

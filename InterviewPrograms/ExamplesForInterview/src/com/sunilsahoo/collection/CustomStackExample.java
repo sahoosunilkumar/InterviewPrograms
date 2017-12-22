@@ -1,16 +1,16 @@
 package com.sunilsahoo.collection;
 
 /**
- * A stack is a collection of objects that are inserted and removed according 
- * to the last-in, first-out (LIFO)
+ * A stack is a collection of objects that are inserted and removed according to
+ * the last-in, first-out (LIFO)
  * 
  * Example 6.1: Internet Web browsers store the addresses of recently visited
  * sites on a stack. Each time a user visits a new site, that site’s address is
  * “pushed” onto the stack of addresses. The browser then allows the user to
- * “pop” back to previously visited sites using the “back” button.
- * Example 6.2: Text editors usually provide an “undo” mechanism that cancels recent
- * editing operations and reverts to former states of a document. This undo
- * oper-ation can be accomplished by keeping text changes in a stack.
+ * “pop” back to previously visited sites using the “back” button. Example 6.2:
+ * Text editors usually provide an “undo” mechanism that cancels recent editing
+ * operations and reverts to former states of a document. This undo oper-ation
+ * can be accomplished by keeping text changes in a stack.
  * 
  * Stacks are the simplest of all data structures, yet they are also among the
  * most important, as they are used in a host of different applications, and as
@@ -25,11 +25,7 @@ package com.sunilsahoo.collection;
  * empty. By convention, we assume that elements added to the stack can have
  * arbitrary type and that a newly created stack is empty.
  * 
- * size() = O(1)
- * isEmpty() = O(1)
- * top() = O(1)
- * push() = O(1)
- * pop() = O(1)
+ * size() = O(1) isEmpty() = O(1) top() = O(1) push() = O(1) pop() = O(1)
  * 
  * The space usage is O(N)
  */

@@ -2,12 +2,11 @@ package com.sunilsahoo.collection;
 //Priority Queue is Collection of entities or elements in which >
 
 //Addition of element is done on basis of priority.
+
 //Removal of element is done at FRONT.
 //
 // Example of Priority Queues in java >
 //There might be a case where patients are waiting for some regular check up with the doctor, but certainly some patient might come with some emergency, he will surely be given priority as compared to regular patients in java.
-
-
 
 /**
  * Main Class
@@ -15,9 +14,10 @@ package com.sunilsahoo.collection;
 public class CustomPriorityQueueExample {
 	public static void main(String[] args) {
 		CustomPriorityQueueExample customPriorityQueueExample = new CustomPriorityQueueExample();
-		PriorityQueue priorityQueue = customPriorityQueueExample.new PriorityQueue(10); // Priority Queue
-																// holds 10
-																// elements
+		PriorityQueue priorityQueue = customPriorityQueueExample.new PriorityQueue(
+				10); // Priority Queue
+		// holds 10
+		// elements
 
 		priorityQueue.insert(81);
 		priorityQueue.insert(72);
@@ -31,8 +31,7 @@ public class CustomPriorityQueueExample {
 		System.out.print(priorityQueue.remove() + " ");
 
 	}
-	
-	
+
 	/**
 	 * Exception to indicate that Queue is full.
 	 */
@@ -72,6 +71,7 @@ public class CustomPriorityQueueExample {
 		}
 
 	}
+
 	/**
 	 *
 	 * Priority Queue Class
@@ -91,8 +91,8 @@ public class CustomPriorityQueueExample {
 		}
 
 		/**
-		 * Insert element in Priority Queue, element will be inserted on basis of
-		 * priority.
+		 * Insert element in Priority Queue, element will be inserted on basis
+		 * of priority.
 		 */
 		public void insert(int value) {
 			int i;
@@ -102,14 +102,18 @@ public class CustomPriorityQueueExample {
 			}
 			if (number == 0)
 				prioQueueAr[number++] = value; // If no values in PriorityQueue-
-												// insert at starting position, i.e.
+												// insert at starting position,
+												// i.e.
 												// at 0th position.
 			else {
 				for (i = number - 1; i >= 0; i--) {
 					if (value > prioQueueAr[i])
-						prioQueueAr[i + 1] = prioQueueAr[i]; // if value is larger,
-																// shift elements
-																// upward till value
+						prioQueueAr[i + 1] = prioQueueAr[i]; // if value is
+																// larger,
+																// shift
+																// elements
+																// upward till
+																// value
 																// is larger.
 					else
 						break;

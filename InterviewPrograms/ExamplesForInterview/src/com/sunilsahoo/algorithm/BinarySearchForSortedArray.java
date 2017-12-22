@@ -17,8 +17,8 @@ package com.sunilsahoo.algorithm;
  * number of candidate elements still to be searched is given by the value
  * high−low+1. Moreover, the number of remaining candidates is reduced by at
  * least one-half with each recursive call. Specifically, from the definition of
- * mid, the number of remaining candidates is either or (mid−1)−low+1=
- * low+high −low≤ high−low+1 22 high−(mid+1)+1 = high− low+high ≤ high−low+1. 22
+ * mid, the number of remaining candidates is either or (mid−1)−low+1= low+high
+ * −low≤ high−low+1 22 high−(mid+1)+1 = high− low+high ≤ high−low+1. 22
  * Initially, the number of candidates is n; after the first call in a binary
  * search, it is at most n/2; after the second call, it is at most n/4; and so
  * on. In general, after the jth call in a binary search, the number of

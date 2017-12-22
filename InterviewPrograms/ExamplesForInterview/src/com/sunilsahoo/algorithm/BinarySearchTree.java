@@ -131,8 +131,7 @@ public class BinarySearchTree {
 			return node.key;
 		return getMinValue(node.leftChild);
 	}
-	
-	
+
 	/*
 	 * In a BST, the root is greater than all nodes of the left sub tree. So
 	 * root value forms an upper bound on left sub tree values. Similarly, since
@@ -147,7 +146,8 @@ public class BinarySearchTree {
 	 * for right sub tree node values. Time complexity: O(n)
 	 */
 	public boolean isBinarySearchTree() {
-		return isBinarySearchTree(this.rootNode, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		return isBinarySearchTree(this.rootNode, Integer.MIN_VALUE,
+				Integer.MAX_VALUE);
 	}
 
 	private boolean isBinarySearchTree(Node root, int low, int high) {
@@ -160,9 +160,6 @@ public class BinarySearchTree {
 		return isBinarySearchTree(root.leftChild, low, root.key)
 				&& isBinarySearchTree(root.rightChild, root.key, high);
 	}
-		
-	
-	
 
 	class Node {
 		private int key;

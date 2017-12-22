@@ -13,13 +13,17 @@ public class LinkedListProgram {
 		// Creating a loop for testing
 		head.next.next.next.next.next = head.next.next;
 		linkedListProgram.detectLoop(head);
-		
+
 		head = linkedListProgram.new Node(1);
 		head.next = linkedListProgram.new Node(3);
 		head.next.next = linkedListProgram.new Node(5);
 		head.next.next.next = linkedListProgram.new Node(7);
-		Node node = linkedListProgram.reverseLinkedList(head);
-		System.out.println(node+" "+node.next+" "+node.next.next+" "+node.next.next.next);
+		System.out.println(head + " " + head.next + " " + head.next.next + " "
+				+ head.next.next.next);
+		head = linkedListProgram.reverseLinkedList(head);
+		System.out.println("after reversing :: ");
+		System.out.println(head + " " + head.next + " " + head.next.next + " "
+				+ head.next.next.next);
 	}
 
 	/**
@@ -103,7 +107,8 @@ public class LinkedListProgram {
 			}
 			node1 = node1.next.next;
 			node2 = node2.next;
-			if (node1.key == node2.key) {
+			System.out.println(node1 + " : " + node2);
+			if (node1 == node2) {
 				System.out.println(" There is a loop");
 				break;
 			}
@@ -120,22 +125,22 @@ public class LinkedListProgram {
 
 	}
 
-	
-	private Node reverseLinkedList(Node node){
-		if(node == null){
+	private Node reverseLinkedList(Node node) {
+		if (node == null) {
 			return null;
 		}
-		Node next = null, previous=null;
-		while(true){
+		Node next = null, previous = null;
+		while (true) {
 			next = node.next;
-			node.next=previous;
+			node.next = previous;
 			previous = node;
-			if (next == null) break;
+			if (next == null)
+				break;
 			node = next;
 		}
 		return previous;
 	}
-		
+
 	class Node {
 		int key;
 		Node previous, next;

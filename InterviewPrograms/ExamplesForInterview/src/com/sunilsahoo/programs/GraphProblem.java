@@ -10,8 +10,7 @@ public class GraphProblem {
 				{ 0, 1, 0, 1, 1 }, };
 		NumberOfClusters solution = new NumberOfClusters();
 		System.out.println(solution.findNumberofClusters(matrix));
-		
-		
+
 		Graph<Integer> graph = new Graph<>();
 		createGraph(graph);
 		int srcNodeId = 0, destNodeId = 5;
@@ -19,7 +18,7 @@ public class GraphProblem {
 				.print("\n\nIf path exists between source and destination node:\n"
 						+ graph.isPathExists(srcNodeId, destNodeId));
 	}
-	
+
 	public static void createGraph(Graph<Integer> graph) {
 		graph.addNode(0);
 		graph.addNode(1);
@@ -203,14 +202,14 @@ class Graph<T> {
 		LinkedList<QueueNode> queue = new LinkedList<>();
 		HashMap<T, Integer> visited = new HashMap<>();
 		GraphNode srcNode = null;
-		//find source id
+		// find source id
 		for (int i = 0; i < nodeList.size(); i++) {
 			if (nodeList.get(i).nodeId == srcId) {
 				srcNode = nodeList.get(i);
 				break;
 			}
 		}
-		
+
 		if (srcNode == null) {
 			System.out.println("Source vertex not found");
 			return false;
