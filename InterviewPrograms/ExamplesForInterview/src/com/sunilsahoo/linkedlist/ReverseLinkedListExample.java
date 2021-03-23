@@ -28,19 +28,11 @@ public class ReverseLinkedListExample {
         Node head = node5;
 
         ReverseLinkedListExample example = new ReverseLinkedListExample();
-        example.print(head);
+        LinkedListUtils.print(head);
         System.out.println("===== AFTER CHANGES =====");
         Node newHead = example.reverse(head);
-        example.print(newHead);
+        LinkedListUtils.print(newHead);
 
-    }
-
-    private void print(Node node){
-        Node head = node;
-        while (head != null){
-            System.out.print(""+head.data+",");
-            head = head.next;
-        }
     }
 
     // 5 6 7 8 9 10
