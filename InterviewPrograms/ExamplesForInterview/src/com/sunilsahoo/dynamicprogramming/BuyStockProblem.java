@@ -13,6 +13,9 @@ public class BuyStockProblem {
         System.out.println(result);
         result = buyStockProblem.maxProfitBottomUp(prices, 3);
         System.out.println(result);
+
+        result = buyStockProblem.maxProfit_k_any(3, prices);
+        System.out.println(result);
     }
     /**
      * You are given an array prices where prices[i] is the price of a given stock on the ith day.
@@ -175,6 +178,102 @@ public class BuyStockProblem {
             }
         }
         return profit[k][n];
+    }
+
+
+    /**
+     * Let’s see an example and how our code works: say prices=[3,2,6,5,0,3]
+     * dp[1][1]=0, profit=-2: find a better buying point than prices[0]
+     * dp[1][2]=4, profit=-2: find a good deal which increases our profit to 4
+     * dp[1][3]=4, profit=-2
+     * dp[1][4]=4, profit=0: find a better buying point than prices[1]
+     * dp[1][5]=4, profit=0: the current buying point results in profit==3 which is smaller than the best profit==4 so far
+     * dp[2][1]=0, profit=-2
+     * dp[2][2]=4, profit=-2
+     * dp[2][3]=4, profit=-1: the previous profit gained dp[1][2] is equal to 4. Now we could start another transaction of buying at prices[3].
+     * dp[2][4]=4, profit=4: the new transaction of buying at prices[3] and selling at prices[4] decrease our profit; however we find a better buying point at prices[4] instead
+     * dp[2][5]=7,profit=4:the new transaction of buying at prices[4] and selling at prices[5] does increase our profit
+     * @param k
+     * @param prices
+     * @return
+     */
+    public int maxProfit(int k, int[] prices) {
+        int n = prices.length;
+
+        if (k>n/2)
+        {
+            int res = 0;
+            for (int i = 1; i < n; i ++)
+            {
+                res += Math.max(0,prices[i]-prices[i-1]);
+            }
+            return res;
+        }
+
+        int[][] dp = new int[k+1][n];
+        for (int i = 1; i <= k; i ++)
+        {
+            int profit = 0-prices[0];
+            for (int j = 1; j < n; j ++)
+            {
+//                dp[i][j-1] = Yesterday I had sold Item & I rest today
+//                profit+prices[j] = I sell stock today
+                dp[i][j] = Math.max(dp[i][j-1], profit+prices[j]);
+//                dp[i-1][j-1] = Yesterday I Sold Item
+//                dp[i-1][j-1]-prices[j] = Yesterday I Sold Item, today I Purchase
+
+                profit = Math.max(profit, dp[i-1][j-1]-prices[j]);
+            }
+        }
+
+        return dp[k][n-1];
+    }
+
+
+    /**
+     * dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+     *               max( choose rest  ,          choose sell      )
+     *
+     * Explanation: I don’t hold stocks today. There are two possibilities:
+     * 1) Either I didn’t hold stocks yesterday, and then choose to rest today, so I still don’t hold stocks today.
+     * 2) Either I held stocks yesterday, but today I chose to sell, so I don't hold stocks today.
+     *
+     * dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
+     *               max( choose rest  ,            choose buy         )
+     *
+     * Explanation: Today I hold stocks. There are two possibilities:
+     * 1) Either I held stocks yesterday and chose to rest today, so I still hold stocks today.
+     * 2) Either I didn't hold stocks yesterday, but today I chose to buy, so today I hold stocks.
+     * @param max_k
+     * @param prices
+     * @return
+     */
+    int maxProfit_k_any(int max_k, int[] prices) {
+        int n = prices.length;
+        if (max_k > n / 2) {
+            return maxProfit_k_inf(prices);
+        }
+
+        int[][][] dp = new int[n][max_k + 1][2];
+        for (int i = 0; i < n; i++)
+            for (int k = max_k; k >= 1; k--) {
+                if (i - 1 == -1) {
+                break;}
+                dp[i][k][0] = Math.max(dp[i-1][k][0], dp[i-1][k][1] + prices[i]);
+                dp[i][k][1] = Math.max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]);
+            }
+        return dp[n - 1][max_k][0];
+    }
+
+    int maxProfit_k_inf(int[] prices) {
+        int n = prices.length;
+        int dp_i_0 = 0, dp_i_1 = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            int temp = dp_i_0;
+            dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
+            dp_i_1 = Math.max(dp_i_1, temp - prices[i]);
+        }
+        return dp_i_0;
     }
 
 }
