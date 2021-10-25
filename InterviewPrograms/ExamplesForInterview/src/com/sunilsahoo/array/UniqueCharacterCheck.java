@@ -10,7 +10,7 @@ public class UniqueCharacterCheck {
     public static void main(String[] args) {
         char[] input = {'b','c','a','d','x'};
 //        Approach -1 Using two loop -> Time Complexity = O(n2), Space Complexity = O(1)
-//        Approach -2 Using sorting  -> Time Complexity = O(nLogn), Space Complexity = O(nLogn)
+//        Approach -2 Using sorting  -> Time Complexity = O(nLogn), Space Complexity = O(nLogn), Quick Sort space Complexity O(n)
 //        Approach-3 Using additional space array/HashMap, input = {'b','c','a','d','a'}; //storage {'b','c','a','d'}
         boolean result = findUsingStorage(input);
         System.out.println(result);
@@ -29,32 +29,6 @@ public class UniqueCharacterCheck {
         }
         return true;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         /* After sorting {'a','b','c','d','x'}
         compare the array with matching character = O(n)
